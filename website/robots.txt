@@ -1,0 +1,29 @@
+User-agent: *
+Allow: /
+
+# SEO-optimized sitemap
+Sitemap: https://promptgeminiofotos.com.br/sitemap.xml
+
+# Priority crawling for key pages
+Crawl-delay: 1
+
+# Block unnecessary files
+Disallow: /*.json$
+Disallow: /css/
+Disallow: /js/
+Disallow: /.git/
+Disallow: /tmp/
+
+# Allow social media bots
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+# SEO comments
+# Site focuses on: prompt gemini ensaio fotográfico, prompt gemini foto profissional, prompt gemini casal
+# Target market: Brasil 2025 AI photography trends
