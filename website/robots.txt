@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # SEO-optimized sitemap
-Sitemap: https://promptgeminiofotos.com.br/sitemap.xml
+Sitemap: https://www.promptgeminifotos.com/sitemap.xml
 
 # Priority crawling for key pages
 Crawl-delay: 1
