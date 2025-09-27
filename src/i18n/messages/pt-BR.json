@@ -1,0 +1,547 @@
+{
+  "navigation": {
+    "home": "Inicio",
+    "templates": "Templates",
+    "pricing": "Precos",
+    "brand": "Prompt Gemini Fotos",
+    "generator": "Gerador",
+    "login": "Entrar"
+  },
+  "hero": {
+    "title": "Prompt Gemini Ensaio Fotográfico Profissional",
+    "subtitle": "Crie prompt Gemini ensaio fotográfico com dicas prontas para feminino, masculino e casal. Transforme tudo em prompt Gemini foto profissional com IA em minutos",
+    "cta": "Comecar agora",
+    "features": "Ver recursos",
+    "freeTrial": "Teste gratis"
+  },
+  "keywordSection": {
+    "badge": "Tendencias no Brasil",
+    "title": "Prompts Gemini para ensaio fotográfico no Brasil",
+    "intro": "Escolha um prompt Gemini ensaio fotográfico alinhado ao seu objetivo e gere referências profissionais em português, do feminino ao masculino e casal, sem esforço.",
+    "cards": {
+      "feminino": {
+        "title": "Ensaio feminino",
+        "description": "Combine iluminação suave com prompt Gemini ensaio fotográfico feminino para criar retratos editoriais, moda ou lifestyle prontos para redes sociais, incluindo variações de prompt Gemini feminino para branding.",
+        "cta": "Ver prompt Gemini ensaio fotográfico feminino"
+      },
+      "masculino": {
+        "title": "Retrato masculino",
+        "description": "Defina poses firmes e textura de estúdio usando prompt Gemini ensaio fotográfico masculino com ajustes de luz dura ou dramática e um guia bônus de prompt Gemini masculino para LinkedIn.",
+        "cta": "Ver prompt Gemini ensaio fotográfico masculino"
+      },
+      "casal": {
+        "title": "Casal e pré-wedding",
+        "description": "Crie storytelling romântico com prompt Gemini casal e diretrizes de locação externa, fundo bokeh e enquadramentos cinematográficos.",
+        "cta": "Ver prompt Gemini casal"
+      },
+      "corporativo": {
+        "title": "Foto profissional",
+        "description": "Gere headshots com prompt Gemini foto profissional, explorando variações de fundo neutro, roupas formais e composição simétrica.",
+        "cta": "Ver prompt Gemini foto profissional"
+      }
+    },
+    "bullet": "Passo a passo: escolha o estilo, adicione referências e gere. Resultado pronto para exportar em minutos.",
+    "cta": "Explorar prompt Gemini ensaio fotográfico"
+  },
+  "cta": {
+    "freeGenerations": "geracoes gratis",
+    "noCardRequired": "sem cartao de credito",
+    "resultsInSeconds": "prompt gemini ensaio fotográfico gerado em segundos",
+    "securePrivate": "prompt gemini ensaio fotográfico feminino com segurança e privacidade",
+    "optimizedGemini": "prompt gemini foto profissional otimizado para o Gemini",
+    "usedBy": "Usado por",
+    "contentCreators": "criadores de conteudo",
+    "testimonialQuote": "Finalmente tenho retratos profissionais sem precisar de estudio.",
+    "testimonialAuthor": "Mariana Souza, Criadora de Conteudo"
+  },
+  "features": {
+    "title": "Recursos poderosos",
+    "subtitle": "Tudo que voce precisa para criar fotos profissionais",
+    "smartGenerator": "Gerador inteligente",
+    "smartGeneratorDesc": "Prompts ajustados automaticamente para cada estilo de foto, entregando prompt Gemini ensaio fotográfico preciso",
+    "professionalTemplates": "Templates profissionais",
+    "professionalTemplatesDesc": "Colecao curada com prompt Gemini ensaio fotográfico feminino, masculino, casal e muito mais",
+    "unlimitedGenerations": "Geracoes ilimitadas",
+    "unlimitedGenerationsDesc": "Crie quantas fotos quiser com qualidade consistente",
+    "fastResults": "Resultados rapidos",
+    "fastResultsDesc": "Processamento otimizado com fotos prontas em segundos",
+    "privateSecure": "Privacidade garantida",
+    "privateSecureDesc": "Fotos protegidas com criptografia e exclusao automatica",
+    "hdDownloads": "Downloads em HD",
+    "hdDownloadsDesc": "Imagens prontas para uso profissional sem marca d'agua",
+    "benefits": {
+      "professionalResults": "Qualidade de estudio em cada geracao com prompt Gemini foto profissional",
+      "optimizedForGemini": "Prompts testados no Gemini Advanced para prompt Gemini masculino",
+      "testedPrompts": "Mais de 100 prompts validados pela comunidade",
+      "allStyles": "Retratos, casais, moda, lifestyle e corporativo com prompt Gemini casal",
+      "monthlyUpdates": "Novos estilos adicionados todo mes",
+      "organizedCategories": "Filtros por categoria, estilo e ocasiao",
+      "noLimits": "Use sem limites no plano Pro",
+      "highQuality": "Saida em alta resolucao",
+      "commercialUse": "Licenca para uso comercial",
+      "ultraFast": "Fila prioritaria para assinantes",
+      "noWaiting": "Gere varias variacoes em paralelo",
+      "instantProcessing": "Geracoes concluidas em segundos",
+      "dataProtected": "Dados armazenados de forma segura",
+      "autoDelete": "Referencias removidas apos o processamento",
+      "lgpdCompliant": "Conformidade com LGPD e GDPR",
+      "highResolution": "Ate 1024x1024 px",
+      "noWatermark": "Sem marca d'agua em downloads",
+      "professionalUse": "Pronto para curriculos, portfolio e redes sociais"
+    },
+    "badges": {
+      "new": "Novo",
+      "popular": "Mais usado"
+    },
+    "badgeTitle": "Destaques do produto",
+    "compatibility": "Funciona em desktop, tablet e celular"
+  },
+  "pricing": {
+    "title": "Precos simples",
+    "subtitle": "Escolha o plano ideal para voce",
+    "valueProposition": "Comece gratis e faca upgrade quando quiser",
+    "flexiblePlans": "Planos flexiveis",
+    "billing": {
+      "monthly": "Mensal",
+      "yearly": "Anual",
+      "discount": "Desconto anual",
+      "monthlyEquivalent": "Equivalente a {amount}/mes no plano anual"
+    },
+    "free": {
+      "title": "Gratuito",
+      "price": "R$ 0",
+      "period": "/mes",
+      "features": {
+        "0": "2 geracoes gratuitas inclusas",
+        "1": "Templates essenciais",
+        "2": "Suporte por e-mail",
+        "3": "Acesso a galeria comunitaria"
+      },
+      "cta": "Comecar gratis",
+      "startNow": "Comecar agora"
+    },
+    "pro": {
+      "title": "Pro",
+      "price": "R$ 29",
+      "period": "/mes",
+      "yearlyPrice": "R$ 290",
+      "yearlyPeriod": "/ano",
+      "yearlyDiscount": "2 meses gratis",
+      "yearlySavings": "Economize 20%",
+      "features": {
+        "0": "Geracoes ilimitadas",
+        "1": "Todos os templates premium",
+        "2": "Downloads em alta resolucao",
+        "3": "Suporte prioritario 24/7",
+        "4": "Favoritos e historico de prompts",
+        "5": "Integracao via API"
+      },
+      "cta": "Assinar Pro",
+      "popular": "Mais popular",
+      "exclusiveBenefits": "Beneficios exclusivos Pro",
+      "exclusiveList": [
+        "Modelos premium atualizados semanalmente",
+        "Processamento prioritario em fila dedicada",
+        "Equipe de suporte especializada"
+      ],
+      "notifyTitle": "Seja avisado sobre novos recursos premium",
+      "notifyPlaceholder": "Seu melhor e-mail",
+      "notifyButton": "Quero ser avisado",
+      "notifySuccess": "Tudo certo! Entraremos em contato em breve."
+    },
+    "trust": {
+      "cancelAnytime": "Cancele quando quiser",
+      "support247": "Suporte humano 24/7",
+      "securePayment": "Pagamento 100% seguro",
+      "guaranteeTitle": "Garantia de 7 dias",
+      "guaranteeDesc": "Teste sem risco e cancele se nao ficar satisfeito"
+    },
+    "popularChoice": "Mais popular"
+  },
+  "generator": {
+    "tryNow": "Experimente agora",
+    "tryGenerator": "Teste o gerador inteligente",
+    "generatorDesc": "Combine templates profissionais com prompt Gemini ensaio fotográfico personalizado e gere retratos incriveis em instantes"
+  },
+  "generatorModule": {
+    "title": "Gerador de fotos com IA",
+    "description": "Selecione um template, adicione suas referencias e deixe o Gemini criar o retrato perfeito com prompt Gemini foto profissional",
+    "placeholders": {
+      "person": "nome da pessoa",
+      "couple": "nome do casal",
+      "partner": "nome do parceiro",
+      "expression": "expressao desejada",
+      "pose": "pose ou enquadramento"
+    },
+    "errors": {
+      "invalidImageType": "Formato de imagem nao suportado. Use PNG ou JPG.",
+      "invalidImageSize": "Imagem muito grande. Envie arquivos de ate 5 MB.",
+      "promptRequired": "Descreva o que deseja gerar ou selecione um template.",
+      "generationFailed": "Nao conseguimos gerar a imagem. Tente novamente em instantes.",
+      "network": "Erro de conexao. Verifique sua internet e tente novamente."
+    },
+    "template": {
+      "current": "Template selecionado: {name}",
+      "empty": "Escolha um template para comecar",
+      "open": "Ver todos os templates",
+      "clear": "Limpar selecao"
+    },
+    "form": {
+      "title": "Configuracao rapida",
+      "description": "Explore {count} templates ou escreva seu proprio prompt",
+      "uploadLabel": "Enviar foto de referencia",
+      "removeImage": "Remover imagem",
+      "uploadCta": "Enviar imagem",
+      "uploadHint": "Melhore a qualidade enviando uma foto real como referencia",
+      "uploadRequirements": "PNG ou JPG ate 5 MB",
+      "promptLabel": "Descricao detalhada",
+      "promptPlaceholder": "Ex.: retrato profissional estilo LinkedIn, iluminacao neutra, fundo desfocado",
+      "category": "Categoria",
+      "style": "Estilo",
+      "resolution": "Resolucao",
+      "resolutionStandard": "Padrao 512x512",
+      "resolutionPremium": "Premium 1024x1024",
+      "remaining": "Voce ainda tem {count} geracoes gratis",
+      "remainingUnlimited": "Assinantes Pro possuem geracoes ilimitadas",
+      "generate": "Gerar foto",
+      "generating": "Gerando foto...",
+      "upgradeTeaser": "Atualize para o plano Pro e destrave modelos premium",
+      "upgradeCta": "Conhecer plano Pro"
+    },
+    "results": {
+      "title": "Resultado da geracao",
+      "watermark": "Previa com marca d'agua",
+      "download": "Baixar imagem",
+      "copyLink": "Copiar link",
+      "share": "Compartilhar",
+      "promptTitle": "Prompt utilizado",
+      "remaining": "Restam {count} geracoes gratuitas",
+      "remainingZero": "Voce usou todas as suas geracoes gratuitas",
+      "upgradeNow": "Fazer upgrade agora"
+    }
+  },
+  "templatePicker": {
+    "title": "Escolher template",
+    "subtitle": "Filtre por categoria, estilo e popularidade para encontrar o prompt ideal",
+    "searchPlaceholder": "Buscar por nome, estilo ou palavra-chave",
+    "filters": {
+      "categoryLabel": "Categoria",
+      "styleLabel": "Estilo",
+      "tierLabel": "Disponibilidade",
+      "sortLabel": "Ordenar por",
+      "tier": {
+        "all": "Todos",
+        "free": "Gratuitos",
+        "premium": "Premium"
+      },
+      "sort": {
+        "popular": "Popularidade",
+        "rating": "Avaliacao",
+        "newest": "Mais recentes"
+      }
+    },
+    "usage": "{count} usos",
+    "results": "{count} templates encontrados",
+    "premiumHint": "Templates premium exigem plano Pro",
+    "badges": {
+      "premium": "Premium",
+      "free": "Gratuito"
+    },
+    "actions": {
+      "select": "Selecionar",
+      "selected": "Selecionado"
+    },
+    "empty": {
+      "title": "Nenhum template encontrado",
+      "description": "Ajuste os filtros ou procure por outra palavra-chave"
+    },
+    "close": "Fechar"
+  },
+  "templatesPage": {
+    "meta": {
+      "title": "Templates de prompts para fotos com IA",
+      "description": "Explore {count} prompt Gemini ensaio fotográfico, feminino, masculino e casal para gerar fotos profissionais com Gemini",
+      "keywords": "prompt gemini ensaio fotográfico, prompt gemini foto profissional, prompt gemini feminino, prompt gemini masculino, prompt gemini casal",
+      "image": "/images/templates/og-templates.jpg"
+    },
+    "hero": {
+      "badge": "Colecao curada",
+      "title": "Descubra <highlight>{count}</highlight> templates profissionais",
+      "description": "Modelos prontos e testados para <strong>LinkedIn, estudio, casais e lifestyle</strong> com prompt Gemini ensaio fotográfico em portugues. Atualizados toda semana.",
+      "cta": {
+        "free": "Explorar templates gratuitos",
+        "premium": "Ver premium"
+      }
+    },
+    "stats": {
+      "total": {
+        "label": "Templates",
+        "description": "Prontos para usar agora"
+      },
+      "free": {
+        "label": "Gratuitos",
+        "description": "Incluidos no plano Free"
+      },
+      "premium": {
+        "label": "Premium",
+        "description": "Exclusivos do plano Pro"
+      },
+      "categories": {
+        "label": "Categorias",
+        "description": "Filtre por ocasiao"
+      }
+    },
+    "browser": {
+      "loading": "Carregando templates...",
+      "search": {
+        "placeholder": "Buscar por estilo, categoria ou palavra-chave",
+        "ariaLabel": "Buscar templates"
+      },
+      "filters": {
+        "categories": {
+          "label": "Categoria",
+          "all": "Todas",
+          "portrait": "Retratos",
+          "couple": "Casais",
+          "professional": "Profissional",
+          "artistic": "Artistico",
+          "lifestyle": "Lifestyle"
+        },
+        "styles": {
+          "label": "Estilo",
+          "all": "Todos",
+          "dramatic": "Dramatico",
+          "natural": "Natural",
+          "cinematic": "Cinematografico",
+          "linkedin": "LinkedIn",
+          "executive": "Executivo",
+          "editorial": "Editorial",
+          "modern": "Moderno"
+        },
+        "tier": {
+          "label": "Disponibilidade",
+          "all": "Todos",
+          "free": "Gratuito",
+          "premium": "Premium"
+        },
+        "sort": {
+          "label": "Ordenar por",
+          "popular": "Popularidade",
+          "rating": "Avaliacao",
+          "newest": "Mais recentes"
+        }
+      },
+      "view": {
+        "grid": "Grade",
+        "list": "Lista"
+      },
+      "resultsCount": "{count} templates encontrados",
+      "badges": {
+        "premium": "Premium",
+        "free": "Gratuito"
+      },
+      "labels": {
+        "usage": "{count} usos"
+      },
+      "card": {
+        "ctaPremium": "Usar template premium",
+        "ctaFree": "Usar template"
+      },
+      "pagination": {
+        "summary": "Mostrando {start} a {end} de {total} templates",
+        "page": "Pagina {current} de {total}",
+        "previous": "Anterior",
+        "next": "Proxima"
+      },
+      "empty": {
+        "title": "Nenhum template encontrado",
+        "description": "Tente remover filtros ou buscar por outra palavra",
+        "reset": "Limpar filtros"
+      }
+    }
+  },
+  "heroShowcase": {
+    "badge": "Resultado real",
+    "title": "Antes e depois com nossos templates",
+    "before": "Antes",
+    "after": "Depois",
+    "aiResult": "Resultado com IA",
+    "dragInstruction": "Arraste para comparar",
+    "template": "Template",
+    "templateDescription": "Gerado com nossos prompts otimizados para Gemini",
+    "tryTemplate": "Usar este template",
+    "playDemo": "Reproduzir demo",
+    "pauseDemo": "Pausar demo",
+    "examples": {
+      "linkedin": "O headshot profissional favorito dos recrutadores",
+      "dramatic": "Retrato de estudio com iluminacao dramatica",
+      "rainbowHands": "Composicao artistica com prisma de luz"
+    },
+    "templateNames": {
+      "linkedin": "LinkedIn Profissional",
+      "dramatic": "Retrato Dramatico",
+      "rainbowHands": "Prisma arco-iris nas maos"
+    }
+  },
+  "contact": {
+    "title": "Fale com a nossa equipe",
+    "subtitle": "Estamos prontos para ajudar com duvidas tecnicas, planos e integracoes.",
+    "form": {
+      "title": "Envie uma mensagem",
+      "name": "Nome",
+      "namePlaceholder": "Seu nome completo",
+      "email": "E-mail",
+      "emailPlaceholder": "nome@empresa.com",
+      "subject": "Assunto",
+      "subjectPlaceholder": "Selecione uma opcao",
+      "subjects": {
+        "technical": "Suporte tecnico",
+        "billing": "Cobranca",
+        "feature": "Sugestao de recurso",
+        "general": "Outros assuntos"
+      },
+      "message": "Mensagem",
+      "messagePlaceholder": "Como podemos ajudar? Compartilhe detalhes para agilizar o atendimento.",
+      "submit": "Enviar mensagem"
+    },
+    "info": {
+      "title": "Canais de atendimento",
+      "email": {
+        "title": "E-mail",
+        "address": "kian@promptgeminifotos.com",
+        "note": "Responderemos em ate 12 horas uteis"
+      },
+      "chat": {
+        "title": "Chat ao vivo",
+        "availability": "Disponivel no painel para clientes Pro",
+        "hours": "Segunda a sexta, das 9h as 18h"
+      },
+      "response": {
+        "title": "Tempo medio de resposta",
+        "time": "Menos de 2 horas",
+        "note": "Assinantes Pro tem prioridade"
+      }
+    },
+    "help": {
+      "title": "Mais recursos",
+      "description": "Acesse respostas rapidas e guias detalhados sobre como gerar fotos profissionais.",
+      "faq": "Base de conhecimento",
+      "docs": "Documentacao tecnica"
+    }
+  },
+  "privacy": {
+    "title": "Politica de privacidade",
+    "lastUpdated": "Atualizado em 20 de setembro de 2025",
+    "infoCollect": {
+      "title": "Informacoes que coletamos",
+      "content": "Coletamos apenas os dados necessarios para prestar o servico e aprimorar a experiencia.",
+      "items": [
+        "Dados de conta: nome, e-mail e foto de perfil",
+        "Imagens enviadas para geracao (armazenadas temporariamente)",
+        "Preferencias de idioma e templates utilizados",
+        "Registros tecnicos para monitoramento de erros"
+      ]
+    },
+    "howUse": {
+      "title": "Como utilizamos as informacoes",
+      "content": "Os dados sao utilizados para gerar imagens, oferecer suporte e melhorar o produto.",
+      "items": [
+        "Processar as geracoes solicitadas",
+        "Personalizar recomendacoes de templates",
+        "Enviar comunicados importantes sobre o servico",
+        "Manter a seguranca da plataforma"
+      ]
+    },
+    "photoProcessing": {
+      "title": "Processamento de fotos",
+      "content": "Suas imagens sao criptografadas e removidas automaticamente apos 24 horas, salvo quando voce optar por salvar na galeria publica."
+    },
+    "security": {
+      "title": "Seguranca",
+      "content": "Utilizamos criptografia em repouso e em transito, com controles de acesso auditados continuamente."
+    },
+    "rights": {
+      "title": "Seus direitos",
+      "content": "Voce pode solicitar exportacao ou exclusao definitiva dos seus dados a qualquer momento.",
+      "items": [
+        "Acessar e corrigir informacoes pessoais",
+        "Excluir conta e dados associados",
+        "Revogar consentimento para comunicacoes",
+        "Solicitar portabilidade dos dados"
+      ]
+    },
+    "thirdParty": {
+      "title": "Servicos de terceiros",
+      "content": "Utilizamos provedores como Supabase e Gemini de acordo com seus termos e politicas."
+    },
+    "contactUs": {
+      "title": "Entre em contato",
+      "content": "Envie duvidas sobre privacidade para kian@promptgeminifotos.com"
+    }
+  },
+  "terms": {
+    "title": "Termos de uso",
+    "lastUpdated": "Atualizado em 20 de setembro de 2025",
+    "agreement": {
+      "title": "Aceite dos termos",
+      "content": "Ao usar o Prompt Gemini Fotos voce concorda com as condicoes descritas neste documento."
+    },
+    "license": {
+      "title": "Licenca de uso",
+      "content": "Concedemos uma licenca nao exclusiva para criar imagens com Gemini utilizando nossos prompts.",
+      "restrictions": [
+        "Nao revender os prompts como proprios",
+        "Nao utilizar o servico para conteudo ilegal ou ofensivo",
+        "Nao tentar burlar limites tecnicos ou de uso"
+      ]
+    },
+    "aiContent": {
+      "title": "Conteudo gerado por IA",
+      "content": "As imagens geradas podem apresentar variacoes. Revise antes de utilizar em materiais publicos."
+    },
+    "privacy": {
+      "title": "Privacidade",
+      "content": "O uso do servico tambem esta sujeito a nossa Politica de Privacidade."
+    },
+    "liability": {
+      "title": "Limitacao de responsabilidade",
+      "content": "Nao somos responsaveis por perdas indiretas decorrentes do uso incorreto das imagens geradas."
+    },
+    "contact": {
+      "title": "Contato",
+      "content": "Fale com kian@promptgeminifotos.com para questoes legais"
+    }
+  },
+  "auth": {
+    "continueWithGoogle": "Continuar com Google",
+    "logout": "Sair"
+  },
+  "common": {
+    "loading": "Carregando...",
+    "error": "Erro",
+    "success": "Sucesso",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "close": "Fechar",
+    "save": "Salvar",
+    "edit": "Editar",
+    "delete": "Excluir",
+    "back": "Voltar",
+    "next": "Proximo",
+    "previous": "Anterior"
+  },
+  "footer": {
+    "description": "Transforme fotos comuns em retratos profissionais com prompts otimizados para IA.",
+    "quickLinks": "Links rapidos",
+    "home": "Inicio",
+    "templates": "Templates",
+    "pricing": "Precos",
+    "support": "Suporte",
+    "terms": "Termos de uso",
+    "privacy": "Politica de privacidade",
+    "contact": "Contato",
+    "allRightsReserved": "Todos os direitos reservados",
+    "secure": "Seguro",
+    "lgpd": "LGPD"
+  }
+}
