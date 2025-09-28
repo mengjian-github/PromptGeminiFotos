@@ -68,7 +68,7 @@ export const config = {
 
   // App Configuration
   app: {
-    url: process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000',
+    url: process.env.NEXT_PUBLIC_APP_URL || 'https://www.promptgeminifotos.com',
     name: 'Prompt Gemini Fotos',
     description: 'Transform ordinary photos into professional portraits with AI',
   },
