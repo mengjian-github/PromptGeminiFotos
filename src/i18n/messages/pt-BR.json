@@ -49,10 +49,7 @@
     "resultsInSeconds": "prompt gemini ensaio fotográfico gerado em segundos",
     "securePrivate": "prompt gemini ensaio fotográfico feminino com segurança e privacidade",
     "optimizedGemini": "prompt gemini foto profissional otimizado para o Gemini",
-    "usedBy": "Usado por",
-    "contentCreators": "criadores de conteudo",
-    "testimonialQuote": "Finalmente tenho retratos profissionais sem precisar de estudio.",
-    "testimonialAuthor": "Mariana Souza, Criadora de Conteudo"
+    "freeNotice": "Plano gratuito inclui 2 geracoes em 512x512 com marca d'agua"
   },
   "features": {
     "title": "Recursos poderosos",
@@ -66,28 +63,18 @@
     "fastResults": "Resultados rapidos",
     "fastResultsDesc": "Processamento otimizado com fotos prontas em segundos",
     "privateSecure": "Privacidade garantida",
-    "privateSecureDesc": "Fotos protegidas com criptografia e exclusao automatica",
+    "privateSecureDesc": "Fotos armazenadas com seguranca e acesso restrito a sua conta",
     "hdDownloads": "Downloads em HD",
     "hdDownloadsDesc": "Imagens prontas para uso profissional sem marca d'agua",
     "benefits": {
       "professionalResults": "Qualidade de estudio em cada geracao com prompt Gemini foto profissional",
-      "optimizedForGemini": "Prompts testados no Gemini Advanced para prompt Gemini masculino",
-      "testedPrompts": "Mais de 100 prompts validados pela comunidade",
+      "optimizedForGemini": "Prompts desenhados para os modelos Gemini",
+      "testedPrompts": "104 prompts curados em portugues e ingles",
       "allStyles": "Retratos, casais, moda, lifestyle e corporativo com prompt Gemini casal",
-      "monthlyUpdates": "Novos estilos adicionados todo mes",
+      "monthlyUpdates": "Biblioteca revisada regularmente",
       "organizedCategories": "Filtros por categoria, estilo e ocasiao",
-      "noLimits": "Use sem limites no plano Pro",
-      "highQuality": "Saida em alta resolucao",
-      "commercialUse": "Licenca para uso comercial",
-      "ultraFast": "Fila prioritaria para assinantes",
-      "noWaiting": "Gere varias variacoes em paralelo",
-      "instantProcessing": "Geracoes concluidas em segundos",
-      "dataProtected": "Dados armazenados de forma segura",
-      "autoDelete": "Referencias removidas apos o processamento",
-      "lgpdCompliant": "Conformidade com LGPD e GDPR",
-      "highResolution": "Ate 1024x1024 px",
-      "noWatermark": "Sem marca d'agua em downloads",
-      "professionalUse": "Pronto para curriculos, portfolio e redes sociais"
+      "highResolution": "Ate 1024x1024 px no plano Pro",
+      "noWatermark": "Sem marca d'agua nos downloads Pro"
     },
     "badges": {
       "new": "Novo",
@@ -115,7 +102,7 @@
         "0": "2 geracoes gratuitas inclusas",
         "1": "Templates essenciais",
         "2": "Suporte por e-mail",
-        "3": "Acesso a galeria comunitaria"
+        "3": "Downloads 512x512 com marca d'agua"
       },
       "cta": "Comecar gratis",
       "startNow": "Comecar agora"
@@ -130,19 +117,19 @@
       "yearlySavings": "Economize 17%",
       "features": {
         "0": "Geracoes ilimitadas",
-        "1": "Todos os templates premium",
-        "2": "Downloads em alta resolucao",
-        "3": "Suporte prioritario 24/7",
-        "4": "Favoritos e historico de prompts",
-        "5": "Integracao via API"
+        "1": "Biblioteca completa de templates",
+        "2": "Downloads em alta resolucao (1024x1024)",
+        "3": "Resultados sem marca d'agua",
+        "4": "Suporte por e-mail com prioridade no proximo dia util",
+        "5": "Acesso antecipado a novos templates"
       },
       "cta": "Assinar Pro",
       "popular": "Mais popular",
       "exclusiveBenefits": "Beneficios exclusivos Pro",
       "exclusiveList": [
-        "Modelos premium atualizados semanalmente",
-        "Processamento prioritario em fila dedicada",
-        "Equipe de suporte especializada"
+        "Novos templates publicados todo mes",
+        "Canal direto para sugerir estilos",
+        "Acompanhamento inicial sob demanda"
       ],
       "notifyTitle": "Seja avisado sobre novos recursos premium",
       "notifyPlaceholder": "Seu melhor e-mail",
@@ -151,7 +138,7 @@
     },
     "trust": {
       "cancelAnytime": "Cancele quando quiser",
-      "support247": "Suporte humano 24/7",
+      "support247": "Suporte por e-mail em ate 1 dia util",
       "securePayment": "Pagamento 100% seguro",
       "guaranteeTitle": "Garantia de 7 dias",
       "guaranteeDesc": "Teste sem risco e cancele se nao ficar satisfeito"
@@ -222,7 +209,7 @@
   },
   "templatePicker": {
     "title": "Escolher template",
-    "subtitle": "Filtre por categoria, estilo e popularidade para encontrar o prompt ideal",
+    "subtitle": "Filtre por categoria, estilo e disponibilidade para encontrar o prompt ideal",
     "searchPlaceholder": "Buscar por nome, estilo ou palavra-chave",
     "filters": {
       "categoryLabel": "Categoria",
@@ -235,12 +222,10 @@
         "premium": "Premium"
       },
       "sort": {
-        "popular": "Popularidade",
-        "rating": "Avaliacao",
-        "newest": "Mais recentes"
+        "alphabetical": "A-Z",
+        "recent": "Mais recentes"
       }
     },
-    "usage": "{count} usos",
     "results": "{count} templates encontrados",
     "premiumHint": "Templates premium exigem plano Pro",
     "badges": {
@@ -267,7 +252,7 @@
     "hero": {
       "badge": "Colecao curada",
       "title": "Descubra <highlight>{count}</highlight> templates profissionais",
-      "description": "Modelos prontos e testados para <strong>LinkedIn, estudio, casais e lifestyle</strong> com prompt Gemini ensaio fotográfico em portugues. Atualizados toda semana.",
+      "description": "Modelos prontos e testados para <strong>LinkedIn, estudio, casais e lifestyle</strong> com prompt Gemini ensaio fotográfico em portugues. Atualizados regularmente.",
       "cta": {
         "free": "Explorar templates gratuitos",
         "premium": "Ver premium"
@@ -326,9 +311,8 @@
         },
         "sort": {
           "label": "Ordenar por",
-          "popular": "Popularidade",
-          "rating": "Avaliacao",
-          "newest": "Mais recentes"
+          "alphabetical": "A-Z",
+          "recent": "Mais recentes"
         }
       },
       "view": {
@@ -339,9 +323,6 @@
       "badges": {
         "premium": "Premium",
         "free": "Gratuito"
-      },
-      "labels": {
-        "usage": "{count} usos"
       },
       "card": {
         "ctaPremium": "Usar template premium",
@@ -409,24 +390,17 @@
       "email": {
         "title": "E-mail",
         "address": "kian@promptgeminifotos.com",
-        "note": "Responderemos em ate 12 horas uteis"
+        "note": "Respondemos em ate 1 dia util"
       },
-      "chat": {
-        "title": "Chat ao vivo",
-        "availability": "Disponivel no painel para clientes Pro",
-        "hours": "Segunda a sexta, das 9h as 18h"
-      },
-      "response": {
-        "title": "Tempo medio de resposta",
-        "time": "Menos de 2 horas",
-        "note": "Assinantes Pro tem prioridade"
+      "hours": {
+        "title": "Horario de atendimento",
+        "time": "Segunda a sexta, das 9h as 18h (GMT-3)",
+        "note": "Mensagens fora desse horario sao respondidas no proximo dia util"
       }
     },
-    "help": {
-      "title": "Mais recursos",
-      "description": "Acesse respostas rapidas e guias detalhados sobre como gerar fotos profissionais.",
-      "faq": "Base de conhecimento",
-      "docs": "Documentacao tecnica"
+    "support": {
+      "title": "Precisando de ajuda no produto?",
+      "description": "Inclua links ou capturas de tela no e-mail para acelerarmos a revisao."
     }
   },
   "privacy": {
@@ -454,11 +428,11 @@
     },
     "photoProcessing": {
       "title": "Processamento de fotos",
-      "content": "Suas imagens sao criptografadas e removidas automaticamente apos 24 horas, salvo quando voce optar por salvar na galeria publica."
+      "content": "As imagens enviadas e geradas ficam vinculadas a sua conta para download. Voce pode exclui-las pelo painel ou solicitar remocao por e-mail."
     },
     "security": {
       "title": "Seguranca",
-      "content": "Utilizamos criptografia em repouso e em transito, com controles de acesso auditados continuamente."
+      "content": "Utilizamos Supabase e Cloudflare R2, que oferecem criptografia em repouso e em transito. O acesso e restrito a equipe que mantem o produto."
     },
     "rights": {
       "title": "Seus direitos",

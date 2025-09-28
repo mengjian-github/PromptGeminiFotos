@@ -109,27 +109,9 @@ export function EnhancedCTA({
         </div>
       </div>
 
-      {/* Social proof */}
-      <div className="text-center mt-6">
-        <p className="text-sm text-gray-500 mb-2">
-          {t('usedBy')} <span className="font-semibold text-gray-700">10.000</span> {t('contentCreators')}
-        </p>
-
-        {/* Testimonial preview */}
-        <div className="bg-white/60 backdrop-blur-sm rounded-lg p-4 border border-white/30 max-w-md mx-auto">
-          <p className="text-sm text-gray-600 mb-2">
-            "{t('testimonialQuote')}"
-          </p>
-          <div className="flex items-center justify-center">
-            <div className="w-6 h-6 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full mr-2" />
-            <span className="text-xs text-gray-500">{t('testimonialAuthor')}</span>
-            <div className="flex ml-2">
-              {'★'.repeat(5).split('').map((star, i) => (
-                <span key={i} className="text-yellow-400 text-xs">{star}</span>
-              ))}
-            </div>
-          </div>
-        </div>
+      {/* Additional reassurance */}
+      <div className="mt-8 text-center text-xs text-gray-500">
+        {t('freeNotice')}
       </div>
     </div>
   );

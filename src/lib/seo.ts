@@ -51,7 +51,7 @@ export function generateWebApplicationStructuredData(): object {
         price: '0',
         priceCurrency: 'USD',
         name: 'Free Plan',
-        description: '5 AI photo generations with basic features',
+        description: '2 AI photo generations with basic features',
         category: 'Free',
       },
       {
@@ -75,8 +75,8 @@ export function generateWebApplicationStructuredData(): object {
       'Professional photography prompts',
       'Multiple image styles and categories',
       'High-resolution output (Pro)',
-      'Batch processing (Pro)',
-      'No watermarks (Pro)',
+      'Watermark-free downloads (Pro)',
+      'Template library reviewed regularly',
     ],
     screenshot: `${config.app.url}/og-image.png`,
   };
@@ -102,13 +102,6 @@ export function generateSoftwareApplicationStructuredData(): object {
       price: '7.99',
       priceCurrency: 'USD',
       priceValidUntil: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString(),
-    },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      ratingCount: '150',
-      bestRating: '5',
-      worstRating: '1',
     },
   };
 }

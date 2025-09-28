@@ -131,11 +131,10 @@ export const PRODUCTS = {
       'Unlimited AI photo generation',
       '100+ professional prompt templates',
       'High resolution (1024x1024)',
-      'No watermarks',
-      'Batch processing (20 images)',
+      'No watermarks on downloads',
       'Priority email support',
       // 'Private gallery' removed,
-      'Community upload rights'
+      'Early access to new templates'
     ]
   },
   PRO_YEARLY: {
@@ -149,11 +148,10 @@ export const PRODUCTS = {
       'Unlimited AI photo generation',
       '100+ professional prompt templates',
       'High resolution (1024x1024)',
-      'No watermarks',
-      'Batch processing (20 images)',
+      'No watermarks on downloads',
       'Priority email support',
       // 'Private gallery' removed,
-      'Community upload rights',
+      'Early access to new templates',
       'Save 17% with annual billing'
     ]
   }

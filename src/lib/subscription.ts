@@ -9,6 +9,8 @@ export interface UserSubscriptionData {
   currentPeriodEnd?: string;
 }
 
+const FREE_GENERATION_LIMIT = 2;
+
 export async function getUserSubscriptionData(userId: string): Promise<UserSubscriptionData> {
   try {
     const supabase = getSupabaseAdmin();
@@ -19,7 +21,8 @@ export async function getUserSubscriptionData(userId: string): Promise<UserSubsc
       .select(`
         id,
         subscription_status,
-        generations_used,
+        free_generations_used,
+        free_generations_limit,
         subscriptions (
           creem_subscription_id,
           status,
@@ -36,19 +39,24 @@ export async function getUserSubscriptionData(userId: string): Promise<UserSubsc
         id: userId,
         subscriptionStatus: 'free',
         generationsUsed: 0,
-        generationsLimit: 2,
+        generationsLimit: FREE_GENERATION_LIMIT,
       };
     }
 
-    const subscriptionStatus = (userData as any).subscription_status || 'free';
-    const generationsUsed = (userData as any).generations_used || 0;
+    const subscriptionStatus = ((userData as any).subscription_status || 'free') as 'free' | 'pro';
+    const rawGenerationsUsed = (userData as any).free_generations_used;
+    const generationsUsed = typeof rawGenerationsUsed === 'number' && Number.isFinite(rawGenerationsUsed)
+      ? Math.max(0, rawGenerationsUsed)
+      : 0;
     const subscription = (userData as any).subscriptions?.[0];
 
     return {
       id: userId,
       subscriptionStatus: subscriptionStatus as 'free' | 'pro',
       generationsUsed,
-      generationsLimit: subscriptionStatus === 'pro' ? Infinity : 2,
+      generationsLimit: subscriptionStatus === 'pro'
+        ? Infinity
+        : FREE_GENERATION_LIMIT,
       subscriptionId: subscription?.creem_subscription_id,
       currentPeriodEnd: subscription?.current_period_end,
     };
@@ -59,7 +67,7 @@ export async function getUserSubscriptionData(userId: string): Promise<UserSubsc
       id: userId,
       subscriptionStatus: 'free',
       generationsUsed: 0,
-      generationsLimit: 2,
+      generationsLimit: FREE_GENERATION_LIMIT,
     };
   }
 }
@@ -76,13 +84,19 @@ export async function incrementUserGenerations(userId: string): Promise<{ succes
       return { success: false, newCount: userData.generationsUsed };
     }
 
+    if (userData.subscriptionStatus === 'pro') {
+      // Pro users are unlimited; nothing to persist for free counters
+      return { success: true, newCount: userData.generationsUsed };
+    }
+
     // Increment generations count
     const newCount = userData.generationsUsed + 1;
 
     const { error } = await (supabase as any)
       .from('users')
       .update({
-        generations_used: newCount,
+        free_generations_used: newCount,
+        free_generations_limit: FREE_GENERATION_LIMIT,
         updated_at: new Date().toISOString(),
       })
       .eq('id', userId);
@@ -106,7 +120,8 @@ export async function resetUserGenerations(userId: string): Promise<boolean> {
     const { error } = await (supabase as any)
       .from('users')
       .update({
-        generations_used: 0,
+        free_generations_used: 0,
+        free_generations_limit: FREE_GENERATION_LIMIT,
         updated_at: new Date().toISOString(),
       })
       .eq('id', userId);

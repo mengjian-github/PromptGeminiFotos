@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { Crown, Search, Sparkles, Star } from "lucide-react";
+import { Crown, Search, Sparkles } from "lucide-react";
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -35,27 +35,17 @@ interface TemplateSelectorProps {
 type CategoryOption = "all" | TemplateCategory;
 type StyleOption = "all" | TemplateStyle;
 type TierOption = "all" | TemplateTier;
-type SortOption = "popular" | "rating" | "newest";
+type SortOption = "alphabetical" | "recent";
 
 const sortTemplates = (templates: Template[], sortBy: SortOption) => {
   return [...templates].sort((a, b) => {
-    if (sortBy === "popular") {
-      if (b.popularity === a.popularity) {
-        return b.rating - a.rating;
-      }
-      return b.popularity - a.popularity;
+    if (sortBy === "recent") {
+      const dateA = new Date(a.createdAt).getTime();
+      const dateB = new Date(b.createdAt).getTime();
+      return dateB - dateA;
     }
 
-    if (sortBy === "rating") {
-      if (b.rating === a.rating) {
-        return b.popularity - a.popularity;
-      }
-      return b.rating - a.rating;
-    }
-
-    const dateA = new Date(a.createdAt).getTime();
-    const dateB = new Date(b.createdAt).getTime();
-    return dateB - dateA;
+    return a.name.localeCompare(b.name);
   });
 };
 
@@ -89,7 +79,7 @@ export function TemplateSelector({
   const [categoryFilter, setCategoryFilter] = useState<CategoryOption>("all");
   const [styleFilter, setStyleFilter] = useState<StyleOption>("all");
   const [tierFilter, setTierFilter] = useState<TierOption>("all");
-  const [sortBy, setSortBy] = useState<SortOption>("popular");
+  const [sortBy, setSortBy] = useState<SortOption>("alphabetical");
 
   const dataset = useMemo(
     () => (searchQuery.trim() ? searchTemplates(searchQuery) : promptTemplates),
@@ -211,9 +201,8 @@ export function TemplateSelector({
               <SelectValue placeholder={tPicker("filters.sortLabel")} />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="popular">{tPicker("filters.sort.popular")}</SelectItem>
-              <SelectItem value="rating">{tPicker("filters.sort.rating")}</SelectItem>
-              <SelectItem value="newest">{tPicker("filters.sort.newest")}</SelectItem>
+              <SelectItem value="alphabetical">{tPicker("filters.sort.alphabetical")}</SelectItem>
+              <SelectItem value="recent">{tPicker("filters.sort.recent")}</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -261,11 +250,7 @@ export function TemplateSelector({
                   loading="lazy"
                   className="h-full w-full object-cover"
                 />
-                <div className="absolute top-3 left-3 flex gap-2">
-                  <Badge className="bg-black/60 text-white backdrop-blur-sm">
-                    <Sparkles className="mr-1 h-3 w-3" />
-                    {numberFormatter.format(template.popularity)}
-                  </Badge>
+                <div className="absolute top-3 left-3">
                   {isPremium ? (
                     <Badge className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black">
                       <Crown className="mr-1 h-3 w-3" />
@@ -280,19 +265,13 @@ export function TemplateSelector({
               </div>
 
               <CardContent className="space-y-4 p-4">
-                <div className="flex items-start justify-between gap-3">
-                  <div>
-                    <h4 className="text-base font-semibold text-gray-900 line-clamp-2">
-                      {template.name}
-                    </h4>
-                    <p className="mt-1 text-sm text-gray-600 line-clamp-3">
-                      {template.description}
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-1 text-sm text-yellow-500">
-                    <Star className="h-4 w-4" />
-                    {template.rating.toFixed(2)}
-                  </div>
+                <div>
+                  <h4 className="text-base font-semibold text-gray-900 line-clamp-2">
+                    {template.name}
+                  </h4>
+                  <p className="mt-1 text-sm text-gray-600 line-clamp-3">
+                    {template.description}
+                  </p>
                 </div>
 
                 <div className="flex flex-wrap gap-2 text-xs text-gray-600">
@@ -304,11 +283,7 @@ export function TemplateSelector({
                   </Badge>
                 </div>
 
-                <div className="flex items-center justify-between text-sm text-gray-600">
-                  <span className="flex items-center gap-1">
-                    <Sparkles className="h-4 w-4" />
-                    {tPicker("usage", { count: numberFormatter.format(template.usageCount) })}
-                  </span>
+                <div className="flex items-center justify-end text-sm text-gray-600">
                   <Button
                     size="sm"
                     className={

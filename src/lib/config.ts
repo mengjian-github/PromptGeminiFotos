@@ -76,7 +76,7 @@ export const config = {
   // Generation Limits
   limits: {
     free: {
-      totalGenerations: 5,
+      totalGenerations: 2,
       resolution: '512x512',
       watermark: true,
     },

@@ -49,10 +49,7 @@
     "resultsInSeconds": "results in seconds",
     "securePrivate": "security and privacy guaranteed",
     "optimizedGemini": "prompts optimized for Gemini",
-    "usedBy": "Trusted by",
-    "contentCreators": "content creators",
-    "testimonialQuote": "I finally have professional portraits without booking a studio.",
-    "testimonialAuthor": "Mariana Souza, Content Creator"
+    "freeNotice": "Free plan includes 2 generations at 512x512 with watermark"
   },
   "features": {
     "title": "Powerful features",
@@ -66,28 +63,18 @@
     "fastResults": "Fast results",
     "fastResultsDesc": "Optimized processing with photos ready in seconds",
     "privateSecure": "Guaranteed privacy",
-    "privateSecureDesc": "Photos protected with encryption and automatic deletion",
+    "privateSecureDesc": "Photos stored securely with access limited to your account",
     "hdDownloads": "HD downloads",
     "hdDownloadsDesc": "Images ready for professional use without watermarks",
     "benefits": {
       "professionalResults": "Studio-grade quality in every generation",
-      "optimizedForGemini": "Prompts tested with Gemini Advanced",
-      "testedPrompts": "Over 100 prompts validated by the community",
+      "optimizedForGemini": "Prompts designed for Gemini models",
+      "testedPrompts": "104 curated prompts ready in Portuguese and English",
       "allStyles": "Portraits, couples, fashion, lifestyle and corporate",
-      "monthlyUpdates": "New styles added every month",
+      "monthlyUpdates": "Template library reviewed regularly",
       "organizedCategories": "Filters by category, style and occasion",
-      "noLimits": "Use without limits on the Pro plan",
-      "highQuality": "High-resolution output",
-      "commercialUse": "License for commercial use",
-      "ultraFast": "Priority queue for subscribers",
-      "noWaiting": "Generate multiple variations in parallel",
-      "instantProcessing": "Generations completed in seconds",
-      "dataProtected": "Data stored securely",
-      "autoDelete": "References removed after processing",
-      "lgpdCompliant": "Compliant with LGPD and GDPR",
-      "highResolution": "Up to 1024x1024 px",
-      "noWatermark": "No watermark on downloads",
-      "professionalUse": "Ready for resumes, portfolios and social media"
+      "highResolution": "Up to 1024x1024 px on the Pro plan",
+      "noWatermark": "No watermark on Pro downloads"
     },
     "badges": {
       "new": "New",
@@ -115,7 +102,7 @@
         "0": "2 free generations included",
         "1": "Essential templates",
         "2": "Email support",
-        "3": "Community gallery access"
+        "3": "512x512 downloads with watermark"
       },
       "cta": "Start for free",
       "startNow": "Start now"
@@ -130,19 +117,19 @@
       "yearlySavings": "Save 17%",
       "features": {
         "0": "Unlimited generations",
-        "1": "All premium templates",
-        "2": "High-resolution downloads",
-        "3": "Priority support 24/7",
-        "4": "Favorites and prompt history",
-        "5": "API integration"
+        "1": "Full template library",
+        "2": "High-resolution downloads (1024x1024)",
+        "3": "Watermark-free results",
+        "4": "Priority email support (next business day)",
+        "5": "Early access to new templates"
       },
       "cta": "Subscribe to Pro",
       "popular": "Most popular",
       "exclusiveBenefits": "Exclusive Pro benefits",
       "exclusiveList": [
-        "Premium models updated weekly",
-        "Priority processing on a dedicated queue",
-        "Specialized support team"
+        "Monthly template additions",
+        "Feedback channel for new styles",
+        "Onboarding walkthrough on request"
       ],
       "notifyTitle": "Get notified about new premium features",
       "notifyPlaceholder": "Your best email",
@@ -151,7 +138,7 @@
     },
     "trust": {
       "cancelAnytime": "Cancel anytime",
-      "support247": "24/7 human support",
+      "support247": "Email support within 1 business day",
       "securePayment": "100% secure payment",
       "guaranteeTitle": "7-day guarantee",
       "guaranteeDesc": "Try risk-free and cancel if you're not satisfied"
@@ -222,7 +209,7 @@
   },
   "templatePicker": {
     "title": "Choose template",
-    "subtitle": "Filter by category, style and popularity to find the perfect prompt",
+    "subtitle": "Filter by category, style and availability to find the right prompt",
     "searchPlaceholder": "Search by name, style or keyword",
     "filters": {
       "categoryLabel": "Category",
@@ -235,12 +222,10 @@
         "premium": "Premium"
       },
       "sort": {
-        "popular": "Popularity",
-        "rating": "Rating",
-        "newest": "Newest"
+        "alphabetical": "A to Z",
+        "recent": "Newest"
       }
     },
-    "usage": "{count} uses",
     "results": "{count} templates found",
     "premiumHint": "Premium templates require the Pro plan",
     "badges": {
@@ -267,7 +252,7 @@
     "hero": {
       "badge": "Curated collection",
       "title": "Discover <highlight>{count}</highlight> professional templates",
-      "description": "Ready-to-use, battle-tested models for <strong>LinkedIn, studio, couples and lifestyle</strong>. Updated every week.",
+      "description": "Ready-to-use, battle-tested models for <strong>LinkedIn, studio, couples and lifestyle</strong>. Updated regularly.",
       "cta": {
         "free": "Explore free templates",
         "premium": "View premium"
@@ -326,9 +311,8 @@
         },
         "sort": {
           "label": "Sort by",
-          "popular": "Popularity",
-          "rating": "Rating",
-          "newest": "Newest"
+          "alphabetical": "A to Z",
+          "recent": "Newest"
         }
       },
       "view": {
@@ -339,9 +323,6 @@
       "badges": {
         "premium": "Premium",
         "free": "Free"
-      },
-      "labels": {
-        "usage": "{count} uses"
       },
       "card": {
         "ctaPremium": "Use premium template",
@@ -409,24 +390,17 @@
       "email": {
         "title": "Email",
         "address": "kian@promptgeminifotos.com",
-        "note": "We reply within 12 business hours"
+        "note": "We reply within 1 business day"
       },
-      "chat": {
-        "title": "Live chat",
-        "availability": "Available in the dashboard for Pro customers",
-        "hours": "Monday to Friday, 9am-6pm"
-      },
-      "response": {
-        "title": "Average response time",
-        "time": "Under 2 hours",
-        "note": "Pro subscribers are prioritized"
+      "hours": {
+        "title": "Support hours",
+        "time": "Monday to Friday, 9am–6pm (GMT-3)",
+        "note": "Messages received outside these hours are answered next business day"
       }
     },
-    "help": {
-      "title": "More resources",
-      "description": "Access quick answers and in-depth guides to create professional photos.",
-      "faq": "Knowledge base",
-      "docs": "Technical documentation"
+    "support": {
+      "title": "Need product assistance?",
+      "description": "Attach links or screenshots in your email so we can review and reply faster."
     }
   },
   "privacy": {
@@ -454,11 +428,11 @@
     },
     "photoProcessing": {
       "title": "Photo processing",
-      "content": "Your images are encrypted and automatically removed after 24 hours unless you choose to save them in the public gallery."
+      "content": "Uploaded and generated images stay linked to your account so you can download them. You can delete them from the dashboard or email us for removal."
     },
     "security": {
       "title": "Security",
-      "content": "We use encryption at rest and in transit, with access controls audited continuously."
+      "content": "We use Supabase and Cloudflare R2, which provide encryption at rest and in transit. Access is restricted to the small team maintaining the product."
     },
     "rights": {
       "title": "Your rights",

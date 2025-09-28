@@ -7,7 +7,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Search, Grid3X3, List, Star, Eye, Users, Crown } from 'lucide-react';
+import { Search, Grid3X3, List, Crown } from 'lucide-react';
 import { promptTemplates, Template, TemplateTier } from '@/lib/templates';
 import { usePagination } from '@/hooks/use-pagination';
 import { buildLocalePath } from '@/lib/locale-path';
@@ -19,7 +19,7 @@ interface TemplatesBrowserProps {
 }
 
 type ViewMode = 'grid' | 'list';
-type SortOption = 'popular' | 'rating' | 'newest';
+type SortOption = 'alphabetical' | 'recent';
 
 type CategoryFilter = 'all' | Template['category'];
 type StyleFilter = 'all' | Template['style'];
@@ -27,23 +27,13 @@ type TierFilter = 'all' | TemplateTier;
 
 const sortTemplates = (templates: Template[], sortBy: SortOption): Template[] => {
   return [...templates].sort((a, b) => {
-    if (sortBy === 'popular') {
-      if (b.popularity === a.popularity) {
-        return b.rating - a.rating;
-      }
-      return b.popularity - a.popularity;
+    if (sortBy === 'recent') {
+      const dateA = new Date(a.createdAt).getTime();
+      const dateB = new Date(b.createdAt).getTime();
+      return dateB - dateA;
     }
 
-    if (sortBy === 'rating') {
-      if (b.rating === a.rating) {
-        return b.popularity - a.popularity;
-      }
-      return b.rating - a.rating;
-    }
-
-    const dateA = new Date(a.createdAt).getTime();
-    const dateB = new Date(b.createdAt).getTime();
-    return dateB - dateA;
+    return a.name.localeCompare(b.name);
   });
 };
 
@@ -56,7 +46,7 @@ export function TemplatesBrowser({ initialTemplates = promptTemplates, initialTi
   const [category, setCategory] = useState<CategoryFilter>('all');
   const [style, setStyle] = useState<StyleFilter>('all');
   const [tier, setTier] = useState<TierFilter>(initialTier ?? 'all');
-  const [sortBy, setSortBy] = useState<SortOption>('popular');
+  const [sortBy, setSortBy] = useState<SortOption>('alphabetical');
 
   const numberFormatter = useMemo(() => new Intl.NumberFormat(locale), [locale]);
 
@@ -179,9 +169,8 @@ export function TemplatesBrowser({ initialTemplates = promptTemplates, initialTi
               className="w-full px-3 py-2 bg-white border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               aria-label={t('filters.sort.label')}
             >
-              <option value="popular">{t('filters.sort.popular')}</option>
-              <option value="rating">{t('filters.sort.rating')}</option>
-              <option value="newest">{t('filters.sort.newest')}</option>
+              <option value="alphabetical">{t('filters.sort.alphabetical')}</option>
+              <option value="recent">{t('filters.sort.recent')}</option>
             </select>
           </div>
         </div>
@@ -217,8 +206,6 @@ export function TemplatesBrowser({ initialTemplates = promptTemplates, initialTi
         {paginatedTemplates.map((template) => {
           const categoryLabel = t(`filters.categories.${template.category}`);
           const styleLabel = t(`filters.styles.${template.style}`);
-          const formattedUsage = numberFormatter.format(template.usageCount);
-
           const generatorHref = buildLocalePath(
             locale as Locale,
             `/generator?template=${encodeURIComponent(template.id)}`
@@ -240,7 +227,7 @@ export function TemplatesBrowser({ initialTemplates = promptTemplates, initialTi
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   loading="lazy"
                 />
-                <div className="absolute top-3 left-3 flex gap-2">
+                <div className="absolute top-3 left-3">
                   {template.tier === 'premium' ? (
                     <Badge className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black border-0 shadow">
                       <Crown className="w-3 h-3 mr-1" />
@@ -252,24 +239,12 @@ export function TemplatesBrowser({ initialTemplates = promptTemplates, initialTi
                     </Badge>
                   )}
                 </div>
-                <div className="absolute top-3 right-3">
-                  <div className="flex items-center gap-1 bg-black/70 backdrop-blur-sm px-2 py-1 rounded-full text-white text-xs">
-                    <Eye className="w-3 h-3" />
-                    {template.popularity}
-                  </div>
-                </div>
               </div>
 
               <CardContent className="p-4 space-y-3">
-                <div className="flex items-start justify-between gap-3">
-                  <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">
-                    {template.name}
-                  </h3>
-                  <div className="flex items-center gap-1 text-yellow-500">
-                    <Star className="w-4 h-4 fill-current" />
-                    <span className="text-sm font-medium">{template.rating.toFixed(2)}</span>
-                  </div>
-                </div>
+                <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">
+                  {template.name}
+                </h3>
 
                 <p className="text-sm text-gray-600 line-clamp-3">{template.description}</p>
 
@@ -278,11 +253,7 @@ export function TemplatesBrowser({ initialTemplates = promptTemplates, initialTi
                   <Badge variant="outline">{styleLabel}</Badge>
                 </div>
 
-                <div className="flex items-center justify-between text-sm text-gray-600">
-                  <span className="flex items-center gap-1">
-                    <Users className="w-4 h-4" />
-                    {t('labels.usage', { count: formattedUsage })}
-                  </span>
+                <div className="flex items-center justify-end">
                   <Button
                     size="sm"
                     className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white"
@@ -345,7 +316,7 @@ export function TemplatesBrowser({ initialTemplates = promptTemplates, initialTi
               setCategory('all');
               setStyle('all');
               setTier('all');
-              setSortBy('popular');
+              setSortBy('alphabetical');
             }}
           >
             {t('empty.reset')}

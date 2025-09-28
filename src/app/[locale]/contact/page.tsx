@@ -1,5 +1,5 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
-import { Mail, MessageCircle, Clock } from 'lucide-react';
+import { Mail, Clock } from 'lucide-react';
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -113,27 +113,14 @@ export default async function ContactPage({ params }: Props) {
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <MessageCircle className="h-6 w-6 text-green-600" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900">{t('info.chat.title')}</h3>
-                    <p className="text-gray-600">{t('info.chat.availability')}</p>
-                    <p className="text-sm text-gray-500 mt-1">
-                      {t('info.chat.hours')}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
                     <Clock className="h-6 w-6 text-purple-600" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900">{t('info.response.title')}</h3>
-                    <p className="text-gray-600">{t('info.response.time')}</p>
+                    <h3 className="text-lg font-semibold text-gray-900">{t('info.hours.title')}</h3>
+                    <p className="text-gray-600">{t('info.hours.time')}</p>
                     <p className="text-sm text-gray-500 mt-1">
-                      {t('info.response.note')}
+                      {t('info.hours.note')}
                     </p>
                   </div>
                 </div>
@@ -142,25 +129,11 @@ export default async function ContactPage({ params }: Props) {
 
             <div className="bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl shadow-xl p-8 text-white">
               <h3 className="text-xl font-bold mb-4">
-                {t('help.title')}
+                {t('support.title')}
               </h3>
-              <p className="text-blue-100 mb-6">
-                {t('help.description')}
+              <p className="text-blue-100">
+                {t('support.description')}
               </p>
-              <div className="space-y-3">
-                <a
-                  href="#"
-                  className="block bg-white/20 hover:bg-white/30 transition-colors duration-300 rounded-lg p-3 text-center font-medium"
-                >
-                  {t('help.faq')}
-                </a>
-                <a
-                  href="#"
-                  className="block bg-white/20 hover:bg-white/30 transition-colors duration-300 rounded-lg p-3 text-center font-medium"
-                >
-                  {t('help.docs')}
-                </a>
-              </div>
             </div>
           </div>
         </div>
