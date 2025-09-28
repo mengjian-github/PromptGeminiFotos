@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -44,6 +44,28 @@ export function EnhancedPricing({ title, subtitle }: EnhancedPricingProps) {
   const [email, setEmail] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const t = useTranslations('pricing');
+  const locale = useLocale();
+
+  const formatMonthlyEquivalent = (rawPrice: string) => {
+    const numeric = Number(rawPrice.replace(/[^0-9.,-]/g, '').replace(',', '.'));
+
+    if (!Number.isFinite(numeric) || numeric <= 0) {
+      return null;
+    }
+
+    const monthlyAmount = numeric / 12;
+
+    try {
+      return new Intl.NumberFormat(locale, {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }).format(monthlyAmount);
+    } catch (error) {
+      return `$${monthlyAmount.toFixed(2)}`;
+    }
+  };
 
   const tiers: PricingTier[] = [
     {
@@ -150,15 +172,19 @@ export function EnhancedPricing({ title, subtitle }: EnhancedPricingProps) {
 
         {/* Pricing Cards */}
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12 max-w-5xl mx-auto">
-          {tiers.map((tier, index) => (
-            <Card
-              key={tier.name}
-              className={`relative group transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 ${
-                tier.isPopular
-                  ? 'border-2 border-blue-500 shadow-xl scale-105'
-                  : 'border-2 border-green-300 hover:border-green-400 shadow-lg bg-gradient-to-br from-green-50/50 to-white'
-              } bg-white/80 backdrop-blur-sm`}
-            >
+          {tiers.map((tier) => {
+            const monthlyEquivalent =
+              tier.yearlyPrice && isYearly ? formatMonthlyEquivalent(tier.yearlyPrice) : null;
+
+            return (
+              <Card
+                key={tier.name}
+                className={`relative group transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 ${
+                  tier.isPopular
+                    ? 'border-2 border-blue-500 shadow-xl scale-105'
+                    : 'border-2 border-green-300 hover:border-green-400 shadow-lg bg-gradient-to-br from-green-50/50 to-white'
+                } bg-white/80 backdrop-blur-sm`}
+              >
               {/* Popular badge */}
               {tier.isPopular && (
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
@@ -217,9 +243,9 @@ export function EnhancedPricing({ title, subtitle }: EnhancedPricingProps) {
                   )}
 
                   {/* Monthly equivalent for yearly */}
-                  {tier.yearlyPrice && isYearly && (
+                  {monthlyEquivalent && (
                     <p className="text-sm text-gray-500 mt-2">
-                      {t('billing.monthlyEquivalent', { amount: Math.round(parseInt(tier.yearlyPrice.replace(/\D/g, '')) / 12) })}
+                      {t('billing.monthlyEquivalent', { amount: monthlyEquivalent })}
                     </p>
                   )}
                 </div>
@@ -319,7 +345,8 @@ export function EnhancedPricing({ title, subtitle }: EnhancedPricingProps) {
                 )}
               </CardContent>
             </Card>
-          ))}
+            );
+          })}
         </div>
 
         {/* Trust indicators */}

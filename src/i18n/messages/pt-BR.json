@@ -122,12 +122,12 @@
     },
     "pro": {
       "title": "Pro",
-      "price": "R$ 29",
+      "price": "$7.99",
       "period": "/mes",
-      "yearlyPrice": "R$ 290",
+      "yearlyPrice": "$79.99",
       "yearlyPeriod": "/ano",
-      "yearlyDiscount": "2 meses gratis",
-      "yearlySavings": "Economize 20%",
+      "yearlyDiscount": "Economize 17%",
+      "yearlySavings": "Economize 17%",
       "features": {
         "0": "Geracoes ilimitadas",
         "1": "Todos os templates premium",

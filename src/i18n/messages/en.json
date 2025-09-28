@@ -122,12 +122,12 @@
     },
     "pro": {
       "title": "Pro",
-      "price": "$19",
+      "price": "$7.99",
       "period": "/month",
-      "yearlyPrice": "$190",
+      "yearlyPrice": "$79.99",
       "yearlyPeriod": "/year",
-      "yearlyDiscount": "2 months free",
-      "yearlySavings": "Save 20%",
+      "yearlyDiscount": "Save 17%",
+      "yearlySavings": "Save 17%",
       "features": {
         "0": "Unlimited generations",
         "1": "All premium templates",
