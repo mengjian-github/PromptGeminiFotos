@@ -67,14 +67,24 @@
     "hdDownloads": "Downloads em HD",
     "hdDownloadsDesc": "Imagens prontas para uso profissional sem marca d'agua",
     "benefits": {
-      "professionalResults": "Qualidade de estudio em cada geracao com prompt Gemini foto profissional",
+      "professionalResults": "Qualidade de estudio em cada geracao com orientacoes claras",
       "optimizedForGemini": "Prompts desenhados para os modelos Gemini",
       "testedPrompts": "104 prompts curados em portugues e ingles",
-      "allStyles": "Retratos, casais, moda, lifestyle e corporativo com prompt Gemini casal",
+      "allStyles": "Retratos, casais, moda, lifestyle e corporativo",
       "monthlyUpdates": "Biblioteca revisada regularmente",
       "organizedCategories": "Filtros por categoria, estilo e ocasiao",
+      "noLimits": "Geracoes ilimitadas disponiveis no plano Pro",
+      "highQuality": "Resultados consistentes com instrucoes detalhadas",
+      "commercialUse": "Utilize os arquivos em projetos pessoais ou de clientes",
+      "ultraFast": "Prompts prontos em segundos com sugestoes automáticas",
+      "noWaiting": "Gere sem filas ou lista de espera",
+      "instantProcessing": "Geracoes costumam concluir em menos de um minuto",
+      "dataProtected": "Dados armazenados no Supabase com acesso restrito",
+      "autoDelete": "Exclua uploads a qualquer momento ou solicite remocao por e-mail",
+      "lgpdCompliant": "Praticas alinhadas a LGPD e GDPR",
       "highResolution": "Ate 1024x1024 px no plano Pro",
-      "noWatermark": "Sem marca d'agua nos downloads Pro"
+      "noWatermark": "Sem marca d'agua nos downloads Pro",
+      "professionalUse": "Arquivos prontos para curriculos, portfolio e redes sociais"
     },
     "badges": {
       "new": "Novo",
@@ -301,7 +311,9 @@
           "linkedin": "LinkedIn",
           "executive": "Executivo",
           "editorial": "Editorial",
-          "modern": "Moderno"
+          "modern": "Moderno",
+          "corporate": "Corporativo",
+          "lifestyle": "Lifestyle"
         },
         "tier": {
           "label": "Disponibilidade",

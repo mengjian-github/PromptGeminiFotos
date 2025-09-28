@@ -67,14 +67,24 @@
     "hdDownloads": "HD downloads",
     "hdDownloadsDesc": "Images ready for professional use without watermarks",
     "benefits": {
-      "professionalResults": "Studio-grade quality in every generation",
+      "professionalResults": "Studio-grade guidance for each prompt",
       "optimizedForGemini": "Prompts designed for Gemini models",
       "testedPrompts": "104 curated prompts ready in Portuguese and English",
       "allStyles": "Portraits, couples, fashion, lifestyle and corporate",
       "monthlyUpdates": "Template library reviewed regularly",
       "organizedCategories": "Filters by category, style and occasion",
+      "noLimits": "Unlimited generations when you upgrade to Pro",
+      "highQuality": "Consistent results with detailed instructions",
+      "commercialUse": "Use downloads for personal and client projects",
+      "ultraFast": "Prompts ready in seconds with auto-fill suggestions",
+      "noWaiting": "Generate without queues or waitlists",
+      "instantProcessing": "Typical generation completes in under a minute",
+      "dataProtected": "Stored on Supabase with restricted team access",
+      "autoDelete": "Delete uploads any time or request removal via email",
+      "lgpdCompliant": "Practices aligned with LGPD and GDPR",
       "highResolution": "Up to 1024x1024 px on the Pro plan",
-      "noWatermark": "No watermark on Pro downloads"
+      "noWatermark": "No watermark on Pro downloads",
+      "professionalUse": "Files ready for resumes, portfolios and social media"
     },
     "badges": {
       "new": "New",
@@ -301,7 +311,9 @@
           "linkedin": "LinkedIn",
           "executive": "Executive",
           "editorial": "Editorial",
-          "modern": "Modern"
+          "modern": "Modern",
+          "corporate": "Corporate",
+          "lifestyle": "Lifestyle"
         },
         "tier": {
           "label": "Availability",
