@@ -104,6 +104,9 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   // Get messages for the locale
   const messages = await getMessages();
+  const supportEmail =
+    (messages as Record<string, any>)?.contact?.info?.email?.address ??
+    'kian@promptgeminifotos.com';
   const [tFooter, tNavigation] = await Promise.all([
     getTranslations('footer'),
     getTranslations('navigation')
@@ -156,15 +159,13 @@ export default async function LocaleLayout({ children, params }: Props) {
                       {tFooter('description')}
                     </p>
                     <div className="flex space-x-4">
-                      <div className="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gray-700 transition-colors cursor-pointer">
-                        📧
-                      </div>
-                      <div className="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gray-700 transition-colors cursor-pointer">
-                        📱
-                      </div>
-                      <div className="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gray-700 transition-colors cursor-pointer">
-                        🐦
-                      </div>
+                      <a
+                        href={`mailto:${supportEmail}`}
+                        className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gray-700 transition-colors"
+                        aria-label={tFooter('contact')}
+                      >
+                        <span aria-hidden>📧</span>
+                      </a>
                     </div>
                   </div>
 
