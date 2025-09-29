@@ -125,6 +125,11 @@ export default async function LocaleLayout({ children, params }: Props) {
     <html lang={locale} dir="ltr">
       <head>
         <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1081201777589554"
+          crossOrigin="anonymous"
+        />
+        <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(websiteStructuredData),
