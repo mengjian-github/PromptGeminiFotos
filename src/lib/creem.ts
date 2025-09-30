@@ -51,6 +51,13 @@ class CreemClient {
   private async makeRequest(endpoint: string, options: RequestInit = {}) {
     const url = `${this.baseUrl}${endpoint}`;
 
+    console.log('[creem] Making request:', {
+      url,
+      method: options.method || 'GET',
+      hasApiKey: !!this.apiKey,
+      apiKeyPrefix: this.apiKey?.substring(0, 10)
+    });
+
     const response = await fetch(url, {
       ...options,
       headers: {
@@ -62,6 +69,12 @@ class CreemClient {
 
     if (!response.ok) {
       const error = await response.text();
+      console.error('[creem] API error response:', {
+        status: response.status,
+        statusText: response.statusText,
+        error,
+        headers: Object.fromEntries(response.headers.entries())
+      });
       throw new Error(`Creem API error: ${response.status} - ${error}`);
     }
 
@@ -84,6 +97,14 @@ class CreemClient {
       // cancel_url is not supported by Creem API
       ...(data.metadata && { metadata: data.metadata }),
     };
+
+    console.log('[creem] Full request details:', {
+      url: `${this.baseUrl}/checkouts`,
+      method: 'POST',
+      apiKey: this.apiKey.substring(0, 10) + '...',
+      testMode: this.testMode,
+      body: creemData
+    });
 
     const response = await this.makeRequest('/checkouts', {
       method: 'POST',
