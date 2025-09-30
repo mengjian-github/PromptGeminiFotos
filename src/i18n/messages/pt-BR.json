@@ -8,40 +8,40 @@
     "login": "Entrar"
   },
   "hero": {
-    "title": "Prompt Gemini Ensaio Fotográfico Profissional",
-    "subtitle": "Crie prompt Gemini ensaio fotográfico com dicas prontas para feminino, masculino e casal. Transforme tudo em prompt Gemini foto profissional com IA em minutos",
+    "title": "Prompt Gemini Ensaio Fotográfico Profissional com IA",
+    "subtitle": "Crie prompt Gemini ensaio fotográfico feminino, masculino e casal com dicas prontas. Transforme fotos comuns em ensaio fotográfico profissional usando prompt Gemini foto otimizado em minutos",
     "cta": "Comecar agora",
     "features": "Ver recursos",
     "freeTrial": "Teste gratis"
   },
   "keywordSection": {
     "badge": "Tendencias no Brasil",
-    "title": "Prompts Gemini para ensaio fotográfico no Brasil",
-    "intro": "Escolha um prompt Gemini ensaio fotográfico alinhado ao seu objetivo e gere referências profissionais em português, do feminino ao masculino e casal, sem esforço.",
+    "title": "Prompt Gemini Ensaio Fotográfico: Feminino, Masculino e Casal",
+    "intro": "Escolha um prompt Gemini ensaio fotográfico profissional alinhado ao seu objetivo: feminino, masculino ou casal. Gere referências de qualidade em português sem esforço com Prompt Gemini Fotos.",
     "cards": {
       "feminino": {
-        "title": "Ensaio feminino",
-        "description": "Combine iluminação suave com prompt Gemini ensaio fotográfico feminino para criar retratos editoriais, moda ou lifestyle prontos para redes sociais, incluindo variações de prompt Gemini feminino para branding.",
+        "title": "Prompt Gemini Ensaio Fotográfico Feminino",
+        "description": "Combine iluminação suave e poses elegantes com prompt Gemini ensaio fotográfico feminino. Crie retratos editoriais, moda e lifestyle para redes sociais com variações otimizadas de prompt Gemini feminino.",
         "cta": "Ver prompt Gemini ensaio fotográfico feminino"
       },
       "masculino": {
-        "title": "Retrato masculino",
-        "description": "Defina poses firmes e textura de estúdio usando prompt Gemini ensaio fotográfico masculino com ajustes de luz dura ou dramática e um guia bônus de prompt Gemini masculino para LinkedIn.",
+        "title": "Prompt Gemini Ensaio Fotográfico Masculino",
+        "description": "Defina poses firmes e iluminação dramática usando prompt Gemini ensaio fotográfico masculino. Inclui guia completo de prompt Gemini masculino para retratos profissionais e LinkedIn.",
         "cta": "Ver prompt Gemini ensaio fotográfico masculino"
       },
       "casal": {
-        "title": "Casal e pré-wedding",
-        "description": "Crie storytelling romântico com prompt Gemini casal e diretrizes de locação externa, fundo bokeh e enquadramentos cinematográficos.",
-        "cta": "Ver prompt Gemini casal"
+        "title": "Prompt Gemini Ensaio Fotográfico Casal",
+        "description": "Crie ensaio fotográfico romântico e pré-wedding com prompt Gemini ensaio fotográfico casal. Diretrizes de locação externa, bokeh e enquadramentos cinematográficos inclusos.",
+        "cta": "Ver prompt Gemini ensaio fotográfico casal"
       },
       "corporativo": {
-        "title": "Foto profissional",
-        "description": "Gere headshots com prompt Gemini foto profissional, explorando variações de fundo neutro, roupas formais e composição simétrica.",
+        "title": "Prompt Gemini Foto Profissional",
+        "description": "Gere headshots corporativos impecáveis com prompt Gemini foto profissional. Variações de fundo neutro, roupas formais e composição ideal para LinkedIn e curriculo.",
         "cta": "Ver prompt Gemini foto profissional"
       }
     },
-    "bullet": "Passo a passo: escolha o estilo, adicione referências e gere. Resultado pronto para exportar em minutos.",
-    "cta": "Explorar prompt Gemini ensaio fotográfico"
+    "bullet": "Passo a passo com Prompt Gemini Fotos: escolha o estilo de ensaio fotográfico, adicione referências e gere resultados prontos em minutos.",
+    "cta": "Explorar todos os prompt Gemini ensaio fotográfico"
   },
   "cta": {
     "freeGenerations": "geracoes gratis",
@@ -52,12 +52,12 @@
     "freeNotice": "Plano gratuito inclui 2 geracoes em 512x512 com marca d'agua"
   },
   "features": {
-    "title": "Recursos poderosos",
-    "subtitle": "Tudo que voce precisa para criar fotos profissionais",
-    "smartGenerator": "Gerador inteligente",
-    "smartGeneratorDesc": "Prompts ajustados automaticamente para cada estilo de foto, entregando prompt Gemini ensaio fotográfico preciso",
-    "professionalTemplates": "Templates profissionais",
-    "professionalTemplatesDesc": "Colecao curada com prompt Gemini ensaio fotográfico feminino, masculino, casal e muito mais",
+    "title": "Recursos Prompt Gemini Fotos",
+    "subtitle": "Tudo para criar ensaio fotográfico profissional com prompt Gemini",
+    "smartGenerator": "Gerador prompt Gemini inteligente",
+    "smartGeneratorDesc": "Prompts ajustados automaticamente para cada estilo, entregando prompt Gemini ensaio fotográfico feminino, masculino, casal e profissional com precisão",
+    "professionalTemplates": "Templates ensaio fotográfico",
+    "professionalTemplatesDesc": "Colecao curada com prompt Gemini ensaio fotográfico feminino, prompt Gemini ensaio fotográfico masculino, prompt Gemini casal e muito mais",
     "unlimitedGenerations": "Geracoes ilimitadas",
     "unlimitedGenerationsDesc": "Crie quantas fotos quiser com qualidade consistente",
     "fastResults": "Resultados rapidos",
@@ -156,13 +156,13 @@
     "popularChoice": "Mais popular"
   },
   "generator": {
-    "tryNow": "Experimente agora",
-    "tryGenerator": "Teste o gerador inteligente",
-    "generatorDesc": "Combine templates profissionais com prompt Gemini ensaio fotográfico personalizado e gere retratos incriveis em instantes"
+    "tryNow": "Experimente prompt Gemini agora",
+    "tryGenerator": "Teste o gerador prompt Gemini ensaio fotográfico",
+    "generatorDesc": "Combine templates profissionais com prompt Gemini ensaio fotográfico feminino, masculino ou casal personalizado. Gere ensaio fotográfico profissional com IA em instantes"
   },
   "generatorModule": {
-    "title": "Gerador de fotos com IA",
-    "description": "Selecione um template, adicione suas referencias e deixe o Gemini criar o retrato perfeito com prompt Gemini foto profissional",
+    "title": "Gerador Prompt Gemini Ensaio Fotográfico com IA",
+    "description": "Selecione um template de ensaio fotográfico, adicione referencias e gere retratos perfeitos com prompt Gemini foto profissional otimizado",
     "placeholders": {
       "person": "nome da pessoa",
       "couple": "nome do casal",
@@ -254,15 +254,15 @@
   },
   "templatesPage": {
     "meta": {
-      "title": "Templates de prompts para fotos com IA",
-      "description": "Explore {count} prompt Gemini ensaio fotográfico, feminino, masculino e casal para gerar fotos profissionais com Gemini",
-      "keywords": "prompt gemini ensaio fotográfico, prompt gemini foto profissional, prompt gemini feminino, prompt gemini masculino, prompt gemini casal",
+      "title": "Templates Prompt Gemini Ensaio Fotográfico | Feminino, Masculino e Casal",
+      "description": "Explore {count} prompt Gemini ensaio fotográfico profissional: feminino, masculino e casal. Gere fotos profissionais com prompt Gemini otimizado",
+      "keywords": "prompt gemini ensaio fotográfico, prompt gemini ensaio fotográfico feminino, prompt gemini ensaio fotográfico masculino, prompt gemini ensaio fotográfico casal, prompt gemini foto profissional",
       "image": "/images/templates/og-templates.jpg"
     },
     "hero": {
-      "badge": "Colecao curada",
-      "title": "Descubra <highlight>{count}</highlight> templates profissionais",
-      "description": "Modelos prontos e testados para <strong>LinkedIn, estudio, casais e lifestyle</strong> com prompt Gemini ensaio fotográfico em portugues. Atualizados regularmente.",
+      "badge": "Colecao Prompt Gemini Fotos",
+      "title": "Descubra <highlight>{count}</highlight> Prompt Gemini Ensaio Fotográfico",
+      "description": "Templates prompt Gemini ensaio fotográfico feminino, masculino e casal prontos para <strong>LinkedIn, estudio e lifestyle</strong>. Ensaio fotográfico profissional com IA em portugues.",
       "cta": {
         "free": "Explorar templates gratuitos",
         "premium": "Ver premium"
@@ -517,10 +517,10 @@
     "previous": "Anterior"
   },
   "footer": {
-    "description": "Transforme fotos comuns em retratos profissionais com prompts otimizados para IA.",
+    "description": "Prompt Gemini Fotos: transforme fotos em ensaio fotográfico profissional com prompt Gemini ensaio fotográfico feminino, masculino e casal otimizado para IA.",
     "quickLinks": "Links rapidos",
     "home": "Inicio",
-    "templates": "Templates",
+    "templates": "Templates Prompt Gemini",
     "pricing": "Precos",
     "support": "Suporte",
     "terms": "Termos de uso",
