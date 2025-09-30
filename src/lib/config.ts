@@ -44,6 +44,7 @@ export const config = {
   creem: {
     apiKey: process.env.CREEM_API_KEY || '',
     webhookSecret: process.env.CREEM_WEBHOOK_SECRET || '',
+    testMode: process.env.CREEM_TEST_MODE === 'true',
   },
 
   // Storage Configuration

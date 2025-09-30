@@ -3,6 +3,7 @@ import { getSupabaseAdmin } from '@/lib/supabase';
 export interface UserSubscriptionData {
   id: string;
   subscriptionStatus: 'free' | 'pro';
+  planType?: 'monthly' | 'yearly';
   generationsUsed: number;
   generationsLimit: number;
   subscriptionId?: string;
@@ -26,6 +27,7 @@ export async function getUserSubscriptionData(userId: string): Promise<UserSubsc
         subscriptions (
           creem_subscription_id,
           status,
+          plan_type,
           current_period_end
         )
       `)
@@ -53,6 +55,7 @@ export async function getUserSubscriptionData(userId: string): Promise<UserSubsc
     return {
       id: userId,
       subscriptionStatus: subscriptionStatus as 'free' | 'pro',
+      planType: subscription?.plan_type as 'monthly' | 'yearly' | undefined,
       generationsUsed,
       generationsLimit: subscriptionStatus === 'pro'
         ? Infinity

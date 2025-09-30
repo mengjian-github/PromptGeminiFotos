@@ -1,7 +1,9 @@
 import { config } from './config';
 
 // Creem API client configuration
-const CREEM_BASE_URL = 'https://api.creem.io/v1';
+const CREEM_BASE_URL = config.creem.testMode
+  ? 'https://test-api.creem.io/v1'  // Test mode endpoint
+  : 'https://api.creem.io/v1';       // Production endpoint
 
 interface CreemSubscriptionData {
   productId: string;
@@ -38,10 +40,12 @@ interface CreemProduct {
 class CreemClient {
   private apiKey: string;
   private baseUrl: string;
+  private testMode: boolean;
 
-  constructor(apiKey: string, baseUrl: string = CREEM_BASE_URL) {
+  constructor(apiKey: string, baseUrl: string = CREEM_BASE_URL, testMode: boolean = false) {
     this.apiKey = apiKey;
     this.baseUrl = baseUrl;
+    this.testMode = testMode;
   }
 
   private async makeRequest(endpoint: string, options: RequestInit = {}) {
@@ -50,7 +54,7 @@ class CreemClient {
     const response = await fetch(url, {
       ...options,
       headers: {
-        'Authorization': `Bearer ${this.apiKey}`,
+        'x-api-key': this.apiKey,
         'Content-Type': 'application/json',
         ...options.headers,
       },
@@ -66,10 +70,31 @@ class CreemClient {
 
   // Create a new subscription checkout session
   async createCheckoutSession(data: CreemSubscriptionData): Promise<{ checkoutUrl: string; sessionId: string }> {
-    return this.makeRequest('/checkout/sessions', {
+    // Convert to Creem API format (cancel_url is not supported by Creem)
+    // Note: Creem API requires EITHER customer.id OR customer.email, not both
+    const creemData = {
+      product_id: data.productId,
+      customer: data.customerId
+        ? { id: data.customerId }
+        : {
+            email: data.customerEmail,
+            ...(data.customerName && { name: data.customerName }),
+          },
+      success_url: data.successUrl,
+      // cancel_url is not supported by Creem API
+      ...(data.metadata && { metadata: data.metadata }),
+    };
+
+    const response = await this.makeRequest('/checkouts', {
       method: 'POST',
-      body: JSON.stringify(data),
+      body: JSON.stringify(creemData),
     });
+
+    // Return in expected format
+    return {
+      checkoutUrl: response.checkout_url,
+      sessionId: response.id,
+    };
   }
 
   // Get subscription details
@@ -117,12 +142,19 @@ class CreemClient {
 }
 
 // Initialize Creem client
-export const creem = new CreemClient(config.creem.apiKey);
+export const creem = new CreemClient(
+  config.creem.apiKey,
+  CREEM_BASE_URL,
+  config.creem.testMode
+);
 
 // Product configuration based on our pricing decisions
+// NOTE: Product IDs switch based on CREEM_TEST_MODE environment variable
 export const PRODUCTS = {
   PRO_MONTHLY: {
-    id: 'promptgeminifotos', // This should match the product ID from your Creem dashboard
+    id: config.creem.testMode
+      ? 'prod_5vexPt0lkM6iLgIWHF8Ezr'  // Test Mode
+      : 'prod_47Q5DzL9JiQNFegff6iBw4',  // Production Mode
     name: 'Professional Monthly',
     price: 7.99,
     currency: 'USD',
@@ -138,7 +170,9 @@ export const PRODUCTS = {
     ]
   },
   PRO_YEARLY: {
-    id: 'promptgeminifotos-yearly', // This should match the yearly product ID
+    id: config.creem.testMode
+      ? 'prod_5bYhG1vTxGeB3KyW2jLYdW'  // Test Mode
+      : 'prod_750GinwEKtossNTHRbatQk',  // Production Mode
     name: 'Professional Yearly',
     price: 79.99,
     currency: 'USD',
@@ -164,9 +198,18 @@ export const subscriptionHelpers = {
     const product = planType === 'yearly' ? PRODUCTS.PRO_YEARLY : PRODUCTS.PRO_MONTHLY;
     const baseUrl = config.app.url;
 
+    console.log('[creem] Creating checkout session for:', {
+      userId,
+      userEmail,
+      planType,
+      productId: product.id,
+      testMode: config.creem.testMode
+    });
+
     try {
       const session = await creem.createCheckoutSession({
         productId: product.id,
+        // Don't pass customerId - let Creem manage customers by email
         customerEmail: userEmail,
         customerName: userName,
         // dashboard urls removed
@@ -179,17 +222,25 @@ export const subscriptionHelpers = {
         }
       });
 
+      console.log('[creem] Checkout session created successfully:', session);
       return session;
     } catch (error) {
-      console.error('Error creating checkout session:', error);
+      console.error('[creem] Error creating checkout session:', error);
       throw new Error('Failed to create checkout session');
     }
   },
 
   // Handle successful subscription
-  async handleSubscriptionSuccess(subscriptionId: string, userId: string) {
+  async handleSubscriptionSuccess(subscriptionData: any, userId: string) {
     try {
-      const subscription = await creem.getSubscription(subscriptionId);
+      const planType = subscriptionData.metadata?.planType || 'monthly';
+
+      console.log('[creem] Processing subscription success:', {
+        subscriptionId: subscriptionData.id,
+        userId,
+        status: subscriptionData.status,
+        planType
+      });
 
       // Update user in database
       const { getSupabaseAdmin } = await import('./supabase');
@@ -209,23 +260,28 @@ export const subscriptionHelpers = {
         throw userError;
       }
 
-      // Create subscription record
+      // Upsert subscription record (to handle multiple webhook events for same subscription)
       const { error: subscriptionError } = await (supabase as any)
         .from('subscriptions')
-        .insert({
+        .upsert({
           user_id: userId,
-          creem_subscription_id: subscriptionId,
-          status: subscription.status,
-          current_period_start: subscription.currentPeriodStart,
-          current_period_end: subscription.currentPeriodEnd,
+          creem_subscription_id: subscriptionData.id,
+          status: subscriptionData.status,
+          plan_type: planType,
+          current_period_start: subscriptionData.current_period_start_date,
+          current_period_end: subscriptionData.current_period_end_date,
+          updated_at: new Date().toISOString(),
+        }, {
+          onConflict: 'creem_subscription_id'
         });
 
       if (subscriptionError) {
-        console.error('Error creating subscription record:', subscriptionError);
+        console.error('Error upserting subscription record:', subscriptionError);
         throw subscriptionError;
       }
 
-      return subscription;
+      console.log('[creem] Subscription success processed successfully');
+      return subscriptionData;
     } catch (error) {
       console.error('Error handling subscription success:', error);
       throw error;

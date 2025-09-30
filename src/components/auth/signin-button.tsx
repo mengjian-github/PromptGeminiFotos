@@ -6,7 +6,7 @@ import { buildLocalePath } from "@/lib/locale-path";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import { useLocale, useTranslations } from "next-intl";
-import { Loader2, LogOut } from "lucide-react";
+import { Loader2, LogOut, Crown, Zap } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,6 +17,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { logGoogleOAuthSetup } from "@/lib/auth-diagnostics";
+import { useEffect, useState } from "react";
+import type { UserSubscriptionData } from "@/lib/subscription";
 
 interface SignInButtonProps {
   variant?: "default" | "outline" | "ghost";
@@ -30,6 +32,20 @@ export function SignInButton({ variant = "default", size = "default", className,
   const t = useTranslations();
   const locale = useLocale() as Locale;
   const labelText = label ?? t("auth.continueWithGoogle");
+  const [subscription, setSubscription] = useState<UserSubscriptionData | null>(null);
+
+  useEffect(() => {
+    if (session?.user) {
+      fetch('/api/user/subscription')
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            setSubscription(data.data);
+          }
+        })
+        .catch(err => console.error('Failed to fetch subscription:', err));
+    }
+  }, [session]);
 
   if (status === "loading") {
     return (
@@ -65,6 +81,41 @@ export function SignInButton({ variant = "default", size = "default", className,
             </div>
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
+
+          {/* Subscription Status */}
+          {subscription && (
+            <>
+              <DropdownMenuLabel className="font-normal">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-2">
+                    {subscription.subscriptionStatus === 'pro' ? (
+                      <>
+                        <Crown className="h-4 w-4 text-yellow-500" />
+                        <span className="text-sm font-medium">Pro Plan</span>
+                      </>
+                    ) : (
+                      <>
+                        <Zap className="h-4 w-4 text-gray-500" />
+                        <span className="text-sm font-medium">Free Plan</span>
+                      </>
+                    )}
+                  </div>
+                </div>
+                {subscription.subscriptionStatus === 'free' && (
+                  <p className="text-xs text-muted-foreground mt-1">
+                    {subscription.generationsUsed} / {subscription.generationsLimit} generations used
+                  </p>
+                )}
+                {subscription.subscriptionStatus === 'pro' && (
+                  <p className="text-xs text-muted-foreground mt-1">
+                    Unlimited generations • {subscription.planType === 'yearly' ? 'Yearly' : 'Monthly'}
+                  </p>
+                )}
+              </DropdownMenuLabel>
+              <DropdownMenuSeparator />
+            </>
+          )}
+
           <DropdownMenuItem
             onClick={() => signOut({ callbackUrl: buildLocalePath(locale, "/") })}
           >
@@ -88,10 +139,10 @@ export function SignInButton({ variant = "default", size = "default", className,
         }).catch((error) => {
           console.error("[AUTH DEBUG] signIn error:", error);
           console.error("[AUTH DEBUG] This usually indicates:");
-          console.error("1. Missing or invalid GOOGLE_CLIENT_ID/GOOGLE_CLIENT_SECRET");
-          console.error("2. Incorrect OAuth redirect URI in Google Console");
-          console.error("3. NEXTAUTH_URL mismatch");
-          console.error("4. Network connectivity issues (firewall, proxy, etc.)");
+          console.error("1. Network connectivity issues (proxy unstable)");
+          console.error("2. Missing or invalid GOOGLE_CLIENT_ID/GOOGLE_CLIENT_SECRET");
+          console.error("3. Incorrect OAuth redirect URI in Google Console");
+          console.error("4. NEXTAUTH_URL mismatch");
         });
       }}
       className={className}

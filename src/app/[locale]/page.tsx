@@ -9,6 +9,8 @@ import { EnhancedFeatures } from '@/components/enhanced-features';
 import { EnhancedPricing } from '@/components/enhanced-pricing';
 import { Metadata } from 'next';
 import type { Locale } from '@/i18n/config';
+import { auth } from '@/lib/auth';
+import { getUserSubscriptionData } from '@/lib/subscription';
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -71,6 +73,21 @@ export default async function HomePage({ params }: Props) {
   setRequestLocale(locale);
 
   const t = await getTranslations();
+
+  // Get user session and subscription status
+  const session = await auth();
+  let userTier: "free" | "pro" = "free";
+  let userId: string | undefined;
+
+  if (session?.user?.id) {
+    userId = session.user.id;
+    try {
+      const subscriptionData = await getUserSubscriptionData(session.user.id);
+      userTier = subscriptionData.subscriptionStatus === 'pro' ? 'pro' : 'free';
+    } catch (error) {
+      console.error('[home] Error fetching subscription:', error);
+    }
+  }
 
   const keywordCards = [
     { key: 'feminino', gradient: 'from-rose-500 to-pink-500' },
@@ -200,8 +217,8 @@ export default async function HomePage({ params }: Props) {
             <div className="absolute inset-0 bg-gradient-to-r from-blue-100/30 via-purple-100/30 to-pink-100/30 rounded-3xl blur-3xl -z-10" />
 
             <ImageGenerator
-              userId={undefined} // For demo - will be replaced with actual user ID
-              userTier="free"
+              userId={userId}
+              userTier={userTier}
             />
           </div>
         </div>

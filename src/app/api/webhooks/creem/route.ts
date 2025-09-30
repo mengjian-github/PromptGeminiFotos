@@ -8,15 +8,20 @@ export async function POST(request: NextRequest) {
     // Get the raw body for signature verification
     const body = await request.text();
     const headersList = await headers();
-    const signature = headersList.get('x-creem-signature');
+    const signature = headersList.get('creem-signature');
+
+    console.log('[webhook] Received webhook request');
+    console.log('[webhook] Headers:', Object.fromEntries(headersList.entries()));
 
     if (!signature) {
-      console.error('Missing webhook signature');
+      console.error('[webhook] Missing webhook signature');
       return NextResponse.json(
         { error: 'Missing signature' },
         { status: 400 }
       );
     }
+
+    console.log('[webhook] Signature present:', signature.substring(0, 20) + '...');
 
     // Verify webhook signature
     const isValidSignature = creem.verifyWebhookSignature(
@@ -26,39 +31,45 @@ export async function POST(request: NextRequest) {
     );
 
     if (!isValidSignature) {
-      console.error('Invalid webhook signature');
+      console.error('[webhook] Invalid webhook signature');
       return NextResponse.json(
         { error: 'Invalid signature' },
         { status: 401 }
       );
     }
 
+    console.log('[webhook] Signature verified successfully');
+
     // Parse the event
     const event = JSON.parse(body);
+    const eventType = event.eventType; // Creem uses 'eventType' not 'type'
+    console.log('[webhook] Event type:', eventType);
+    console.log('[webhook] Event ID:', event.id);
 
     // Handle different event types
-    switch (event.type) {
-      case 'subscription.created':
-      case 'subscription.updated':
+    switch (eventType) {
+      case 'subscription.active':
+      case 'subscription.paid':
+        console.log('[webhook] Handling subscription activation...');
         await handleSubscriptionUpdate(event);
         break;
 
-      case 'subscription.deleted':
       case 'subscription.canceled':
+      case 'subscription.expired':
+        console.log('[webhook] Handling subscription cancellation...');
         await handleSubscriptionCancellation(event);
         break;
 
-      case 'invoice.payment_succeeded':
-        await handlePaymentSuccess(event);
-        break;
-
-      case 'invoice.payment_failed':
-        await handlePaymentFailure(event);
+      case 'checkout.completed':
+        console.log('[webhook] Handling checkout completion...');
+        await handleCheckoutCompleted(event);
         break;
 
       default:
+        console.log('[webhook] Unhandled event type:', eventType);
     }
 
+    console.log('[webhook] Webhook processed successfully');
     return NextResponse.json({ received: true });
 
   } catch (error) {
@@ -72,45 +83,77 @@ export async function POST(request: NextRequest) {
 
 async function handleSubscriptionUpdate(event: any) {
   try {
-    const subscription = event.data.object;
+    const subscription = event.object; // Creem structure
     const userId = subscription.metadata?.userId;
 
+    console.log('[webhook] Subscription data:', {
+      id: subscription.id,
+      status: subscription.status,
+      userId,
+      customer: subscription.customer?.email,
+    });
+
     if (!userId) {
-      console.error('Missing userId in subscription metadata');
+      console.error('[webhook] Missing userId in subscription metadata');
       return;
     }
 
     await subscriptionHelpers.handleSubscriptionSuccess(
-      subscription.id,
+      subscription,
       userId
     );
 
+    console.log('[webhook] Subscription update handled successfully');
   } catch (error) {
-    console.error('Error handling subscription update:', error);
+    console.error('[webhook] Error handling subscription update:', error);
   }
 }
 
 async function handleSubscriptionCancellation(event: any) {
   try {
-    const subscription = event.data.object;
+    const subscription = event.object; // Creem structure
+
+    console.log('[webhook] Cancellation data:', {
+      id: subscription.id,
+      status: subscription.status,
+    });
 
     await subscriptionHelpers.handleSubscriptionCancellation(subscription.id);
 
+    console.log('[webhook] Subscription cancellation handled successfully');
   } catch (error) {
-    console.error('Error handling subscription cancellation:', error);
+    console.error('[webhook] Error handling subscription cancellation:', error);
   }
 }
 
-async function handlePaymentSuccess(event: any) {
-  const subscriptionId = event?.data?.object?.subscription;
-  console.info('[creem] payment succeeded for subscription', subscriptionId);
-  // Billing sync disabled temporarily; stored for future implementation.
-}
+async function handleCheckoutCompleted(event: any) {
+  try {
+    const checkout = event.object; // Creem structure
+    const subscription = checkout.subscription;
+    const userId = checkout.metadata?.userId || subscription?.metadata?.userId;
 
-async function handlePaymentFailure(event: any) {
-  const subscriptionId = event?.data?.object?.subscription;
-  console.warn('[creem] payment failed for subscription', subscriptionId);
-  // Billing sync disabled temporarily; stored for future implementation.
+    console.log('[webhook] Checkout completed:', {
+      checkoutId: checkout.id,
+      subscriptionId: subscription?.id,
+      userId,
+      customer: checkout.customer?.email,
+    });
+
+    if (!userId || !subscription) {
+      console.error('[webhook] Missing userId or subscription in checkout');
+      return;
+    }
+
+    // Handle the subscription creation after checkout
+    await subscriptionHelpers.handleSubscriptionSuccess(
+      subscription,
+      userId
+    );
+
+    console.log('[webhook] Checkout completion handled successfully');
+  } catch (error) {
+    console.error('[webhook] Error handling checkout completion:', error);
+  }
 }
 
 // Disable body parsing for raw webhook payload

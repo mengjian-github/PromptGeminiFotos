@@ -7,11 +7,13 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Search, Grid3X3, List, Crown } from 'lucide-react';
+import { Search, Grid3X3, List, Crown, Lock } from 'lucide-react';
 import { promptTemplates, Template, TemplateTier } from '@/lib/templates';
 import { usePagination } from '@/hooks/use-pagination';
 import { buildLocalePath } from '@/lib/locale-path';
 import type { Locale } from '@/i18n/config';
+import { useSession } from 'next-auth/react';
+import type { UserSubscriptionData } from '@/lib/subscription';
 
 interface TemplatesBrowserProps {
   initialTemplates?: Template[];
@@ -40,6 +42,7 @@ const sortTemplates = (templates: Template[], sortBy: SortOption): Template[] =>
 export function TemplatesBrowser({ initialTemplates = promptTemplates, initialTier }: TemplatesBrowserProps) {
   const t = useTranslations('templatesPage.browser');
   const locale = useLocale();
+  const { data: session } = useSession();
 
   const [searchQuery, setSearchQuery] = useState('');
   const [viewMode, setViewMode] = useState<ViewMode>('grid');
@@ -47,8 +50,23 @@ export function TemplatesBrowser({ initialTemplates = promptTemplates, initialTi
   const [style, setStyle] = useState<StyleFilter>('all');
   const [tier, setTier] = useState<TierFilter>(initialTier ?? 'all');
   const [sortBy, setSortBy] = useState<SortOption>('alphabetical');
+  const [subscription, setSubscription] = useState<UserSubscriptionData | null>(null);
 
   const numberFormatter = useMemo(() => new Intl.NumberFormat(locale), [locale]);
+
+  // Fetch user subscription status
+  useEffect(() => {
+    if (session?.user) {
+      fetch('/api/user/subscription')
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            setSubscription(data.data);
+          }
+        })
+        .catch(err => console.error('Failed to fetch subscription:', err));
+    }
+  }, [session]);
 
   const dataset = useMemo(() => initialTemplates, [initialTemplates]);
 
@@ -206,10 +224,11 @@ export function TemplatesBrowser({ initialTemplates = promptTemplates, initialTi
         {paginatedTemplates.map((template) => {
           const categoryLabel = t(`filters.categories.${template.category}`);
           const styleLabel = t(`filters.styles.${template.style}`);
-          const generatorHref = buildLocalePath(
-            locale as Locale,
-            `/generator?template=${encodeURIComponent(template.id)}`
-          );
+          const isPremium = template.tier === 'premium';
+          const hasAccess = !isPremium || subscription?.subscriptionStatus === 'pro';
+          const generatorHref = hasAccess
+            ? buildLocalePath(locale as Locale, `/generator?template=${encodeURIComponent(template.id)}`)
+            : buildLocalePath(locale as Locale, '/#pricing');
 
           return (
             <Card
@@ -224,9 +243,14 @@ export function TemplatesBrowser({ initialTemplates = promptTemplates, initialTi
                 <img
                   src={template.previewUrl}
                   alt={template.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 ${!hasAccess ? 'opacity-60' : ''}`}
                   loading="lazy"
                 />
+                {!hasAccess && (
+                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                    <Lock className="w-12 h-12 text-white" />
+                  </div>
+                )}
                 <div className="absolute top-3 left-3">
                   {template.tier === 'premium' ? (
                     <Badge className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black border-0 shadow">
@@ -256,11 +280,21 @@ export function TemplatesBrowser({ initialTemplates = promptTemplates, initialTi
                 <div className="flex items-center justify-end">
                   <Button
                     size="sm"
-                    className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white"
+                    className={hasAccess
+                      ? "bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white"
+                      : "bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-black"
+                    }
                     asChild
                   >
                     <Link href={generatorHref}>
-                      {template.tier === 'premium' ? t('card.ctaPremium') : t('card.ctaFree')}
+                      {!hasAccess ? (
+                        <>
+                          <Lock className="w-4 h-4 mr-2" />
+                          Upgrade to Pro
+                        </>
+                      ) : (
+                        template.tier === 'premium' ? t('card.ctaPremium') : t('card.ctaFree')
+                      )}
                     </Link>
                   </Button>
                 </div>

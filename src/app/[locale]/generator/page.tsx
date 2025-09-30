@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import { Badge } from "@/components/ui/badge";
 import { ImageGenerator } from "@/components/image-generator";
 import type { Locale } from "@/i18n/config";
+import { auth } from "@/lib/auth";
+import { getUserSubscriptionData } from "@/lib/subscription";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -55,6 +57,21 @@ export default async function GeneratorPage({ params, searchParams }: Props) {
   const query = (await searchParams) ?? {};
   const templateParam = Array.isArray(query.template) ? query.template[0] : query.template;
   setRequestLocale(locale);
+
+  // Get user session and subscription status
+  const session = await auth();
+  let userTier: "free" | "pro" = "free";
+  let userId: string | undefined;
+
+  if (session?.user?.id) {
+    userId = session.user.id;
+    try {
+      const subscriptionData = await getUserSubscriptionData(session.user.id);
+      userTier = subscriptionData.subscriptionStatus === 'pro' ? 'pro' : 'free';
+    } catch (error) {
+      console.error('[generator] Error fetching subscription:', error);
+    }
+  }
 
   const localized = locale === "pt-BR"
     ? {
@@ -132,7 +149,11 @@ export default async function GeneratorPage({ params, searchParams }: Props) {
 
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-blue-100/30 via-purple-100/30 to-pink-100/30 rounded-3xl blur-3xl -z-10" />
-            <ImageGenerator userTier="free" initialTemplateId={templateParam} />
+            <ImageGenerator
+              userId={userId}
+              userTier={userTier}
+              initialTemplateId={templateParam}
+            />
           </div>
         </div>
       </section>

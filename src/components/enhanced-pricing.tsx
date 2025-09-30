@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
+import { useSession, signIn } from 'next-auth/react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -18,6 +19,9 @@ import {
   Clock,
   Mail
 } from 'lucide-react';
+import type { UserSubscriptionData } from '@/lib/subscription';
+import type { Locale } from '@/i18n/config';
+import { buildLocalePath } from '@/lib/locale-path';
 
 interface PricingTier {
   name: string;
@@ -43,8 +47,64 @@ export function EnhancedPricing({ title, subtitle }: EnhancedPricingProps) {
   const [isYearly, setIsYearly] = useState(false);
   const [email, setEmail] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [subscription, setSubscription] = useState<UserSubscriptionData | null>(null);
   const t = useTranslations('pricing');
   const locale = useLocale();
+  const { data: session } = useSession();
+
+  useEffect(() => {
+    if (session?.user) {
+      fetch('/api/user/subscription')
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            setSubscription(data.data);
+          }
+        })
+        .catch(err => console.error('Failed to fetch subscription:', err));
+    }
+  }, [session]);
+
+  const handleSubscribe = async (planType: 'monthly' | 'yearly') => {
+    try {
+      setIsLoading(true);
+
+      // Check if user is authenticated
+      if (!session?.user) {
+        // Directly trigger Google sign in, just like the sign in button
+        signIn('google', {
+          callbackUrl: buildLocalePath(locale as Locale, '/'),
+        });
+        return;
+      }
+
+      // Call subscription API
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ planType }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to create subscription');
+      }
+
+      // Redirect to Creem checkout
+      if (data.checkoutUrl) {
+        window.location.href = data.checkoutUrl;
+      }
+    } catch (error) {
+      console.error('Subscription error:', error);
+      alert(error instanceof Error ? error.message : 'Failed to start subscription process');
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const formatMonthlyEquivalent = (rawPrice: string) => {
     const numeric = Number(rawPrice.replace(/[^0-9.,-]/g, '').replace(',', '.'));
@@ -252,6 +312,23 @@ export function EnhancedPricing({ title, subtitle }: EnhancedPricingProps) {
               </CardHeader>
 
               <CardContent className="pt-0">
+                {/* Current Plan Badge */}
+                {subscription && (
+                  // Show badge for free plan
+                  (!tier.isPopular && subscription.subscriptionStatus === 'free') ||
+                  // Show badge for pro plan only if billing period matches
+                  (tier.isPopular && subscription.subscriptionStatus === 'pro' &&
+                   ((isYearly && subscription.planType === 'yearly') ||
+                    (!isYearly && subscription.planType === 'monthly')))
+                ) && (
+                  <div className="mb-4 text-center">
+                    <Badge className="bg-blue-100 text-blue-700">
+                      <Check className="w-3 h-3 mr-1" />
+                      Current Plan
+                    </Badge>
+                  </div>
+                )}
+
                 {/* CTA Button */}
                 <Button
                   size="lg"
@@ -260,14 +337,17 @@ export function EnhancedPricing({ title, subtitle }: EnhancedPricingProps) {
                       ? 'bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg'
                       : 'bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white shadow-lg'
                   }`}
+                  disabled={isLoading || (
+                    subscription?.subscriptionStatus === 'pro' && tier.isPopular &&
+                    ((isYearly && subscription.planType === 'yearly') ||
+                     (!isYearly && subscription.planType === 'monthly'))
+                  )}
                   onClick={() => {
                     if (tier.isPopular) {
-                      // Scroll to email collection section
-                      const emailSection = document.querySelector('[data-email-collection]');
-                      if (emailSection) {
-                        emailSection.scrollIntoView({ behavior: 'smooth' });
-                      }
+                      // Handle Pro subscription
+                      handleSubscribe(isYearly ? 'yearly' : 'monthly');
                     } else {
+                      // Free plan - scroll to generator
                       const generator = document.getElementById('generator-section');
                       if (generator) {
                         generator.scrollIntoView({ behavior: 'smooth' });
@@ -275,8 +355,14 @@ export function EnhancedPricing({ title, subtitle }: EnhancedPricingProps) {
                     }
                   }}
                 >
-                  {tier.isPopular && <Clock className="w-4 h-4 mr-2" />}
-                  {tier.buttonText}
+                  {isLoading ? (
+                    <>Processing...</>
+                  ) : (
+                    <>
+                      {tier.isPopular && <Crown className="w-4 h-4 mr-2" />}
+                      {tier.buttonText}
+                    </>
+                  )}
                 </Button>
 
                 {/* Features */}
@@ -293,55 +379,17 @@ export function EnhancedPricing({ title, subtitle }: EnhancedPricingProps) {
 
                 {/* Additional benefits for pro */}
                 {tier.isPopular && (
-                  <>
-                    <div className="mt-6 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg border border-blue-100">
-                      <p className="text-sm font-medium text-gray-900 mb-2 flex items-center">
-                        <Sparkles className="w-4 h-4 mr-2 text-blue-500" />
-                        {t('pro.exclusiveBenefits')}
-                      </p>
-                      <ul className="text-xs text-gray-600 space-y-1">
-                        <li>• {t('pro.exclusiveList.0')}</li>
-                        <li>• {t('pro.exclusiveList.1')}</li>
-                        <li>• {t('pro.exclusiveList.2')}</li>
-                      </ul>
-                    </div>
-
-                    {/* Email collection */}
-                    <div data-email-collection className="mt-4 p-4 bg-gradient-to-r from-orange-50 to-yellow-50 rounded-lg border border-orange-200">
-                      <p className="text-sm font-medium text-gray-900 mb-2 flex items-center">
-                        <Mail className="w-4 h-4 mr-2 text-orange-500" />
-                        {t('pro.notifyTitle')}
-                      </p>
-                      {!isSubmitted ? (
-                        <div className="flex gap-2">
-                          <Input
-                            type="email"
-                            placeholder={t('pro.notifyPlaceholder')}
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            className="text-sm"
-                          />
-                          <Button
-                            size="sm"
-                            onClick={() => {
-                              if (email) {
-                                setIsSubmitted(true);
-                                // Here you would typically send the email to your backend
-                                console.log('Email collected:', email);
-                              }
-                            }}
-                            className="bg-orange-500 hover:bg-orange-600 text-white px-4"
-                          >
-                            {t('pro.notifyButton')}
-                          </Button>
-                        </div>
-                      ) : (
-                        <div className="text-sm text-green-600 font-medium">
-                          ✓ {t('pro.notifySuccess')}
-                        </div>
-                      )}
-                    </div>
-                  </>
+                  <div className="mt-6 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg border border-blue-100">
+                    <p className="text-sm font-medium text-gray-900 mb-2 flex items-center">
+                      <Sparkles className="w-4 h-4 mr-2 text-blue-500" />
+                      {t('pro.exclusiveBenefits')}
+                    </p>
+                    <ul className="text-xs text-gray-600 space-y-1">
+                      <li>• {t('pro.exclusiveList.0')}</li>
+                      <li>• {t('pro.exclusiveList.1')}</li>
+                      <li>• {t('pro.exclusiveList.2')}</li>
+                    </ul>
+                  </div>
                 )}
               </CardContent>
             </Card>

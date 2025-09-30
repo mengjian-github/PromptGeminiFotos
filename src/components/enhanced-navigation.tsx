@@ -7,6 +7,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { SignInButton } from "@/components/auth/signin-button";
 import { Menu, X, Camera, Home, CreditCard, FileText } from "lucide-react";
 import { buildLocalePath, isPathActive } from "@/lib/locale-path";
 import type { Locale } from "@/i18n/config";
@@ -122,6 +123,7 @@ export function EnhancedNavigation() {
 
           <div className="hidden md:flex items-center space-x-3">
             <LanguageSwitcher />
+            <SignInButton variant="outline" size="sm" />
           </div>
 
           <Button
@@ -163,8 +165,11 @@ export function EnhancedNavigation() {
               );
             })}
 
-            <div className="flex justify-end px-3 pt-2 border-t border-gray-200/50">
-              <LanguageSwitcher />
+            <div className="flex flex-col space-y-2 px-3 pt-2 border-t border-gray-200/50">
+              <SignInButton variant="outline" size="sm" className="w-full" />
+              <div className="flex justify-end">
+                <LanguageSwitcher />
+              </div>
             </div>
           </div>
         </div>
