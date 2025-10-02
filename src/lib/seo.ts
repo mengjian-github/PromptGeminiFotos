@@ -208,10 +208,6 @@ export function generateMetadata(props: StructuredDataProps) {
       languages: {
         'pt-BR': `${config.app.url}/pt-BR`,
         'en': `${config.app.url}/en`,
-        'zh': `${config.app.url}/zh`,
-        'hi': `${config.app.url}/hi`,
-        'id': `${config.app.url}/id`,
-        'tl': `${config.app.url}/tl`,
       },
     },
   };
@@ -219,7 +215,7 @@ export function generateMetadata(props: StructuredDataProps) {
 
 // Generate hreflang links for international SEO
 export function generateHreflangLinks(currentPath: string = '') {
-  const locales = ['pt-BR', 'en', 'zh', 'hi', 'id', 'tl'];
+  const locales = ['pt-BR', 'en'];
 
   return locales.map(locale => ({
     rel: 'alternate',
@@ -231,7 +227,7 @@ export function generateHreflangLinks(currentPath: string = '') {
 // Generate sitemap data
 // Return type narrowed to Next.js sitemap entry type to satisfy strict typing
 export function generateSitemapUrls(): MetadataRoute.Sitemap {
-  const locales = ['pt-BR', 'en', 'zh', 'hi', 'id', 'tl'];
+  const locales = ['pt-BR', 'en'];
   const pages = [
     '',
     // '/dashboard' removed
