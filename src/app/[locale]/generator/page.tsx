@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description,
     keywords: keywords.join(", "),
     alternates: {
-      canonical: buildLocalePath(currentLocale, "/generator")
+      canonical: buildLocalePath(currentLocale, "/generator", { absolute: true })
     }
   };
 }

@@ -31,11 +31,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ? 'Transforme fotos comuns em retratos profissionais com prompts de IA para Gemini.'
     : 'Transform ordinary photos into professional portraits with AI-powered prompts for Gemini.';
   const currentLocale = locale as Locale;
-  const canonicalPath = buildLocalePath(currentLocale, '/');
+  const canonicalPath = buildLocalePath(currentLocale, '/', { absolute: true });
   const languageAlternates = Object.fromEntries(
     locales.map((availableLocale) => [
       availableLocale,
-      buildLocalePath(availableLocale, '/')
+      buildLocalePath(availableLocale, '/', { absolute: true })
     ])
   );
 

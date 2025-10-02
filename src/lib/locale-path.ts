@@ -7,7 +7,7 @@ function normalizePath(path: string): string {
   return path;
 }
 
-export function buildLocalePath(locale: Locale, rawPath: string): string {
+export function buildLocalePath(locale: Locale, rawPath: string, options?: { absolute?: boolean; baseUrl?: string }): string {
   const path = normalizePath(rawPath);
 
   if (path.startsWith('/api') || path.startsWith('/_next')) {
@@ -16,6 +16,10 @@ export function buildLocalePath(locale: Locale, rawPath: string): string {
 
   const localePrefix = `/${locale}`;
   if (path === localePrefix || path.startsWith(`${localePrefix}/`)) {
+    if (options?.absolute) {
+      const baseUrl = options.baseUrl || process.env.NEXT_PUBLIC_APP_URL || 'https://www.promptgeminifotos.com';
+      return `${baseUrl}${path}`;
+    }
     return path;
   }
 
@@ -28,7 +32,14 @@ export function buildLocalePath(locale: Locale, rawPath: string): string {
   const query = queryFragment ? `?${queryFragment}` : '';
   const hash = hashFragment ? `#${hashFragment}` : '';
 
-  return `${localizedPath}${query}${hash}`;
+  const fullPath = `${localizedPath}${query}${hash}`;
+
+  if (options?.absolute) {
+    const baseUrl = options.baseUrl || process.env.NEXT_PUBLIC_APP_URL || 'https://www.promptgeminifotos.com';
+    return `${baseUrl}${fullPath}`;
+  }
+
+  return fullPath;
 }
 
 export function isPathActive(pathname: string, locale: Locale, targetPath: string): boolean {
