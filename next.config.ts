@@ -4,11 +4,6 @@ import type { NextConfig } from 'next';
 const withNextIntl = createNextIntlPlugin('./src/i18n/config.ts');
 
 const nextConfig: NextConfig = {
-  // Turbopack configuration
-  turbopack: {
-    root: __dirname,
-  },
-
   // Image optimization
   images: {
     domains: ['localhost'],
