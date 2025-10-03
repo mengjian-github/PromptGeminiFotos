@@ -116,6 +116,9 @@ export default async function LocaleLayout({ children, params }: Props) {
   const localizedLinks = {
     home: buildLocalePath(currentLocale, '/'),
     templates: buildLocalePath(currentLocale, '/templates'),
+    prompts: buildLocalePath(currentLocale, '/prompts'),
+    tutorial: buildLocalePath(currentLocale, '/tutorial'),
+    blog: buildLocalePath(currentLocale, '/blog'),
     pricing: buildLocalePath(currentLocale, '/#pricing'),
   } as const;
 
@@ -198,6 +201,9 @@ export default async function LocaleLayout({ children, params }: Props) {
                     <ul className="space-y-2 text-gray-400">
                       <li><Link href={localizedLinks.home} className="hover:text-white transition-colors">{tFooter('home')}</Link></li>
                       <li><Link href={localizedLinks.templates} className="hover:text-white transition-colors">{tFooter('templates')}</Link></li>
+                      <li><Link href={localizedLinks.prompts} className="hover:text-white transition-colors">{tFooter('prompts')}</Link></li>
+                      <li><Link href={localizedLinks.tutorial} className="hover:text-white transition-colors">{tFooter('tutorial')}</Link></li>
+                      <li><Link href={localizedLinks.blog} className="hover:text-white transition-colors">{tFooter('blog')}</Link></li>
                       <li><Link href={localizedLinks.pricing} className="hover:text-white transition-colors">{tFooter('pricing')}</Link></li>
                     </ul>
                   </div>

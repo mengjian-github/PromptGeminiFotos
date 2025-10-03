@@ -1,6 +1,7 @@
 ﻿import { buildLocalePath } from '@/lib/locale-path';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { ImageGenerator } from '@/components/image-generator';
 import { HeroShowcase } from '@/components/hero-showcase';
@@ -21,13 +22,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const currentLocale = locale as Locale;
 
   const keywords = locale === 'pt-BR' ? [
-    'prompt gemini ensaio fotográfico',
+    'prompt gemini ensaio fotografico',
     'prompt gemini foto profissional',
     'prompt gemini casal',
     'gerador de fotos AI',
-    'inteligência artificial fotografia',
+    'inteligencia artificial fotografia',
     'prompt fotografia gemini',
-    'ensaio fotográfico AI',
+    'ensaio fotografico AI',
     'foto profissional AI',
     'prompt para gemini',
     'fotografia artificial',
@@ -53,7 +54,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     : 'Prompt Gemini Photos - Professional AI Photo Generator';
 
   const description = locale === 'pt-BR'
-    ? 'Transforme fotos comuns em retratos profissionais com prompts de IA para Gemini. Gerador de fotos AI com prompts para ensaio fotográfico. 5 gerações gratuitas.'
+    ? 'Transforme fotos comuns em retratos profissionais com prompts de IA para Gemini. Gerador de fotos AI com prompts para ensaio fotografico. 5 geracoes gratuitas.'
     : 'Transform ordinary photos into professional portraits using AI-powered prompts for Gemini. Professional photography AI generator with free generations.';
 
   return {
@@ -68,9 +69,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function HomePage({ params }: Props) {
   const { locale } = await params;
+  const currentLocale = locale as Locale;
 
   // Enable static rendering
-  setRequestLocale(locale);
+  setRequestLocale(currentLocale);
 
   const t = await getTranslations();
 
@@ -96,6 +98,8 @@ export default async function HomePage({ params }: Props) {
     { key: 'corporativo', gradient: 'from-slate-700 to-gray-900' }
   ] as const;
 
+  const promptsHref = buildLocalePath(currentLocale, '/prompts');
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-gray-50/30 to-white">
       {/* Hero Section */}
@@ -107,7 +111,7 @@ export default async function HomePage({ params }: Props) {
 
         <div className="relative mx-auto max-w-7xl text-center">
           <Badge variant="secondary" className="mb-6 bg-gradient-to-r from-green-400 to-blue-500 text-white animate-pulse">
-            🚀 {t('pricing.free.features.0')}
+            ⭐ {t('pricing.free.features.0')}
           </Badge>
 
           <h1 className="mx-auto max-w-4xl text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl lg:text-7xl">
@@ -167,12 +171,20 @@ export default async function HomePage({ params }: Props) {
             <p className="text-sm text-gray-500">
               {t('keywordSection.bullet')}
             </p>
-            <a
-              href="#generator-section"
-              className="inline-flex w-full sm:w-auto items-center justify-center rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 px-7 py-3 text-base font-semibold text-white shadow-lg transition-transform duration-300 hover:-translate-y-0.5 hover:from-blue-600 hover:to-purple-700"
-            >
-              {t('keywordSection.cta')}
-            </a>
+            <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+              <a
+                href="#generator-section"
+                className="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 px-7 py-3 text-base font-semibold text-white shadow-lg transition-transform duration-300 hover:-translate-y-0.5 hover:from-blue-600 hover:to-purple-700"
+              >
+                {t('keywordSection.cta')}
+              </a>
+              <Link
+                href={promptsHref}
+                className="inline-flex items-center justify-center rounded-lg border border-blue-200 px-7 py-3 text-base font-semibold text-blue-600 bg-white/80 hover:bg-blue-50 transition-colors duration-300"
+              >
+                {t('keywordSection.promptsGuide')}
+              </Link>
+            </div>
           </div>
         </div>
         </div>

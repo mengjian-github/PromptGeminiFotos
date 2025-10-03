@@ -5,7 +5,10 @@
     "pricing": "Precos",
     "brand": "Prompt Gemini Fotos",
     "generator": "Gerador",
-    "login": "Entrar"
+    "login": "Entrar",
+    "prompts": "Guia de prompts",
+    "blog": "Blog",
+    "tutorial": "Tutorial"
   },
   "hero": {
     "title": "Prompt Gemini Ensaio Fotográfico Profissional com IA",
@@ -41,7 +44,8 @@
       }
     },
     "bullet": "Passo a passo com Prompt Gemini Fotos: escolha o estilo de ensaio fotográfico, adicione referências e gere resultados prontos em minutos.",
-    "cta": "Explorar todos os prompt Gemini ensaio fotográfico"
+    "cta": "Explorar todos os prompt Gemini ensaio fotográfico",
+    "promptsGuide": "Ver guia completo de prompts"
   },
   "cta": {
     "freeGenerations": "geracoes gratis",
@@ -528,6 +532,96 @@
     "contact": "Contato",
     "allRightsReserved": "Todos os direitos reservados",
     "secure": "Seguro",
-    "lgpd": "LGPD"
+    "lgpd": "LGPD",
+    "prompts": "Guia de prompts",
+    "blog": "Blog",
+    "tutorial": "Tutorial"
+  },
+  "blogPage": {
+    "meta": {
+      "title": "Blog Prompt Gemini Fotos",
+      "description": "Estrategias, prompts e casos reais para posicionar seu ensaio fotografico com Gemini nas buscas do Brasil.",
+      "keywords": "blog prompt gemini, ensaio fotografico IA, prompts gemini, gemini fotoshoot blog"
+    },
+    "hero": {
+      "badge": "Insights atualizados",
+      "title": "Blog Prompt Gemini Fotos",
+      "subtitle": "Aprenda a transformar dados do Search Console em prompts e campanhas visuais que convertem em territorio brasileiro.",
+      "primaryCta": "Ver artigos recentes",
+      "secondaryCta": "Explorar guia de prompts"
+    },
+    "list": {
+      "latest": "Artigos recentes",
+      "count": "Total: {count} artigos",
+      "readingTime": "{minutes} min de leitura",
+      "readMore": "Ler artigo completo",
+      "empty": {
+        "title": "Conteudo em producao",
+        "description": "Estamos elaborando novos guias com prompts Gemini focados no Brasil. Volte em breve!"
+      }
+    }
+  },
+  "howToTutorial": {
+    "badge": "Passo a passo",
+    "title": "Como gerar ensaios com o Prompt Gemini Fotos",
+    "subtitle": "Siga o roteiro abaixo para transformar briefing em prompts prontos, testar variacoes e publicar resultados consistentes.",
+    "tipLabel": "Dica pratica",
+    "callout": {
+      "title": "Aplique o tutorial direto no gerador",
+      "description": "Abra o gerador, escolha um template base e cole o prompt estruturado com as variaveis do seu cliente. Salve o preset para replicar em novos ensaios.",
+      "cta": "Ir para o gerador"
+    },
+    "steps": [
+      {
+        "title": "Coletar palavras-chave reais",
+        "description": "Entre no Search Console e identifique consultas como \"prompt gemini ensaio fotografico\" e variacoes por persona. Elas guiam o restante do tutorial.",
+        "tip": "Crie uma planilha com as consultas e associe cada uma a uma intencao (feminino, casal, corporativo, aniversario)."
+      },
+      {
+        "title": "Montar briefing com 5 itens",
+        "description": "Resuma objetivo, ambiente, iluminacao, composicao e estilo final. Use frases curtas em portugues para orientar o Gemini.",
+        "tip": "Salve o briefing em um doc padrao para reaproveitar em outros clientes."
+      },
+      {
+        "title": "Escrever o prompt base",
+        "description": "Converta o briefing em prompt multi-linha com contexto, parametros tecnicos e instrucoes finais.",
+        "tip": "Inclua pedidos de realismo e idioma, como \"responder em portugues\"."
+      },
+      {
+        "title": "Testar variacoes no gerador",
+        "description": "Crie 2-3 variacoes mudando apenas um elemento por vez (luz, pose ou cenario).",
+        "tip": "Utilize o modo de presets para salvar as versoes aprovadas."
+      },
+      {
+        "title": "Publicar com SEO alinhado",
+        "description": "Use as mesmas palavras-chave no titulo, subtitulos e alt text das imagens publicadas.",
+        "tip": "Linke para o guia de prompts correspondente dentro do conteudo."
+      },
+      {
+        "title": "Medir e otimizar",
+        "description": "Apos publicar, acompanhe CTR e tempo na pagina; ajuste os prompts conforme feedback.",
+        "tip": "Sempre documente qual variacao gerou melhor resultado para replicar nas proximas campanhas."
+      }
+    ]
+  },
+  "howToTutorialPage": {
+    "meta": {
+      "title": "Tutorial Prompt Gemini Fotos",
+      "description": "Tutorial completo para gerar ensaios fotograficos com Gemini: briefing, prompt base, testes e publicacao.",
+      "keywords": "tutorial prompt gemini, passo a passo gemini fotos, guia gemini ensaio fotografico"
+    },
+    "hero": {
+      "badge": "Processo guiado",
+      "title": "Tutorial passo a passo para usar o Prompt Gemini Fotos",
+      "subtitle": "Planeje, gere e publique ensaios completos em menos tempo seguindo um fluxo validado com dados reais.",
+      "primaryCta": "Comecar o tutorial",
+      "secondaryCta": "Abrir o gerador"
+    },
+    "content": {
+      "updated": "Atualizado em {date}",
+      "intro": "Este tutorial combina insights do Search Console com boas praticas de fotografia profissional para que voce crie prompts que realmente convertem.",
+      "ctaBack": "Voltar para a home",
+      "ctaPrompts": "Ver guia de prompts"
+    }
   }
 }

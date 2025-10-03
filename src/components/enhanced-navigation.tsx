@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { SignInButton } from "@/components/auth/signin-button";
-import { Menu, X, Camera, Home, CreditCard, FileText } from "lucide-react";
+import { Menu, X, Camera, Home, CreditCard, FileText, BookOpen, Newspaper, GraduationCap } from "lucide-react";
 import { buildLocalePath, isPathActive } from "@/lib/locale-path";
 import type { Locale } from "@/i18n/config";
 
@@ -42,6 +42,24 @@ export function EnhancedNavigation() {
         label: t("home"),
         icon: Home,
         isActive: isPathActive(currentPath, locale, "/"),
+      },
+      {
+        href: buildLocalePath(locale, "/prompts"),
+        label: t("prompts"),
+        icon: BookOpen,
+        isActive: isPathActive(currentPath, locale, "/prompts"),
+      },
+      {
+        href: buildLocalePath(locale, "/tutorial"),
+        label: t("tutorial"),
+        icon: GraduationCap,
+        isActive: isPathActive(currentPath, locale, "/tutorial"),
+      },
+      {
+        href: buildLocalePath(locale, "/blog"),
+        label: t("blog"),
+        icon: Newspaper,
+        isActive: isPathActive(currentPath, locale, "/blog"),
       },
       {
         href: buildLocalePath(locale, "/templates"),

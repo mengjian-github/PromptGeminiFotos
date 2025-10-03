@@ -5,7 +5,10 @@
     "templates": "Templates",
     "generator": "Generator",
     "pricing": "Pricing",
-    "login": "Sign In"
+    "login": "Sign In",
+    "prompts": "Prompt Guide",
+    "blog": "Blog",
+    "tutorial": "Tutorial"
   },
   "hero": {
     "title": "Professional AI Photo Generator with Gemini Photo Prompts",
@@ -41,7 +44,8 @@
       }
     },
     "bullet": "Professional AI photo generator workflow: choose portrait style, add references, generate with Gemini photo prompts.",
-    "cta": "Explore all Gemini photo prompts"
+    "cta": "Explore all Gemini photo prompts",
+    "promptsGuide": "Open the prompts guide"
   },
   "cta": {
     "freeGenerations": "free AI photo generations",
@@ -528,6 +532,96 @@
     "contact": "Contact",
     "allRightsReserved": "All rights reserved",
     "secure": "Secure",
-    "lgpd": "GDPR"
+    "lgpd": "GDPR",
+    "prompts": "Prompt Guide",
+    "blog": "Blog",
+    "tutorial": "Tutorial"
+  },
+  "blogPage": {
+    "meta": {
+      "title": "Prompt Gemini Photos Blog",
+      "description": "Strategies, prompts, and real use cases to rank Gemini photo sessions for Brazilian audiences.",
+      "keywords": "prompt gemini blog, ai photoshoot, gemini prompts, brazil ai photography"
+    },
+    "hero": {
+      "badge": "Fresh insights",
+      "title": "Prompt Gemini Photos Blog",
+      "subtitle": "Turn Search Console data into prompts and visual campaigns that convert for Gemini shoots.",
+      "primaryCta": "Browse latest articles",
+      "secondaryCta": "Open the prompts guide"
+    },
+    "list": {
+      "latest": "Latest articles",
+      "count": "Total: {count} articles",
+      "readingTime": "{minutes} min read",
+      "readMore": "Read full article",
+      "empty": {
+        "title": "Content in progress",
+        "description": "We are preparing new Gemini prompt stories. Check back soon!"
+      }
+    }
+  },
+  "howToTutorial": {
+    "badge": "Step-by-step",
+    "title": "How to build Gemini photo sessions with our generator",
+    "subtitle": "Follow this workflow to turn a short brief into tested prompts, iterate fast, and publish consistent results.",
+    "tipLabel": "Pro tip",
+    "callout": {
+      "title": "Apply the tutorial directly in the generator",
+      "description": "Open the generator, pick a base template, paste the structured prompt with your client variables, and save it as a preset.",
+      "cta": "Go to generator"
+    },
+    "steps": [
+      {
+        "title": "Collect real search intents",
+        "description": "Check Search Console for queries like \"prompt gemini photoshoot\" and segment them by persona.",
+        "tip": "Log each query with its intent (female, couple, corporate, birthday)."
+      },
+      {
+        "title": "Build a 5-part brief",
+        "description": "Summarize objective, environment, lighting, composition, and final style in short sentences.",
+        "tip": "Keep a reusable doc template so you can duplicate it for new clients."
+      },
+      {
+        "title": "Write the base prompt",
+        "description": "Convert the brief into a multi-line prompt with context, technical specs, and final instructions.",
+        "tip": "Add realism notes and language requirements such as \"reply in Portuguese\"."
+      },
+      {
+        "title": "Test controlled variations",
+        "description": "Create two or three prompt variants changing only one element at a time (lighting, pose, or location).",
+        "tip": "Use presets to store the winning versions."
+      },
+      {
+        "title": "Publish with aligned SEO",
+        "description": "Reuse the same keywords in titles, subheadings, and image alt text when publishing.",
+        "tip": "Link back to the relevant prompt guide inside the article."
+      },
+      {
+        "title": "Measure and optimize",
+        "description": "Monitor CTR and dwell time after publishing; iterate on prompts based on performance.",
+        "tip": "Document the best-performing variation to replicate in future campaigns."
+      }
+    ]
+  },
+  "howToTutorialPage": {
+    "meta": {
+      "title": "Prompt Gemini Photos Tutorial",
+      "description": "Complete tutorial to plan, prompt, and publish Gemini photo sessions with consistent quality.",
+      "keywords": "prompt gemini tutorial, ai photoshoot workflow, gemini prompt guide"
+    },
+    "hero": {
+      "badge": "Guided workflow",
+      "title": "Step-by-step tutorial for Prompt Gemini Photos",
+      "subtitle": "Plan, generate, and publish full photo sessions faster using a data-backed process.",
+      "primaryCta": "Start the tutorial",
+      "secondaryCta": "Open the generator"
+    },
+    "content": {
+      "updated": "Updated on {date}",
+      "intro": "This tutorial blends Search Console insights with photography best practices so your prompts deliver business results.",
+      "ctaBack": "Back to home",
+      "ctaPrompts": "View prompts guide"
+    }
   }
 }
