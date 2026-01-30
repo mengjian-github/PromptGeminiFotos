@@ -161,6 +161,13 @@ export default async function LocaleLayout({ children, params }: Props) {
             __html: JSON.stringify(appStructuredData),
           }}
         />
+        {/* Plausible (self-hosted) */}
+        <script async src="https://plausible.shipsolo.io/js/pa-Zjysp572m_7MfIcPwkB63.js"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}}; plausible.init()`
+          }}
+        />
       </head>
       <body className="antialiased">
         <Providers>
