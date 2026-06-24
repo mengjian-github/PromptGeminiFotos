@@ -162,10 +162,17 @@ export default async function LocaleLayout({ children, params }: Props) {
           }}
         />
         {/* Plausible (self-hosted) */}
-        <script async src="https://plausible.shipsolo.io/js/pa-Zjysp572m_7MfIcPwkB63.js"></script>
+        <script async defer data-domain="promptgeminifotos.com" src="https://plausible.shipsolo.io/js/script.js"></script>
+        {/* Microsoft Clarity */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}}; plausible.init()`
+            __html: `
+              (function(c,l,a,r,i,t,y){
+                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+              })(window, document, "clarity", "script", "xc629f3kyq");
+            `,
           }}
         />
       </head>

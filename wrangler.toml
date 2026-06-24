@@ -1,0 +1,13 @@
+name = "promptgeminifotos"
+main = "src/cloudflare-worker.ts"
+compatibility_date = "2026-06-24"
+routes = [
+  { pattern = "promptgeminifotos.com/*", zone_name = "promptgeminifotos.com" },
+  { pattern = "www.promptgeminifotos.com/*", zone_name = "promptgeminifotos.com" }
+]
+
+[assets]
+directory = "./cf-static"
+binding = "ASSETS"
+not_found_handling = "single-page-application"
+run_worker_first = true
