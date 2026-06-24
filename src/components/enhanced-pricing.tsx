@@ -2,26 +2,19 @@
 
 import { useState, useEffect } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { useSession, signIn } from 'next-auth/react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Input } from '@/components/ui/input';
 import {
   Check,
   Crown,
-  Zap,
   Star,
   TrendingUp,
   Users,
   Sparkles,
   Gift,
-  Clock,
-  Mail
+  Clock
 } from 'lucide-react';
-import type { UserSubscriptionData } from '@/lib/subscription';
-import type { Locale } from '@/i18n/config';
-import { buildLocalePath } from '@/lib/locale-path';
 
 interface PricingTier {
   name: string;
@@ -45,64 +38,12 @@ interface EnhancedPricingProps {
 
 export function EnhancedPricing({ title, subtitle }: EnhancedPricingProps) {
   const [isYearly, setIsYearly] = useState(false);
-  const [email, setEmail] = useState('');
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [subscription, setSubscription] = useState<UserSubscriptionData | null>(null);
   const t = useTranslations('pricing');
   const locale = useLocale();
-  const { data: session } = useSession();
-
-  useEffect(() => {
-    if (session?.user) {
-      fetch('/api/user/subscription')
-        .then(res => res.json())
-        .then(data => {
-          if (data.success) {
-            setSubscription(data.data);
-          }
-        })
-        .catch(err => console.error('Failed to fetch subscription:', err));
-    }
-  }, [session]);
-
-  const handleSubscribe = async (planType: 'monthly' | 'yearly') => {
-    try {
-      setIsLoading(true);
-
-      // Check if user is authenticated
-      if (!session?.user) {
-        // Directly trigger Google sign in, just like the sign in button
-        signIn('google', {
-          callbackUrl: buildLocalePath(locale as Locale, '/'),
-        });
-        return;
-      }
-
-      // Call subscription API
-      const response = await fetch('/api/subscribe', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ planType }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || 'Failed to create subscription');
-      }
-
-      // Redirect to Creem checkout
-      if (data.checkoutUrl) {
-        window.location.href = data.checkoutUrl;
-      }
-    } catch (error) {
-      console.error('Subscription error:', error);
-      alert(error instanceof Error ? error.message : 'Failed to start subscription process');
-    } finally {
-      setIsLoading(false);
+  const handleSubscribe = () => {
+    const generator = document.getElementById('generator-section');
+    if (generator) {
+      generator.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -312,22 +253,6 @@ export function EnhancedPricing({ title, subtitle }: EnhancedPricingProps) {
               </CardHeader>
 
               <CardContent className="pt-0">
-                {/* Current Plan Badge */}
-                {subscription && (
-                  // Show badge for free plan
-                  (!tier.isPopular && subscription.subscriptionStatus === 'free') ||
-                  // Show badge for pro plan only if billing period matches
-                  (tier.isPopular && subscription.subscriptionStatus === 'pro' &&
-                   ((isYearly && subscription.planType === 'yearly') ||
-                    (!isYearly && subscription.planType === 'monthly')))
-                ) && (
-                  <div className="mb-4 text-center">
-                    <Badge className="bg-blue-100 text-blue-700">
-                      <Check className="w-3 h-3 mr-1" />
-                      Current Plan
-                    </Badge>
-                  </div>
-                )}
 
                 {/* CTA Button */}
                 <Button
@@ -337,15 +262,10 @@ export function EnhancedPricing({ title, subtitle }: EnhancedPricingProps) {
                       ? 'bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg'
                       : 'bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white shadow-lg'
                   }`}
-                  disabled={isLoading || (
-                    subscription?.subscriptionStatus === 'pro' && tier.isPopular &&
-                    ((isYearly && subscription.planType === 'yearly') ||
-                     (!isYearly && subscription.planType === 'monthly'))
-                  )}
                   onClick={() => {
                     if (tier.isPopular) {
                       // Handle Pro subscription
-                      handleSubscribe(isYearly ? 'yearly' : 'monthly');
+                      handleSubscribe();
                     } else {
                       // Free plan - scroll to generator
                       const generator = document.getElementById('generator-section');
@@ -355,14 +275,10 @@ export function EnhancedPricing({ title, subtitle }: EnhancedPricingProps) {
                     }
                   }}
                 >
-                  {isLoading ? (
-                    <>Processing...</>
-                  ) : (
-                    <>
+                  <>
                       {tier.isPopular && <Crown className="w-4 h-4 mr-2" />}
                       {tier.buttonText}
                     </>
-                  )}
                 </Button>
 
                 {/* Features */}

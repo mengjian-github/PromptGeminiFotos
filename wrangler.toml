@@ -7,7 +7,7 @@ routes = [
 ]
 
 [assets]
-directory = "./cf-static"
+directory = "./out"
 binding = "ASSETS"
 not_found_handling = "single-page-application"
 run_worker_first = true

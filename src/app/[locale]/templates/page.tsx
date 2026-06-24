@@ -12,7 +12,6 @@ import type { Locale } from '@/i18n/config';
 
 interface Props {
   params: Promise<{ locale: string }>;
-  searchParams?: Promise<{ tier?: string | string[] }>;
 }
 
 interface StatsSummary {
@@ -107,11 +106,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function TemplatesPage({ params, searchParams }: Props) {
+export default async function TemplatesPage({ params }: Props) {
   const { locale } = await params;
-  const query = (await searchParams) ?? {};
-  const tierParamRaw = Array.isArray(query.tier) ? query.tier[0] : query.tier;
-  const initialTier = tierParamRaw === 'free' || tierParamRaw === 'premium' ? tierParamRaw : 'all';
+  const initialTier = 'all';
   setRequestLocale(locale);
 
   const t = await getTranslations({ locale, namespace: 'templatesPage' });

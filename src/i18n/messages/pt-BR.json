@@ -83,7 +83,7 @@
       "ultraFast": "Prompts prontos em segundos com sugestoes automáticas",
       "noWaiting": "Gere sem filas ou lista de espera",
       "instantProcessing": "Geracoes costumam concluir em menos de um minuto",
-      "dataProtected": "Dados armazenados no Supabase com acesso restrito",
+      "dataProtected": "Processamento local no navegador quando possível; não usamos banco externo de contas",
       "autoDelete": "Exclua uploads a qualquer momento ou solicite remocao por e-mail",
       "lgpdCompliant": "Praticas alinhadas a LGPD e GDPR",
       "highResolution": "Ate 1024x1024 px no plano Pro",
@@ -426,8 +426,8 @@
       "title": "Informacoes que coletamos",
       "content": "Coletamos apenas os dados necessarios para prestar o servico e aprimorar a experiencia.",
       "items": [
-        "Dados de conta: nome, e-mail e foto de perfil",
-        "Imagens enviadas para geracao (armazenadas temporariamente)",
+        "Nenhum dado de conta é necessário no fluxo estático de prompts",
+        "Imagens de referência permanecem no navegador durante o fluxo de prompts",
         "Preferencias de idioma e templates utilizados",
         "Registros tecnicos para monitoramento de erros"
       ]
@@ -444,25 +444,25 @@
     },
     "photoProcessing": {
       "title": "Processamento de fotos",
-      "content": "As imagens enviadas e geradas ficam vinculadas a sua conta para download. Voce pode exclui-las pelo painel ou solicitar remocao por e-mail."
+      "content": "As imagens de referência são usadas localmente no navegador para ajudar a preparar prompts. Elas não ficam vinculadas a uma conta na versão estática em Cloudflare."
     },
     "security": {
       "title": "Seguranca",
-      "content": "Utilizamos Supabase e Cloudflare R2, que oferecem criptografia em repouso e em transito. O acesso e restrito a equipe que mantem o produto."
+      "content": "O site público é servido pela Cloudflare. Imagens de referência permanecem no navegador no fluxo de prompts, salvo se uma futura API nativa da Cloudflare solicitar upload explicitamente."
     },
     "rights": {
       "title": "Seus direitos",
       "content": "Voce pode solicitar exportacao ou exclusao definitiva dos seus dados a qualquer momento.",
       "items": [
         "Acessar e corrigir informacoes pessoais",
-        "Excluir conta e dados associados",
+        "Solicitar exclusão de dados de suporte enviados por você",
         "Revogar consentimento para comunicacoes",
         "Solicitar portabilidade dos dados"
       ]
     },
     "thirdParty": {
       "title": "Servicos de terceiros",
-      "content": "Utilizamos provedores como Supabase e Gemini de acordo com seus termos e politicas."
+      "content": "Utilizamos Cloudflare para hospedagem e provedores de analytics de acordo com seus termos e politicas."
     },
     "contactUs": {
       "title": "Entre em contato",

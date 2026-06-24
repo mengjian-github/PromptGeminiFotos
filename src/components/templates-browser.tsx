@@ -12,8 +12,6 @@ import { promptTemplates, Template, TemplateTier } from '@/lib/templates';
 import { usePagination } from '@/hooks/use-pagination';
 import { buildLocalePath } from '@/lib/locale-path';
 import type { Locale } from '@/i18n/config';
-import { useSession } from 'next-auth/react';
-import type { UserSubscriptionData } from '@/lib/subscription';
 
 interface TemplatesBrowserProps {
   initialTemplates?: Template[];
@@ -42,7 +40,6 @@ const sortTemplates = (templates: Template[], sortBy: SortOption): Template[] =>
 export function TemplatesBrowser({ initialTemplates = promptTemplates, initialTier }: TemplatesBrowserProps) {
   const t = useTranslations('templatesPage.browser');
   const locale = useLocale();
-  const { data: session } = useSession();
 
   const [searchQuery, setSearchQuery] = useState('');
   const [viewMode, setViewMode] = useState<ViewMode>('grid');
@@ -50,23 +47,8 @@ export function TemplatesBrowser({ initialTemplates = promptTemplates, initialTi
   const [style, setStyle] = useState<StyleFilter>('all');
   const [tier, setTier] = useState<TierFilter>(initialTier ?? 'all');
   const [sortBy, setSortBy] = useState<SortOption>('alphabetical');
-  const [subscription, setSubscription] = useState<UserSubscriptionData | null>(null);
-
   const numberFormatter = useMemo(() => new Intl.NumberFormat(locale), [locale]);
 
-  // Fetch user subscription status
-  useEffect(() => {
-    if (session?.user) {
-      fetch('/api/user/subscription')
-        .then(res => res.json())
-        .then(data => {
-          if (data.success) {
-            setSubscription(data.data);
-          }
-        })
-        .catch(err => console.error('Failed to fetch subscription:', err));
-    }
-  }, [session]);
 
   const dataset = useMemo(() => initialTemplates, [initialTemplates]);
 
@@ -225,9 +207,9 @@ export function TemplatesBrowser({ initialTemplates = promptTemplates, initialTi
           const categoryLabel = t(`filters.categories.${template.category}`);
           const styleLabel = t(`filters.styles.${template.style}`);
           const isPremium = template.tier === 'premium';
-          const hasAccess = !isPremium || subscription?.subscriptionStatus === 'pro';
+          const hasAccess = true;
           const generatorHref = hasAccess
-            ? buildLocalePath(locale as Locale, `/generator?template=${encodeURIComponent(template.id)}`)
+            ? buildLocalePath(locale as Locale, `/#generator-section`)
             : buildLocalePath(locale as Locale, '/#pricing');
 
           return (

@@ -22,7 +22,7 @@ import {
   type TemplateCategory,
   type TemplateStyle
 } from "@/lib/templates";
-import { Copy, Download, FileText, Loader2, Share, Sparkles, Upload } from "lucide-react";
+import { Copy, FileText, Sparkles, Upload } from "lucide-react";
 
 interface GenerationResult {
   success: boolean;
@@ -169,48 +169,27 @@ export function ImageGenerator({ userId, userTier = "free", initialTemplateId }:
     reader.readAsDataURL(file);
   }, [t]);
 
-  const handleGenerate = useCallback(async () => {
+  const handleGenerate = useCallback(() => {
     if (!prompt.trim()) {
       setResult({ success: false, error: t("errors.promptRequired") });
       return;
     }
 
-    setIsGenerating(true);
-    setResult(null);
+    const optimizedPrompt = [
+      prompt.trim(),
+      `Category: ${category}`,
+      `Style: ${style}`,
+      `Target resolution: ${resolution}`,
+      uploadedImage ? "Use the uploaded image as the identity/reference photo." : "No reference image provided."
+    ].join("\n");
 
-    try {
-      const response = await fetch("/api/generate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          prompt: prompt.trim(),
-          imageUrl: uploadedImage,
-          userId,
-          category,
-          style,
-          resolution
-        })
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        setResult({
-          success: false,
-          error: data.error || t("errors.generationFailed"),
-          needsUpgrade: data.needsUpgrade
-        });
-        return;
-      }
-
-      setResult(data);
-    } catch (error) {
-      console.error("Generation error:", error);
-      setResult({ success: false, error: t("errors.network") });
-    } finally {
-      setIsGenerating(false);
-    }
-  }, [prompt, uploadedImage, userId, category, style, resolution, t]);
+    setResult({
+      success: true,
+      prompt: optimizedPrompt,
+      remaining: DEFAULT_FREE_REMAINING,
+      watermark: false
+    });
+  }, [prompt, uploadedImage, category, style, resolution, t]);
 
   const copyPrompt = useCallback(async (text: string) => {
     try {
@@ -449,17 +428,10 @@ export function ImageGenerator({ userId, userTier = "free", initialTemplateId }:
               <Button
                 size="lg"
                 className="w-full bg-gradient-to-r from-blue-500 via-purple-500 to-blue-600 text-white"
-                disabled={isGenerating || !prompt.trim()}
+                disabled={!prompt.trim()}
                 onClick={handleGenerate}
               >
-                {isGenerating ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    {t("form.generating")}
-                  </>
-                ) : (
-                  t("form.generate")
-                )}
+                {t("form.generate")}
               </Button>
 
               {userTier === "free" && (
@@ -476,75 +448,22 @@ export function ImageGenerator({ userId, userTier = "free", initialTemplateId }:
           {result && (
             <Card className="border border-white/60 shadow">
               <CardHeader>
-                <CardTitle>{t("results.title")}</CardTitle>
+                <CardTitle>{t("results.promptTitle")}</CardTitle>
               </CardHeader>
               <CardContent>
-                {result.success && result.imageUrl ? (
-                  <div className="space-y-5">
-                    <div className="relative">
-                      <Image
-                        src={result.imageUrl}
-                        alt={t("results.title")}
-                        width={512}
-                        height={512}
-                        className="mx-auto w-full max-w-md rounded-lg shadow-lg"
-                      />
-                      {result.watermark && (
-                        <Badge className="absolute bottom-3 right-3 bg-black/60 text-white">
-                          {t("results.watermark")}
-                        </Badge>
-                      )}
-                    </div>
-
-                    <div className="flex flex-wrap justify-center gap-2">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => window.open(result.imageUrl!, "_blank")}
-                      >
-                        <Download className="mr-2 h-4 w-4" />
-                        {t("results.download")}
-                      </Button>
-                      <Button variant="outline" size="sm" onClick={() => copyPrompt(result.imageUrl!)}>
-                        <Copy className="mr-2 h-4 w-4" />
-                        {t("results.copyLink")}
-                      </Button>
-                      <Button variant="outline" size="sm" onClick={shareImage}>
-                        <Share className="mr-2 h-4 w-4" />
-                        {t("results.share")}
+                {result.success && result.prompt ? (
+                  <div className="rounded-lg bg-gray-50 p-4">
+                    <div className="mb-2 flex items-center justify-between">
+                      <h4 className="text-sm font-medium text-gray-900">{t("results.promptTitle")}</h4>
+                      <Button variant="ghost" size="sm" onClick={() => copyPrompt(result.prompt!)}>
+                        <Copy className="h-4 w-4" />
                       </Button>
                     </div>
-
-                    {result.prompt && (
-                      <div className="rounded-lg bg-gray-50 p-4">
-                        <div className="mb-2 flex items-center justify-between">
-                          <h4 className="text-sm font-medium text-gray-900">{t("results.promptTitle")}</h4>
-                          <Button variant="ghost" size="sm" onClick={() => copyPrompt(result.prompt!)}>
-                            <Copy className="h-4 w-4" />
-                          </Button>
-                        </div>
-                        <p className="text-sm text-gray-600">{result.prompt}</p>
-                      </div>
-                    )}
-
-                    {typeof result.remaining === "number" && (
-                      <p className="text-center text-sm text-gray-500">
-                        {result.remaining > 0
-                          ? t("results.remaining", { count: numberFormatter.format(result.remaining) })
-                          : t("results.remainingZero")}
-                      </p>
-                    )}
+                    <pre className="whitespace-pre-wrap text-sm text-gray-600">{result.prompt}</pre>
                   </div>
                 ) : (
                   <Alert variant="destructive">
-                    <AlertDescription className="flex items-center justify-between gap-2">
-                      <span>{result?.error}</span>
-                      {result?.needsUpgrade && (
-                        <Button variant="link" className="p-0 text-white" onClick={handleUpgrade}>
-                          {t("results.upgradeNow")}
-                        </Button>
-                      )}
-                    </AlertDescription>
+                    <AlertDescription>{result?.error}</AlertDescription>
                   </Alert>
                 )}
               </CardContent>

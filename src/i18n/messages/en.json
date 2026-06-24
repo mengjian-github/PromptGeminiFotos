@@ -83,7 +83,7 @@
       "ultraFast": "Prompts ready in seconds with auto-fill suggestions",
       "noWaiting": "Generate without queues or waitlists",
       "instantProcessing": "Typical generation completes in under a minute",
-      "dataProtected": "Stored on Supabase with restricted team access",
+      "dataProtected": "Processed locally in the browser where possible; no external account database is used",
       "autoDelete": "Delete uploads any time or request removal via email",
       "lgpdCompliant": "Practices aligned with LGPD and GDPR",
       "highResolution": "Up to 1024x1024 px on the Pro plan",
@@ -426,8 +426,8 @@
       "title": "Information we collect",
       "content": "We only collect the data necessary to deliver the service and improve your experience.",
       "items": [
-        "Account data: name, email and profile photo",
-        "Images uploaded for generation (stored temporarily)",
+        "No account data is required for the static prompt workflow",
+        "Reference images stay in your browser during the prompt workflow",
         "Language preferences and templates used",
         "Technical logs for error monitoring"
       ]
@@ -444,25 +444,25 @@
     },
     "photoProcessing": {
       "title": "Photo processing",
-      "content": "Uploaded and generated images stay linked to your account so you can download them. You can delete them from the dashboard or email us for removal."
+      "content": "Reference images are used locally in the browser to help you prepare prompts. They are not linked to an account in the static Cloudflare version."
     },
     "security": {
       "title": "Security",
-      "content": "We use Supabase and Cloudflare R2, which provide encryption at rest and in transit. Access is restricted to the small team maintaining the product."
+      "content": "The public site is served on Cloudflare. Uploaded reference images stay in the browser for the prompt workflow unless a future Cloudflare-native API explicitly asks for upload."
     },
     "rights": {
       "title": "Your rights",
       "content": "You can request export or permanent deletion of your data at any time.",
       "items": [
         "Access and correct personal information",
-        "Delete your account and associated data",
+        "Request deletion of any support data you sent us",
         "Revoke marketing consent",
         "Request data portability"
       ]
     },
     "thirdParty": {
       "title": "Third-party services",
-      "content": "We rely on providers like Supabase and Gemini under their respective terms and policies."
+      "content": "We rely on Cloudflare for hosting and analytics providers under their respective terms and policies."
     },
     "contactUs": {
       "title": "Contact us",

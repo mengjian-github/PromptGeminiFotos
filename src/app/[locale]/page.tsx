@@ -1,6 +1,5 @@
 ﻿import { buildLocalePath } from '@/lib/locale-path';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { ImageGenerator } from '@/components/image-generator';
@@ -10,8 +9,6 @@ import { EnhancedFeatures } from '@/components/enhanced-features';
 import { EnhancedPricing } from '@/components/enhanced-pricing';
 import { Metadata } from 'next';
 import type { Locale } from '@/i18n/config';
-import { auth } from '@/lib/auth';
-import { getUserSubscriptionData } from '@/lib/subscription';
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -76,20 +73,7 @@ export default async function HomePage({ params }: Props) {
 
   const t = await getTranslations();
 
-  // Get user session and subscription status
-  const session = await auth();
-  let userTier: "free" | "pro" = "free";
-  let userId: string | undefined;
-
-  if (session?.user?.id) {
-    userId = session.user.id;
-    try {
-      const subscriptionData = await getUserSubscriptionData(session.user.id);
-      userTier = subscriptionData.subscriptionStatus === 'pro' ? 'pro' : 'free';
-    } catch (error) {
-      console.error('[home] Error fetching subscription:', error);
-    }
-  }
+  const userTier: "free" | "pro" = "free";
 
   const keywordCards = [
     { key: 'feminino', gradient: 'from-rose-500 to-pink-500' },
@@ -228,10 +212,7 @@ export default async function HomePage({ params }: Props) {
             {/* Background decoration */}
             <div className="absolute inset-0 bg-gradient-to-r from-blue-100/30 via-purple-100/30 to-pink-100/30 rounded-3xl blur-3xl -z-10" />
 
-            <ImageGenerator
-              userId={userId}
-              userTier={userTier}
-            />
+            <ImageGenerator userTier={userTier} />
           </div>
         </div>
       </section>
