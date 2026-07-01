@@ -3,10 +3,9 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { ImageGenerator } from '@/components/image-generator';
-import { HeroShowcase } from '@/components/hero-showcase';
 import { EnhancedCTA } from '@/components/enhanced-cta';
 import { EnhancedFeatures } from '@/components/enhanced-features';
-import { EnhancedPricing } from '@/components/enhanced-pricing';
+import { PromptCopyCards } from '@/components/prompt-copy-cards';
 import { Metadata } from 'next';
 import type { Locale } from '@/i18n/config';
 
@@ -22,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     'prompt gemini ensaio fotografico',
     'prompt gemini foto profissional',
     'prompt gemini casal',
-    'gerador de fotos AI',
+    'copiar prompt Gemini fotos',
     'inteligencia artificial fotografia',
     'prompt fotografia gemini',
     'ensaio fotografico AI',
@@ -32,7 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     'gemini prompts fotos',
     'AI photography generator'
   ] : [
-    'AI photo generator',
+    'copy Gemini photo prompts',
     'professional photography prompts',
     'Gemini AI photos',
     'AI photography generator',
@@ -47,12 +46,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   ];
 
   const title = locale === 'pt-BR'
-    ? 'Prompt Gemini Fotos - Gerador de Fotos Profissionais com IA'
-    : 'Prompt Gemini Photos - Professional AI Photo Generator';
+    ? 'Prompt Gemini Fotos para Copiar - LinkedIn, Feminino e Casal'
+    : 'Copy Gemini Photo Prompts - LinkedIn, Portraits and Couples';
 
   const description = locale === 'pt-BR'
-    ? 'Transforme fotos comuns em retratos profissionais com prompts de IA para Gemini. Gerador de fotos AI com prompts para ensaio fotografico. 5 geracoes gratuitas.'
-    : 'Transform ordinary photos into professional portraits using AI-powered prompts for Gemini. Professional photography AI generator with free generations.';
+    ? 'Copie prompts Gemini para LinkedIn, CV, ensaio feminino e casal. Use no Gemini ou teste templates no gerador com privacidade clara.'
+    : 'Copy Gemini photo prompts for LinkedIn, CV, portraits and couples. Use them in Gemini or test templates in the generator with clear privacy notes.';
 
   return {
     title,
@@ -75,37 +74,38 @@ export default async function HomePage({ params }: Props) {
 
   const userTier: "free" | "pro" = "free";
 
-  const keywordCards = [
-    { key: 'feminino', gradient: 'from-rose-500 to-pink-500' },
-    { key: 'masculino', gradient: 'from-blue-600 to-cyan-500' },
-    { key: 'casal', gradient: 'from-amber-500 to-orange-600' },
-    { key: 'corporativo', gradient: 'from-slate-700 to-gray-900' }
-  ] as const;
-
   const promptsHref = buildLocalePath(currentLocale, '/prompts');
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-gray-50/30 to-white">
       {/* Hero Section */}
-      <section className="relative px-4 pt-20 pb-24 sm:px-6 lg:px-8 overflow-hidden">
+      <section className="relative px-4 pt-16 pb-14 sm:px-6 lg:px-8 overflow-hidden">
         {/* Background decorations */}
         <div className="absolute inset-0 bg-gradient-to-r from-blue-50 via-transparent to-purple-50 opacity-50" />
         <div className="absolute top-20 left-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob" />
         <div className="absolute top-40 right-10 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000" />
 
         <div className="relative mx-auto max-w-7xl text-center">
-          <Badge variant="secondary" className="mb-6 bg-gradient-to-r from-green-400 to-blue-500 text-white animate-pulse">
-            ⭐ {t('pricing.free.features.0')}
+          <Badge variant="secondary" className="mb-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+            {currentLocale === 'pt-BR' ? 'Prompts prontos para copiar' : 'Copy-paste prompts'}
           </Badge>
 
-          <h1 className="mx-auto max-w-4xl text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl lg:text-7xl">
+          <h1 className="mx-auto max-w-4xl text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
             <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent">
               {t('hero.title')}
             </span>
           </h1>
 
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-600 sm:text-xl leading-relaxed">
+          <p className="mx-auto mt-4 max-w-3xl text-base text-gray-600 sm:text-xl leading-relaxed">
             {t('hero.subtitle')}
+          </p>
+
+          <PromptCopyCards locale={currentLocale} />
+
+          <p className="mx-auto mt-5 max-w-3xl text-sm text-gray-500">
+            {currentLocale === 'pt-BR'
+              ? 'Primeiro copie o prompt e cole no Gemini com sua foto. Se quiser ajustar templates e salvar variações, use o gerador abaixo como CTA secundário.'
+              : 'Copy a prompt first and paste it into Gemini with your photo. If you want template tuning and saved variations, use the generator below as the secondary CTA.'}
           </p>
 
           <EnhancedCTA
@@ -114,11 +114,8 @@ export default async function HomePage({ params }: Props) {
             freeGenerations={2}
           />
 
-          {/* Hero Showcase */}
-          <HeroShowcase />
-
           {/* Keyword intent section */}
-          <div className="mt-16 text-left">
+          <div className="mt-12 text-left">
             <Badge variant="outline" className="mb-4 border-blue-500 text-blue-600 bg-blue-50">
               {t('keywordSection.badge')}
             </Badge>
@@ -128,28 +125,6 @@ export default async function HomePage({ params }: Props) {
             <p className="text-lg text-gray-600 max-w-3xl">
               {t('keywordSection.intro')}
             </p>
-
-            <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {keywordCards.map((card) => (
-                <div
-                  key={card.key}
-                  className="relative overflow-hidden rounded-2xl border border-gray-100 bg-white/80 backdrop-blur-sm shadow-sm hover:shadow-lg transition-all duration-300"
-                >
-                  <div className={`absolute inset-0 bg-gradient-to-br ${card.gradient} opacity-10`} />
-                  <div className="relative p-6 space-y-3">
-                    <h3 className="text-xl font-semibold text-gray-900">
-                      {t(`keywordSection.cards.${card.key}.title`)}
-                    </h3>
-                    <p className="text-sm text-gray-600 leading-relaxed">
-                      {t(`keywordSection.cards.${card.key}.description`)}
-                    </p>
-                    <span className="inline-flex items-center text-sm font-medium text-blue-600">
-                      {t(`keywordSection.cards.${card.key}.cta`)}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
 
           <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-sm text-gray-500">
@@ -183,13 +158,35 @@ export default async function HomePage({ params }: Props) {
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section id="pricing" className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
-        <div className="mx-auto max-w-7xl">
-          <EnhancedPricing
-            title={t('pricing.title')}
-            subtitle={t('pricing.subtitle')}
-          />
+      <section id="ai-photo-handling" className="px-4 py-16 sm:px-6 lg:px-8 bg-white">
+        <div className="mx-auto max-w-5xl">
+          <Badge variant="outline" className="mb-4 border-blue-200 text-blue-700 bg-blue-50">
+            {currentLocale === 'pt-BR' ? 'Privacidade de fotos' : 'Photo handling'}
+          </Badge>
+          <h2 className="text-3xl font-bold text-gray-900">
+            {currentLocale === 'pt-BR' ? 'Como tratamos suas fotos e prompts' : 'How we handle your photos and prompts'}
+          </h2>
+          <div className="mt-8 grid gap-4 md:grid-cols-2">
+            {[
+              currentLocale === 'pt-BR'
+                ? ['As fotos são enviadas para nossos servidores?', 'No fluxo público atual, a foto de referência fica no navegador para preparar prompts. Quando uma API externa for usada, o upload será indicado antes do envio.']
+                : ['Are photos uploaded to our servers?', 'In the current public workflow, reference photos stay in the browser to prepare prompts. If an external API is used later, upload will be clearly indicated before sending.'],
+              currentLocale === 'pt-BR'
+                ? ['As imagens são usadas para treinamento?', 'Não treinamos modelos com suas fotos. Se você colar o prompt no Gemini, o uso da foto passa a seguir as configurações e termos da sua conta Google.']
+                : ['Are images used for training?', 'We do not train models with your photos. If you paste the prompt into Gemini, photo handling follows your Google account settings and Google terms.'],
+              currentLocale === 'pt-BR'
+                ? ['Por quanto tempo os arquivos ficam salvos?', 'Uploads locais desaparecem ao limpar a sessão/navegador. Dados de suporte enviados por e-mail podem ser removidos sob solicitação.']
+                : ['How long are files stored?', 'Local uploads disappear when the session/browser data is cleared. Support data sent by email can be deleted on request.'],
+              currentLocale === 'pt-BR'
+                ? ['O que acontece se a geração falhar?', 'Você ainda pode copiar o prompt e tentar novamente no Gemini. Falhas não criam cobrança automática nem prometem resultado ilimitado.']
+                : ['What happens if generation fails?', 'You can still copy the prompt and retry in Gemini. Failures do not create automatic charges or imply unlimited output.'],
+            ].map(([question, answer]) => (
+              <div key={question} className="rounded-2xl border border-gray-100 bg-gray-50 p-5">
+                <h3 className="text-base font-semibold text-gray-900">{question}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-gray-600">{answer}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -219,5 +216,3 @@ export default async function HomePage({ params }: Props) {
     </div>
   );
 }
-
-

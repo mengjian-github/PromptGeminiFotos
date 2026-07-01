@@ -1,8 +1,9 @@
-﻿import { buildLocalePath } from "@/lib/locale-path";
+﻿import { Suspense } from "react";
+import { buildLocalePath } from "@/lib/locale-path";
 import { setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import { Badge } from "@/components/ui/badge";
-import { ImageGenerator } from "@/components/image-generator";
+import { GeneratorClient } from "@/components/generator-client";
 import type { Locale } from "@/i18n/config";
 
 type Props = {
@@ -15,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const keywords = locale === "pt-BR"
     ? [
-        "gerador de fotos ia",
+        "compositor de prompts Gemini",
         "foto profissional ia",
         "prompt gemini retrato",
         "ensaio fotográfico ia",
@@ -23,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         "fotos linkedin ia"
       ]
     : [
-        "ai photo generator",
+        "Gemini prompt composer",
         "professional ai portraits",
         "gemini photo prompts",
         "headshot ai generator",
@@ -32,12 +33,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ];
 
   const title = locale === "pt-BR"
-    ? "Prompt Gemini Fotos - Gerador de Fotos Profissionais com IA"
-    : "Prompt Gemini Photos - Professional AI Photo Generator";
+    ? "Prompt Gemini Fotos - Compositor de Prompts para Fotos"
+    : "Prompt Gemini Photos - Copy-Ready Prompt Composer";
 
   const description = locale === "pt-BR"
-    ? "Transforme fotos comuns em retratos profissionais usando prompts otimizados para Gemini. Gere imagens em segundos com qualidade de estúdio."
-    : "Turn ordinary photos into professional portraits using Gemini-optimized prompts. Generate studio-grade images in seconds.";
+    ? "Ajuste prompts otimizados para Gemini, copie o texto final e use com sua foto no Gemini com controle claro de identidade e luz."
+    : "Tune Gemini-optimized photo prompts, copy the final text, and use it with your photo in Gemini with clear control over identity and lighting.";
 
   return {
     title,
@@ -57,30 +58,30 @@ export default async function GeneratorPage({ params }: Props) {
 
   const localized = locale === "pt-BR"
     ? {
-        badge: "Gerador AI instantaneo",
-        title: "Crie retratos profissionais com IA",
-        subtitle: "Combine templates refinados com prompts inteligentes e gere resultados prontos para redes sociais, currículo ou portfólio.",
+        badge: "Compositor de prompts",
+        title: "Monte prompts Gemini prontos para copiar",
+        subtitle: "Combine templates refinados, sua referência e instruções de identidade antes de abrir o Gemini.",
         stats: [
-          { label: "Tempo médio", value: "10s" },
+          { label: "Tempo médio", value: "<1 min" },
           { label: "Templates", value: "100" },
-          { label: "Qualidade", value: "HD" },
-          { label: "Testes grátis", value: "5" }
+          { label: "Saída", value: "TXT" },
+          { label: "Fluxo", value: "Gemini" }
         ],
-        generatorTitle: "Experimente agora",
-        generatorSubtitle: "Envie uma referência ou escreva um prompt detalhado para criar seu próximo retrato profissional."
+        generatorTitle: "Componha o prompt agora",
+        generatorSubtitle: "Envie uma referência local ou escreva um briefing; o resultado é um prompt final para copiar, baixar em TXT ou abrir no Gemini."
       }
     : {
-        badge: "Instant AI generator",
-        title: "Create professional portraits with AI",
-        subtitle: "Mix polished templates with smart prompts and deliver results ready for social, resumes or portfolios.",
+        badge: "Prompt composer",
+        title: "Build copy-ready Gemini photo prompts",
+        subtitle: "Mix polished templates, your reference, and identity-safe instructions before opening Gemini.",
         stats: [
-          { label: "Avg. time", value: "10s" },
+          { label: "Avg. time", value: "<1 min" },
           { label: "Templates", value: "100" },
-          { label: "Quality", value: "HD" },
-          { label: "Free runs", value: "5" }
+          { label: "Output", value: "TXT" },
+          { label: "Workflow", value: "Gemini" }
         ],
-        generatorTitle: "Try it now",
-        generatorSubtitle: "Upload a reference or craft a detailed prompt to create your next professional portrait."
+        generatorTitle: "Compose the prompt now",
+        generatorSubtitle: "Add a local reference or write a brief; the result is a final prompt to copy, download as TXT, or open in Gemini."
       };
 
   return (
@@ -131,7 +132,9 @@ export default async function GeneratorPage({ params }: Props) {
 
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-blue-100/30 via-purple-100/30 to-pink-100/30 rounded-3xl blur-3xl -z-10" />
-            <ImageGenerator userTier={userTier} />
+            <Suspense fallback={<div className="rounded-2xl bg-white p-6 text-center text-gray-500 shadow-sm">Loading composer…</div>}>
+              <GeneratorClient userTier={userTier} />
+            </Suspense>
           </div>
         </div>
       </section>

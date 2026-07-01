@@ -22,14 +22,14 @@ import {
   type TemplateCategory,
   type TemplateStyle
 } from "@/lib/templates";
-import { Copy, FileText, Sparkles, Upload } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
+import { Copy, Download, FileText, Sparkles, Upload } from "lucide-react";
 
 interface GenerationResult {
   success: boolean;
   imageUrl?: string;
   prompt?: string;
   remaining?: number | "unlimited";
-  watermark?: boolean;
   error?: string;
   needsUpgrade?: boolean;
 }
@@ -97,16 +97,6 @@ export function ImageGenerator({ userId, userTier = "free", initialTemplateId }:
     }
   }, [category, style, stylesByCategory]);
 
-  const handleUpgrade = useCallback(() => {
-    const pricingSection = document.getElementById("pricing");
-    if (pricingSection) {
-      pricingSection.scrollIntoView({ behavior: "smooth" });
-      return;
-    }
-
-    window.location.hash = "#pricing";
-  }, []);
-
   const replaceTemplatePlaceholders = useCallback(
     (template: TemplateType) => {
       let basePrompt = template.prompt;
@@ -121,18 +111,14 @@ export function ImageGenerator({ userId, userTier = "free", initialTemplateId }:
 
   const handleTemplateSelect = useCallback(
     (template: TemplateType) => {
-      if (template.tier === "premium" && userTier === "free") {
-        handleUpgrade();
-        return;
-      }
-
+      trackEvent('template_select', { template_id: template.id, category: template.category, style: template.style, tier: template.tier });
       setSelectedTemplate(template);
       setCategory(template.category);
       setStyle(template.style);
       setPrompt(replaceTemplatePlaceholders(template));
       setIsPickerOpen(false);
     },
-    [handleUpgrade, replaceTemplatePlaceholders, userTier]
+    [replaceTemplatePlaceholders]
   );
 
   useEffect(() => {
@@ -152,18 +138,23 @@ export function ImageGenerator({ userId, userTier = "free", initialTemplateId }:
     const file = event.target.files?.[0];
     if (!file) return;
 
+    trackEvent('image_upload_start', { file_type: file.type, file_size: file.size });
+
     if (!file.type.startsWith("image/")) {
+      trackEvent('image_upload_error', { reason: 'invalid_type', file_type: file.type });
       setResult({ success: false, error: t("errors.invalidImageType") });
       return;
     }
 
     if (file.size > MAX_UPLOAD_SIZE) {
+      trackEvent('image_upload_error', { reason: 'oversized', file_size: file.size });
       setResult({ success: false, error: t("errors.invalidImageSize") });
       return;
     }
 
     const reader = new FileReader();
     reader.onload = (e) => {
+      trackEvent('image_upload_success', { file_type: file.type, file_size: file.size });
       setUploadedImage(e.target?.result as string);
     };
     reader.readAsDataURL(file);
@@ -171,47 +162,75 @@ export function ImageGenerator({ userId, userTier = "free", initialTemplateId }:
 
   const handleGenerate = useCallback(() => {
     if (!prompt.trim()) {
+      trackEvent('generate_error', { reason: 'empty_prompt' });
       setResult({ success: false, error: t("errors.promptRequired") });
       return;
     }
 
-    const optimizedPrompt = [
-      prompt.trim(),
-      `Category: ${category}`,
-      `Style: ${style}`,
-      `Target resolution: ${resolution}`,
-      uploadedImage ? "Use the uploaded image as the identity/reference photo." : "No reference image provided."
-    ].join("\n");
+    setIsGenerating(true);
+    setResult(null);
 
-    setResult({
-      success: true,
-      prompt: optimizedPrompt,
-      remaining: DEFAULT_FREE_REMAINING,
-      watermark: false
+    trackEvent('generator_start', {
+      has_upload: !!uploadedImage,
+      category,
+      style,
+      resolution,
+      tier: userTier,
+      prompt_length: prompt.trim().length,
     });
-  }, [prompt, uploadedImage, category, style, resolution, t]);
+
+    // Simulate async generation so the UI state and events mirror real behavior
+    const startTime = Date.now();
+    setTimeout(() => {
+      const optimizedPrompt = [
+        prompt.trim(),
+        `Category: ${category}`,
+        `Style: ${style}`,
+        `Target resolution: ${resolution}`,
+        uploadedImage ? "Use the uploaded image as the identity/reference photo." : "No reference image provided."
+      ].join("\n");
+
+      trackEvent('generate_complete', {
+        has_upload: !!uploadedImage,
+        category,
+        style,
+        resolution,
+        tier: userTier,
+        prompt_length: prompt.trim().length,
+        duration_ms: Date.now() - startTime,
+      });
+
+      setResult({
+        success: true,
+        prompt: optimizedPrompt,
+        remaining: DEFAULT_FREE_REMAINING
+      });
+      setIsGenerating(false);
+    }, 800);
+  }, [prompt, uploadedImage, category, style, resolution, t, userTier]);
 
   const copyPrompt = useCallback(async (text: string) => {
     try {
       await navigator.clipboard.writeText(text);
+      trackEvent('prompt_copy', { source: 'generator_result', prompt_length: text.length, has_upload: !!uploadedImage });
     } catch (error) {
       console.error("Failed to copy:", error);
     }
-  }, []);
+  }, [uploadedImage]);
 
-  const shareImage = useCallback(async () => {
-    if (!result?.imageUrl) return;
-
-    try {
-      await navigator.share({
-        title: t("results.title"),
-        text: t("description", { count: numberFormatter.format(templateCount) }),
-        url: result.imageUrl
-      });
-    } catch (error) {
-      copyPrompt(result.imageUrl);
-    }
-  }, [copyPrompt, numberFormatter, result?.imageUrl, t, templateCount]);
+  const downloadPrompt = useCallback(() => {
+    if (!result?.prompt) return;
+    const blob = new Blob([result.prompt], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    anchor.download = "prompt-gemini-fotos.txt";
+    document.body.appendChild(anchor);
+    anchor.click();
+    anchor.remove();
+    URL.revokeObjectURL(url);
+    trackEvent('download_click', { source: 'generator_result', file_type: 'txt', has_upload: !!uploadedImage });
+  }, [result?.prompt, uploadedImage]);
 
   const styleOptions = stylesByCategory.get(category) ?? [];
 
@@ -253,7 +272,7 @@ export function ImageGenerator({ userId, userTier = "free", initialTemplateId }:
             </div>
 
             <div className="flex flex-wrap gap-2">
-              <Button variant="outline" size="sm" onClick={() => setIsPickerOpen(true)}>
+              <Button variant="outline" size="sm" onClick={() => { trackEvent('template_open', { source: 'generator_picker' }); setIsPickerOpen(true); }}>
                 <Sparkles className="mr-2 h-4 w-4" />
                 {t("template.open")}
               </Button>
@@ -417,7 +436,7 @@ export function ImageGenerator({ userId, userTier = "free", initialTemplateId }:
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="512x512">{t("form.resolutionStandard")}</SelectItem>
-                      <SelectItem value="1024x1024" disabled={userTier === "free"}>
+                      <SelectItem value="1024x1024">
                         {t("form.resolutionPremium")}
                       </SelectItem>
                     </SelectContent>
@@ -428,20 +447,15 @@ export function ImageGenerator({ userId, userTier = "free", initialTemplateId }:
               <Button
                 size="lg"
                 className="w-full bg-gradient-to-r from-blue-500 via-purple-500 to-blue-600 text-white"
-                disabled={!prompt.trim()}
+                disabled={!prompt.trim() || isGenerating}
                 onClick={handleGenerate}
               >
-                {t("form.generate")}
+                {isGenerating ? t("form.generating") : t("form.generate")}
               </Button>
 
-              {userTier === "free" && (
-                <div className="rounded-lg bg-gradient-to-r from-blue-50 to-purple-50 p-4 text-center">
-                  <p className="text-sm text-gray-600">{t("form.upgradeTeaser")}</p>
-                  <Button variant="outline" size="sm" className="mt-3" onClick={handleUpgrade}>
-                    {t("form.upgradeCta")}
-                  </Button>
-                </div>
-              )}
+              <div className="rounded-lg bg-gradient-to-r from-blue-50 to-purple-50 p-4 text-center">
+                <p className="text-sm text-gray-600">{t("form.upgradeTeaser")}</p>
+              </div>
             </CardContent>
           </Card>
 
@@ -455,9 +469,14 @@ export function ImageGenerator({ userId, userTier = "free", initialTemplateId }:
                   <div className="rounded-lg bg-gray-50 p-4">
                     <div className="mb-2 flex items-center justify-between">
                       <h4 className="text-sm font-medium text-gray-900">{t("results.promptTitle")}</h4>
-                      <Button variant="ghost" size="sm" onClick={() => copyPrompt(result.prompt!)}>
-                        <Copy className="h-4 w-4" />
-                      </Button>
+                      <div className="flex items-center gap-2">
+                        <Button variant="ghost" size="sm" onClick={() => copyPrompt(result.prompt!)}>
+                          <Copy className="h-4 w-4" />
+                        </Button>
+                        <Button variant="ghost" size="sm" onClick={downloadPrompt}>
+                          <Download className="h-4 w-4" />
+                        </Button>
+                      </div>
                     </div>
                     <pre className="whitespace-pre-wrap text-sm text-gray-600">{result.prompt}</pre>
                   </div>

@@ -86,14 +86,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const keywordsRaw = t('keywords', { count });
   const keywords = keywordsRaw.split(',').map((keyword) => keyword.trim());
   const image = t('image');
+  const currentLocale = locale as Locale;
+  const canonical = buildLocalePath(currentLocale, '/templates', { absolute: true });
 
   return {
     title,
     description,
     keywords,
+    alternates: {
+      canonical,
+    },
     openGraph: {
       title,
       description,
+      url: canonical,
       images: [image],
       type: 'website'
     },
@@ -117,6 +123,7 @@ export default async function TemplatesPage({ params }: Props) {
   const freeTemplates = promptTemplates.filter((template) => template.tier === 'free').length;
   const premiumTemplates = promptTemplates.filter((template) => template.tier === 'premium').length;
   const categories = new Set(promptTemplates.map((template) => template.category)).size;
+  const categoryGroups = Array.from(new Set(promptTemplates.map((template) => template.category))).sort();
 
   const stats: StatsSummary = {
     total: totalTemplateCount,
@@ -161,6 +168,24 @@ export default async function TemplatesPage({ params }: Props) {
           </p>
 
           <TemplateStats stats={stats} formatNumber={formatNumber} t={t} />
+
+          <div className="mx-auto mb-8 grid max-w-5xl grid-cols-1 gap-4 text-left md:grid-cols-3">
+            {categoryGroups.map((category) => {
+              const groupCount = promptTemplates.filter((template) => template.category === category).length;
+              return (
+                <section key={category} className="rounded-2xl border border-white/70 bg-white/80 p-5 shadow-sm">
+                  <h2 className="text-lg font-semibold text-gray-900">
+                    {t(`browser.filters.categories.${category}`)}
+                  </h2>
+                  <p className="mt-2 text-sm text-gray-600">
+                    {locale === 'pt-BR'
+                      ? `${formatNumber(groupCount)} prompts para copiar, adaptar e usar no Gemini por cenário.`
+                      : `${formatNumber(groupCount)} prompts to copy, adapt, and use in Gemini by scenario.`}
+                  </p>
+                </section>
+              );
+            })}
+          </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button

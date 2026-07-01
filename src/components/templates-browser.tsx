@@ -7,11 +7,12 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Search, Grid3X3, List, Crown, Lock } from 'lucide-react';
+import { Search, Grid3X3, List, Sparkles } from 'lucide-react';
 import { promptTemplates, Template, TemplateTier } from '@/lib/templates';
 import { usePagination } from '@/hooks/use-pagination';
 import { buildLocalePath } from '@/lib/locale-path';
 import type { Locale } from '@/i18n/config';
+import { trackEvent } from '@/lib/analytics';
 
 interface TemplatesBrowserProps {
   initialTemplates?: Template[];
@@ -104,6 +105,7 @@ export function TemplatesBrowser({ initialTemplates = promptTemplates, initialTi
 
   const { page, setPage, totalPages, paginatedItems: paginatedTemplates, startIndex, endIndex } =
     usePagination(sortedTemplates);
+  const seenNames = new Map<string, number>();
   return (
     <div className="space-y-8">
       <div className="bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-gray-200 space-y-4">
@@ -206,11 +208,10 @@ export function TemplatesBrowser({ initialTemplates = promptTemplates, initialTi
         {paginatedTemplates.map((template) => {
           const categoryLabel = t(`filters.categories.${template.category}`);
           const styleLabel = t(`filters.styles.${template.style}`);
-          const isPremium = template.tier === 'premium';
-          const hasAccess = true;
-          const generatorHref = hasAccess
-            ? buildLocalePath(locale as Locale, `/#generator-section`)
-            : buildLocalePath(locale as Locale, '/#pricing');
+          const generatorHref = buildLocalePath(locale as Locale, `/generator?template=${encodeURIComponent(template.id)}`);
+          const previousCount = seenNames.get(template.name) ?? 0;
+          seenNames.set(template.name, previousCount + 1);
+          const displayName = previousCount === 0 ? template.name : `${template.name} · ${categoryLabel} ${styleLabel}`;
 
           return (
             <Card
@@ -225,18 +226,13 @@ export function TemplatesBrowser({ initialTemplates = promptTemplates, initialTi
                 <img
                   src={template.previewUrl}
                   alt={template.name}
-                  className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 ${!hasAccess ? 'opacity-60' : ''}`}
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                   loading="lazy"
                 />
-                {!hasAccess && (
-                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                    <Lock className="w-12 h-12 text-white" />
-                  </div>
-                )}
                 <div className="absolute top-3 left-3">
                   {template.tier === 'premium' ? (
-                    <Badge className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black border-0 shadow">
-                      <Crown className="w-3 h-3 mr-1" />
+                    <Badge className="bg-gradient-to-r from-purple-500 to-blue-600 text-white border-0 shadow">
+                      <Sparkles className="w-3 h-3 mr-1" />
                       {t('badges.premium')}
                     </Badge>
                   ) : (
@@ -249,7 +245,7 @@ export function TemplatesBrowser({ initialTemplates = promptTemplates, initialTi
 
               <CardContent className="p-4 space-y-3">
                 <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">
-                  {template.name}
+                  {displayName}
                 </h3>
 
                 <p className="text-sm text-gray-600 line-clamp-3">{template.description}</p>
@@ -260,23 +256,9 @@ export function TemplatesBrowser({ initialTemplates = promptTemplates, initialTi
                 </div>
 
                 <div className="flex items-center justify-end">
-                  <Button
-                    size="sm"
-                    className={hasAccess
-                      ? "bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white"
-                      : "bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-black"
-                    }
-                    asChild
-                  >
-                    <Link href={generatorHref}>
-                      {!hasAccess ? (
-                        <>
-                          <Lock className="w-4 h-4 mr-2" />
-                          Upgrade to Pro
-                        </>
-                      ) : (
-                        template.tier === 'premium' ? t('card.ctaPremium') : t('card.ctaFree')
-                      )}
+                  <Button size="sm" className="bg-gradient-to-r from-blue-500 to-purple-500 text-white hover:from-blue-600 hover:to-purple-600" asChild>
+                    <Link href={generatorHref} onClick={() => trackEvent('template_select', { source: 'templates_browser', template_id: template.id, tier: template.tier })}>
+                      {template.tier === 'premium' ? t('card.ctaPremium') : t('card.ctaFree')}
                     </Link>
                   </Button>
                 </div>
@@ -342,9 +324,3 @@ export function TemplatesBrowser({ initialTemplates = promptTemplates, initialTi
     </div>
   );
 }
-
-
-
-
-
-

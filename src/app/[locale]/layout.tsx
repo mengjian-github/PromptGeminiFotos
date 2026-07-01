@@ -26,11 +26,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const isPortuguese = locale === 'pt-BR';
   const brandName = isPortuguese ? 'Prompt Gemini Fotos' : 'Prompt Gemini Photos';
   const defaultTitle = isPortuguese
-    ? `${brandName} - Gerador de Fotos com IA`
-    : `${brandName} - AI Photo Generator`;
+    ? `${brandName} - Prompts Gemini prontos para copiar`
+    : `${brandName} - Copy-ready Gemini photo prompts`;
   const defaultDescription = isPortuguese
-    ? 'Transforme fotos comuns em retratos profissionais com prompts de IA para Gemini.'
-    : 'Transform ordinary photos into professional portraits with AI-powered prompts for Gemini.';
+    ? 'Copie prompts Gemini para LinkedIn, ensaio feminino, casal e foto profissional; depois abra o Gemini explicitamente.'
+    : 'Copy Gemini prompts for LinkedIn, portraits, couples and headshots; then open Gemini explicitly.';
   const currentLocale = locale as Locale;
   const canonicalPath = buildLocalePath(currentLocale, '/', { absolute: true });
   const languageAlternates = Object.fromEntries(
@@ -119,7 +119,6 @@ export default async function LocaleLayout({ children, params }: Props) {
     prompts: buildLocalePath(currentLocale, '/prompts'),
     tutorial: buildLocalePath(currentLocale, '/tutorial'),
     blog: buildLocalePath(currentLocale, '/blog'),
-    pricing: buildLocalePath(currentLocale, '/#pricing'),
   } as const;
 
   const websiteStructuredData = generateWebsiteStructuredData();
@@ -218,7 +217,6 @@ export default async function LocaleLayout({ children, params }: Props) {
                       <li><Link href={localizedLinks.prompts} className="hover:text-white transition-colors">{tFooter('prompts')}</Link></li>
                       <li><Link href={localizedLinks.tutorial} className="hover:text-white transition-colors">{tFooter('tutorial')}</Link></li>
                       <li><Link href={localizedLinks.blog} className="hover:text-white transition-colors">{tFooter('blog')}</Link></li>
-                      <li><Link href={localizedLinks.pricing} className="hover:text-white transition-colors">{tFooter('pricing')}</Link></li>
                     </ul>
                   </div>
 

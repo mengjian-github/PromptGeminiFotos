@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { PromptActions } from '@/components/prompt-actions';
 import type { Locale } from '@/i18n/config';
 import { buildLocalePath } from '@/lib/locale-path';
 
@@ -681,12 +682,69 @@ export default async function PromptsPage({ params }: Props) {
       },
     })),
   };
+  const breadcrumbStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: currentLocale === 'pt-BR' ? 'Inicio' : 'Home',
+        item: buildLocalePath(currentLocale, '/', { absolute: true }),
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: currentLocale === 'pt-BR' ? 'Guia de prompts Gemini' : 'Gemini prompt guide',
+        item: buildLocalePath(currentLocale, '/prompts', { absolute: true }),
+      },
+    ],
+  };
+  const howToStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: currentLocale === 'pt-BR'
+      ? 'Como copiar e usar prompts Gemini para fotos profissionais'
+      : 'How to copy and use Gemini prompts for professional photos',
+    description: content.subtitle,
+    step: [
+      {
+        '@type': 'HowToStep',
+        name: currentLocale === 'pt-BR' ? 'Escolha um cenário' : 'Choose a scenario',
+        text: currentLocale === 'pt-BR'
+          ? 'Selecione LinkedIn/CV, ensaio feminino, casal ou outro bloco conforme o uso final da foto.'
+          : 'Pick LinkedIn/CV, female portrait, couple, or another block based on the final use of the photo.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: currentLocale === 'pt-BR' ? 'Copie o prompt' : 'Copy the prompt',
+        text: currentLocale === 'pt-BR'
+          ? 'Copie o prompt completo, mantendo instruções de identidade, luz, lente e composição.'
+          : 'Copy the full prompt, keeping identity, lighting, lens, and composition instructions.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: currentLocale === 'pt-BR' ? 'Cole no Gemini com sua foto' : 'Paste into Gemini with your photo',
+        text: currentLocale === 'pt-BR'
+          ? 'Envie sua foto de referência no Gemini, cole o prompt e revise o resultado antes de publicar.'
+          : 'Upload your reference photo to Gemini, paste the prompt, and review the output before publishing.',
+      },
+    ],
+  };
 
   return (
     <div className="bg-gradient-to-b from-white via-blue-50/30 to-white">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToStructuredData) }}
       />
       <section className="relative px-4 pt-24 pb-16 sm:px-6 lg:px-8 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-50/60 via-purple-50/40 to-pink-50/30" />
@@ -776,15 +834,31 @@ export default async function PromptsPage({ params }: Props) {
                   <h4 className="text-lg font-semibold text-gray-900">
                     {currentLocale === 'pt-BR' ? 'Exemplos de prompt:' : 'Prompt examples'}
                   </h4>
-                  {section.promptExamples.map((example) => (
+                  {section.promptExamples.map((example, exampleIndex) => {
+                    const templateId = `${section.id}-${exampleIndex + 1}`;
+                    const generatorWithTemplateHref = buildLocalePath(
+                      currentLocale,
+                      `/generator?template=${encodeURIComponent(templateId)}`
+                    );
+
+                    return (
                     <div key={example.title} className="rounded-xl border border-gray-200 bg-gray-50 p-4">
                       <h5 className="text-base font-semibold text-gray-900">{example.title}</h5>
                       <p className="text-sm text-gray-600 mt-1">{example.description}</p>
                       <pre className="mt-3 whitespace-pre-wrap rounded-lg bg-white p-4 text-sm text-gray-800 border border-gray-200">
                         {example.prompt}
                       </pre>
+                      <PromptActions
+                        prompt={example.prompt}
+                        locale={currentLocale}
+                        source="prompts_page"
+                        scenario={section.id}
+                        templateId={templateId}
+                        generatorHref={generatorWithTemplateHref}
+                      />
                     </div>
-                  ))}
+                    );
+                  })}
                 </div>
 
                 <div>
@@ -835,8 +909,8 @@ export default async function PromptsPage({ params }: Props) {
           </h2>
           <p className="text-lg text-gray-600">
             {currentLocale === 'pt-BR'
-              ? 'Acesse o gerador Prompt Gemini Fotos para aplicar cada cenario, salvar presets e exportar imagens prontas para o seu ensaio.'
-              : 'Open the Prompt Gemini Photos generator to apply each setup, save presets, and export results fast.'}
+              ? 'Acesse o compositor Prompt Gemini Fotos para ajustar cada cenario, copiar a versão final e abrir no Gemini.'
+              : 'Open the Prompt Gemini Photos composer to adjust each setup, copy the final prompt, and open it in Gemini.'}
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Button size="lg" className="bg-gradient-to-r from-purple-500 to-blue-600 text-white shadow-lg hover:from-purple-600 hover:to-blue-700" asChild>

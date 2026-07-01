@@ -87,28 +87,28 @@ export function LanguageSuggestionBanner({ currentLocale }: LanguageSuggestionBa
   const message = messages[currentLocale];
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg animate-slide-down">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-        <div className="flex items-center justify-between gap-4">
-          <p className="text-sm sm:text-base flex-1">
+    <div className="relative z-30 bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-sm">
+      <div className="mx-auto max-w-7xl px-3 py-2 sm:px-4">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-sm leading-relaxed sm:flex-1">
             {message.text}
           </p>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <button
               onClick={handleAccept}
-              className="px-4 py-2 bg-white text-blue-600 rounded-lg text-sm font-medium hover:bg-blue-50 transition-colors whitespace-nowrap"
+              className="min-h-10 rounded-lg bg-white px-3 py-2 text-sm font-medium text-blue-600 transition-colors hover:bg-blue-50"
             >
               {message.accept}
             </button>
             <button
               onClick={handleDismiss}
-              className="px-4 py-2 bg-blue-700/50 hover:bg-blue-700 rounded-lg text-sm font-medium transition-colors whitespace-nowrap"
+              className="min-h-10 rounded-lg bg-blue-700/50 px-3 py-2 text-sm font-medium transition-colors hover:bg-blue-700"
             >
               {message.dismiss}
             </button>
             <button
               onClick={handleDismiss}
-              className="p-2 hover:bg-blue-700/50 rounded-lg transition-colors"
+              className="min-h-10 min-w-10 rounded-lg p-2 transition-colors hover:bg-blue-700/50"
               aria-label="Close"
             >
               <X className="w-5 h-5" />

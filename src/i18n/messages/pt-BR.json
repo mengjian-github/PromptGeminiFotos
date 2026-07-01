@@ -2,7 +2,7 @@
   "navigation": {
     "home": "Inicio",
     "templates": "Templates",
-    "pricing": "Precos",
+    "pricing": "Fluxo",
     "brand": "Prompt Gemini Fotos",
     "generator": "Gerador",
     "login": "Entrar",
@@ -11,16 +11,16 @@
     "tutorial": "Tutorial"
   },
   "hero": {
-    "title": "Prompt Gemini Ensaio Fotográfico Profissional com IA",
-    "subtitle": "Crie prompt Gemini ensaio fotográfico feminino, masculino e casal com dicas prontas. Transforme fotos comuns em ensaio fotográfico profissional usando prompt Gemini foto otimizado em minutos",
-    "cta": "Comecar agora",
-    "features": "Ver recursos",
+    "title": "Copie prompts Gemini para fotos profissionais",
+    "subtitle": "Escolha um prompt pronto para LinkedIn/CV, ensaio feminino ou casal, cole no Gemini com sua foto e mantenha identidade, luz e composição sob controle.",
+    "cta": "Compor prompt",
+    "features": "Ver guia completo",
     "freeTrial": "Teste gratis"
   },
   "keywordSection": {
     "badge": "Tendencias no Brasil",
     "title": "Prompt Gemini Ensaio Fotográfico: Feminino, Masculino e Casal",
-    "intro": "Escolha um prompt Gemini ensaio fotográfico profissional alinhado ao seu objetivo: feminino, masculino ou casal. Gere referências de qualidade em português sem esforço com Prompt Gemini Fotos.",
+    "intro": "Escolha um prompt Gemini ensaio fotográfico profissional alinhado ao seu objetivo: feminino, masculino ou casal. Copie o texto e cole no Gemini com sua foto de referência.",
     "cards": {
       "feminino": {
         "title": "Prompt Gemini Ensaio Fotográfico Feminino",
@@ -43,33 +43,33 @@
         "cta": "Ver prompt Gemini foto profissional"
       }
     },
-    "bullet": "Passo a passo com Prompt Gemini Fotos: escolha o estilo de ensaio fotográfico, adicione referências e gere resultados prontos em minutos.",
+    "bullet": "Fluxo prompt-first: escolha o estilo de ensaio, adicione detalhes de referência, copie o prompt e abra o Gemini.",
     "cta": "Explorar todos os prompt Gemini ensaio fotográfico",
     "promptsGuide": "Ver guia completo de prompts"
   },
   "cta": {
-    "freeGenerations": "geracoes gratis",
+    "freeGenerations": "prompts prontos para copiar",
     "noCardRequired": "sem cartao de credito",
-    "resultsInSeconds": "prompt gemini ensaio fotográfico gerado em segundos",
-    "securePrivate": "prompt gemini ensaio fotográfico feminino com segurança e privacidade",
+    "resultsInSeconds": "prompt gemini ensaio fotográfico composto em segundos",
+    "securePrivate": "referências ficam locais até você escolher abrir o Gemini",
     "optimizedGemini": "prompt gemini foto profissional otimizado para o Gemini",
-    "freeNotice": "Plano gratuito inclui 2 geracoes em 512x512 com marca d'agua"
+    "freeNotice": "O fluxo público cria apenas texto de prompt. Cole o prompt no Gemini quando quiser criar a imagem."
   },
   "features": {
-    "title": "Recursos Prompt Gemini Fotos",
+    "title": "Recursos de prompts Gemini",
     "subtitle": "Tudo para criar ensaio fotográfico profissional com prompt Gemini",
     "smartGenerator": "Gerador prompt Gemini inteligente",
-    "smartGeneratorDesc": "Prompts ajustados automaticamente para cada estilo, entregando prompt Gemini ensaio fotográfico feminino, masculino, casal e profissional com precisão",
+    "smartGeneratorDesc": "Prompts ajustados automaticamente para ensaio feminino, masculino, casal e profissional",
     "professionalTemplates": "Templates ensaio fotográfico",
     "professionalTemplatesDesc": "Colecao curada com prompt Gemini ensaio fotográfico feminino, prompt Gemini ensaio fotográfico masculino, prompt Gemini casal e muito mais",
-    "unlimitedGenerations": "Geracoes ilimitadas",
-    "unlimitedGenerationsDesc": "Crie quantas fotos quiser com qualidade consistente",
-    "fastResults": "Resultados rapidos",
-    "fastResultsDesc": "Processamento otimizado com fotos prontas em segundos",
+    "unlimitedGenerations": "Biblioteca de prompts reutilizável",
+    "unlimitedGenerationsDesc": "Salve e adapte variações de prompt sem prometer saída paga ou ilimitada",
+    "fastResults": "Prompt pronto rápido",
+    "fastResultsDesc": "Componha prompts prontos para copiar em segundos",
     "privateSecure": "Privacidade garantida",
-    "privateSecureDesc": "Fotos armazenadas com seguranca e acesso restrito a sua conta",
-    "hdDownloads": "Downloads em HD",
-    "hdDownloadsDesc": "Imagens prontas para uso profissional sem marca d'agua",
+    "privateSecureDesc": "Fotos de referência são tratadas no navegador para preparar o prompt; upload para Gemini é uma próxima etapa explícita",
+    "hdDownloads": "Exportação TXT do prompt",
+    "hdDownloadsDesc": "Baixe o texto final do prompt com etiquetas de cenário para reutilizar",
     "benefits": {
       "professionalResults": "Qualidade de estudio em cada geracao com orientacoes claras",
       "optimizedForGemini": "Prompts desenhados para os modelos Gemini",
@@ -77,18 +77,18 @@
       "allStyles": "Retratos, casais, moda, lifestyle e corporativo",
       "monthlyUpdates": "Biblioteca revisada regularmente",
       "organizedCategories": "Filtros por categoria, estilo e ocasiao",
-      "noLimits": "Geracoes ilimitadas disponiveis no plano Pro",
+      "noLimits": "Variações de prompt reutilizáveis sem promessa de cota paga",
       "highQuality": "Resultados consistentes com instrucoes detalhadas",
-      "commercialUse": "Utilize os arquivos em projetos pessoais ou de clientes",
+      "commercialUse": "Use o texto do prompt em briefs pessoais ou de clientes",
       "ultraFast": "Prompts prontos em segundos com sugestoes automáticas",
-      "noWaiting": "Gere sem filas ou lista de espera",
-      "instantProcessing": "Geracoes costumam concluir em menos de um minuto",
+      "noWaiting": "Componha sem filas ou lista de espera",
+      "instantProcessing": "Composição do prompt conclui em menos de um minuto",
       "dataProtected": "Processamento local no navegador quando possível; não usamos banco externo de contas",
-      "autoDelete": "Exclua uploads a qualquer momento ou solicite remocao por e-mail",
+      "autoDelete": "Limpe uploads locais ao reiniciar a sessão do navegador",
       "lgpdCompliant": "Praticas alinhadas a LGPD e GDPR",
-      "highResolution": "Ate 1024x1024 px no plano Pro",
-      "noWatermark": "Sem marca d'agua nos downloads Pro",
-      "professionalUse": "Arquivos prontos para curriculos, portfolio e redes sociais"
+      "highResolution": "Texto estruturado com etiquetas de origem",
+      "noWatermark": "Sem promessa falsa de download de imagem",
+      "professionalUse": "Prompts prontos para currículos, portfólio e redes sociais"
     },
     "badges": {
       "new": "Novo",
@@ -98,75 +98,75 @@
     "compatibility": "Funciona em desktop, tablet e celular"
   },
   "pricing": {
-    "title": "Precos simples",
-    "subtitle": "Escolha o plano ideal para voce",
-    "valueProposition": "Comece gratis e faca upgrade quando quiser",
-    "flexiblePlans": "Planos flexiveis",
+    "title": "Fluxo de prompts",
+    "subtitle": "Copie, teste e reutilize prompts Gemini com segurança",
+    "valueProposition": "Use prompts primeiro e abra o Gemini quando estiver pronto",
+    "flexiblePlans": "Opções de fluxo",
     "billing": {
-      "monthly": "Mensal",
-      "yearly": "Anual",
-      "discount": "Desconto anual",
-      "monthlyEquivalent": "Equivalente a {amount}/mes no plano anual"
+      "monthly": "Prompt",
+      "yearly": "Fluxo",
+      "discount": "Reutilizável",
+      "monthlyEquivalent": "Reutilizável como {amount} notas de prompt"
     },
     "free": {
-      "title": "Gratuito",
-      "price": "R$ 0",
-      "period": "/mes",
+      "title": "Compositor de prompts",
+      "price": "Texto",
+      "period": " final",
       "features": {
-        "0": "2 geracoes gratuitas inclusas",
+        "0": "Rascunhos de prompt prontos para copiar",
         "1": "Templates essenciais",
-        "2": "Suporte por e-mail",
-        "3": "Downloads 512x512 com marca d'agua"
+        "2": "Exportação TXT do prompt",
+        "3": "Etapa explícita para abrir o Gemini"
       },
-      "cta": "Comecar gratis",
-      "startNow": "Comecar agora"
+      "cta": "Compor prompt",
+      "startNow": "Começar agora"
     },
     "pro": {
-      "title": "Pro",
-      "price": "$7.99",
-      "period": "/mes",
-      "yearlyPrice": "$79.99",
-      "yearlyPeriod": "/ano",
-      "yearlyDiscount": "Economize 17%",
-      "yearlySavings": "Economize 17%",
+      "title": "Prompts avançados",
+      "price": "Texto",
+      "period": " biblioteca",
+      "yearlyPrice": "Reutilizável",
+      "yearlyPeriod": " prompts",
+      "yearlyDiscount": "Sem etapa de pagamento",
+      "yearlySavings": "Sem etapa de pagamento",
       "features": {
-        "0": "Geracoes ilimitadas",
+        "0": "Padrões detalhados de prompt",
         "1": "Biblioteca completa de templates",
-        "2": "Downloads em alta resolucao (1024x1024)",
-        "3": "Resultados sem marca d'agua",
-        "4": "Suporte por e-mail com prioridade no proximo dia util",
-        "5": "Acesso antecipado a novos templates"
+        "2": "Etiquetas de cenário",
+        "3": "Exportação TXT",
+        "4": "Revisão regular de prompts",
+        "5": "Acesso antecipado a novos exemplos"
       },
-      "cta": "Assinar Pro",
-      "popular": "Mais popular",
-      "exclusiveBenefits": "Beneficios exclusivos Pro",
+      "cta": "Usar prompts avançados",
+      "popular": "Mais detalhado",
+      "exclusiveBenefits": "Benefícios dos prompts avançados",
       "exclusiveList": [
-        "Novos templates publicados todo mes",
-        "Canal direto para sugerir estilos",
-        "Acompanhamento inicial sob demanda"
+        "Revisão mensal da biblioteca",
+        "Mais padrões de estilo",
+        "Briefs reutilizáveis"
       ],
-      "notifyTitle": "Seja avisado sobre novos recursos premium",
+      "notifyTitle": "Seja avisado sobre novos exemplos de prompt",
       "notifyPlaceholder": "Seu melhor e-mail",
       "notifyButton": "Quero ser avisado",
       "notifySuccess": "Tudo certo! Entraremos em contato em breve."
     },
     "trust": {
-      "cancelAnytime": "Cancele quando quiser",
-      "support247": "Suporte por e-mail em ate 1 dia util",
-      "securePayment": "Pagamento 100% seguro",
-      "guaranteeTitle": "Garantia de 7 dias",
-      "guaranteeDesc": "Teste sem risco e cancele se nao ficar satisfeito"
+      "cancelAnytime": "Sem etapa de pagamento",
+      "support247": "Suporte por e-mail em até 1 dia útil",
+      "securePayment": "Sem checkout neste fluxo público",
+      "guaranteeTitle": "Fluxo prompt-first",
+      "guaranteeDesc": "Revise o prompt antes de usar no Gemini"
     },
-    "popularChoice": "Mais popular"
+    "popularChoice": "Mais detalhado"
   },
   "generator": {
     "tryNow": "Experimente prompt Gemini agora",
-    "tryGenerator": "Teste o gerador prompt Gemini ensaio fotográfico",
-    "generatorDesc": "Combine templates profissionais com prompt Gemini ensaio fotográfico feminino, masculino ou casal personalizado. Gere ensaio fotográfico profissional com IA em instantes"
+    "tryGenerator": "Teste o compositor de prompts Gemini",
+    "generatorDesc": "Combine templates profissionais com prompt Gemini ensaio fotográfico feminino, masculino ou casal. Copie o prompt final e use no Gemini."
   },
   "generatorModule": {
-    "title": "Gerador Prompt Gemini Ensaio Fotográfico com IA",
-    "description": "Selecione um template de ensaio fotográfico, adicione referencias e gere retratos perfeitos com prompt Gemini foto profissional otimizado",
+    "title": "Compositor de Prompts Gemini para Fotos",
+    "description": "Selecione um template, adicione referências e componha um prompt final para o Gemini",
     "placeholders": {
       "person": "nome da pessoa",
       "couple": "nome do casal",
@@ -177,7 +177,7 @@
     "errors": {
       "invalidImageType": "Formato de imagem nao suportado. Use PNG ou JPG.",
       "invalidImageSize": "Imagem muito grande. Envie arquivos de ate 5 MB.",
-      "promptRequired": "Descreva o que deseja gerar ou selecione um template.",
+      "promptRequired": "Descreva o prompt desejado ou selecione um template.",
       "generationFailed": "Nao conseguimos gerar a imagem. Tente novamente em instantes.",
       "network": "Erro de conexao. Verifique sua internet e tente novamente."
     },
@@ -199,26 +199,25 @@
       "promptPlaceholder": "Ex.: retrato profissional estilo LinkedIn, iluminacao neutra, fundo desfocado",
       "category": "Categoria",
       "style": "Estilo",
-      "resolution": "Resolucao",
-      "resolutionStandard": "Padrao 512x512",
-      "resolutionPremium": "Premium 1024x1024",
-      "remaining": "Voce ainda tem {count} geracoes gratis",
-      "remainingUnlimited": "Assinantes Pro possuem geracoes ilimitadas",
-      "generate": "Gerar foto",
-      "generating": "Gerando foto...",
-      "upgradeTeaser": "Atualize para o plano Pro e destrave modelos premium",
-      "upgradeCta": "Conhecer plano Pro"
+      "resolution": "Detalhe do prompt",
+      "resolutionStandard": "Prompt conciso",
+      "resolutionPremium": "Prompt detalhado",
+      "remaining": "{count} rascunhos de prompt disponíveis nesta sessão",
+      "remainingUnlimited": "Sessão reutilizável de composição de prompts",
+      "generate": "Compor prompt",
+      "generating": "Compondo prompt...",
+      "upgradeTeaser": "Esta ferramenta produz apenas texto de prompt; cole no Gemini quando estiver pronto.",
+      "upgradeCta": "Abrir fluxo"
     },
     "results": {
-      "title": "Resultado da geracao",
-      "watermark": "Previa com marca d'agua",
-      "download": "Baixar imagem",
+      "title": "Resultado do prompt",
+      "download": "Baixar prompt",
       "copyLink": "Copiar link",
       "share": "Compartilhar",
       "promptTitle": "Prompt utilizado",
-      "remaining": "Restam {count} geracoes gratuitas",
-      "remainingZero": "Voce usou todas as suas geracoes gratuitas",
-      "upgradeNow": "Fazer upgrade agora"
+      "remaining": "Restam {count} rascunhos de prompt nesta sessão",
+      "remainingZero": "Inicie um novo rascunho ou edite o prompt acima",
+      "upgradeNow": "Abrir fluxo Gemini"
     }
   },
   "templatePicker": {
@@ -233,7 +232,7 @@
       "tier": {
         "all": "Todos",
         "free": "Gratuitos",
-        "premium": "Premium"
+        "premium": "Avançados"
       },
       "sort": {
         "alphabetical": "A-Z",
@@ -241,13 +240,13 @@
       }
     },
     "results": "{count} templates encontrados",
-    "premiumHint": "Templates premium exigem plano Pro",
+    "premiumHint": "Templates avançados são prompts prontos para copiar; nenhum plano Pro é necessário.",
     "badges": {
-      "premium": "Premium",
+      "premium": "Avançado",
       "free": "Gratuito"
     },
     "actions": {
-      "select": "Selecionar",
+      "select": "Usar prompt",
       "selected": "Selecionado"
     },
     "empty": {
@@ -259,17 +258,17 @@
   "templatesPage": {
     "meta": {
       "title": "Templates Prompt Gemini Ensaio Fotográfico | Feminino, Masculino e Casal",
-      "description": "Explore {count} prompt Gemini ensaio fotográfico profissional: feminino, masculino e casal. Gere fotos profissionais com prompt Gemini otimizado",
+      "description": "Explore {count} prompt Gemini ensaio fotográfico profissional: feminino, masculino e casal. Copie e adapte prompts para usar no Gemini.",
       "keywords": "prompt gemini ensaio fotográfico, prompt gemini ensaio fotográfico feminino, prompt gemini ensaio fotográfico masculino, prompt gemini ensaio fotográfico casal, prompt gemini foto profissional",
       "image": "/images/templates/og-templates.jpg"
     },
     "hero": {
       "badge": "Colecao Prompt Gemini Fotos",
       "title": "Descubra <highlight>{count}</highlight> Prompt Gemini Ensaio Fotográfico",
-      "description": "Templates prompt Gemini ensaio fotográfico feminino, masculino e casal prontos para <strong>LinkedIn, estudio e lifestyle</strong>. Ensaio fotográfico profissional com IA em portugues.",
+      "description": "Templates prompt Gemini ensaio fotográfico feminino, masculino e casal prontos para <strong>LinkedIn, estudio e lifestyle</strong>. Copie, adapte e cole no Gemini.",
       "cta": {
         "free": "Explorar templates gratuitos",
-        "premium": "Ver premium"
+        "premium": "Ver prompts avançados"
       }
     },
     "stats": {
@@ -279,11 +278,11 @@
       },
       "free": {
         "label": "Gratuitos",
-        "description": "Incluidos no plano Free"
+        "description": "Prontos para copiar"
       },
       "premium": {
-        "label": "Premium",
-        "description": "Exclusivos do plano Pro"
+        "label": "Avançados",
+        "description": "Padrões detalhados de prompt"
       },
       "categories": {
         "label": "Categorias",
@@ -323,7 +322,7 @@
           "label": "Disponibilidade",
           "all": "Todos",
           "free": "Gratuito",
-          "premium": "Premium"
+          "premium": "Avançados"
         },
         "sort": {
           "label": "Ordenar por",
@@ -337,11 +336,11 @@
       },
       "resultsCount": "{count} templates encontrados",
       "badges": {
-        "premium": "Premium",
+        "premium": "Avançado",
         "free": "Gratuito"
       },
       "card": {
-        "ctaPremium": "Usar template premium",
+        "ctaPremium": "Usar este prompt",
         "ctaFree": "Usar template"
       },
       "pagination": {
@@ -434,9 +433,9 @@
     },
     "howUse": {
       "title": "Como utilizamos as informacoes",
-      "content": "Os dados sao utilizados para gerar imagens, oferecer suporte e melhorar o produto.",
+      "content": "Os dados sao utilizados para preparar prompts, oferecer suporte e melhorar o produto.",
       "items": [
-        "Processar as geracoes solicitadas",
+        "Preparar os rascunhos de prompt solicitados",
         "Personalizar recomendacoes de templates",
         "Enviar comunicados importantes sobre o servico",
         "Manter a seguranca da plataforma"
@@ -521,11 +520,11 @@
     "previous": "Anterior"
   },
   "footer": {
-    "description": "Prompt Gemini Fotos: transforme fotos em ensaio fotográfico profissional com prompt Gemini ensaio fotográfico feminino, masculino e casal otimizado para IA.",
+    "description": "Prompts Gemini prontos para copiar para ensaio feminino, masculino, casal e foto profissional. Componha o prompt e abra o Gemini explicitamente.",
     "quickLinks": "Links rapidos",
     "home": "Inicio",
     "templates": "Templates Prompt Gemini",
-    "pricing": "Precos",
+    "pricing": "Fluxo",
     "support": "Suporte",
     "terms": "Termos de uso",
     "privacy": "Politica de privacidade",

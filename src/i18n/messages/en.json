@@ -4,72 +4,72 @@
     "home": "Home",
     "templates": "Templates",
     "generator": "Generator",
-    "pricing": "Pricing",
+    "pricing": "Workflow",
     "login": "Sign In",
     "prompts": "Prompt Guide",
     "blog": "Blog",
     "tutorial": "Tutorial"
   },
   "hero": {
-    "title": "Professional AI Photo Generator with Gemini Photo Prompts",
-    "subtitle": "Create professional portrait prompts for Gemini AI photography. Generate stunning AI photos using optimized Gemini photo prompts in minutes",
-    "cta": "Get started now",
-    "features": "View features",
+    "title": "Copy Gemini prompts for professional photos",
+    "subtitle": "Pick a ready prompt for LinkedIn/CV, female portraits, or couples, paste it into Gemini with your photo, and keep identity, lighting, and composition under control.",
+    "cta": "Compose a prompt",
+    "features": "View full guide",
     "freeTrial": "Free trial"
   },
   "keywordSection": {
     "badge": "AI Photography Trends",
-    "title": "Professional Gemini Photo Prompts for AI Photo Generator",
-    "intro": "Choose professional portrait prompts optimized for Gemini AI photography. Generate female, male, and couple portraits effortlessly with our AI photo generator.",
+    "title": "Professional Gemini Photo Prompts to Copy",
+    "intro": "Choose professional portrait prompts optimized for Gemini. Copy female, male, and couple prompts, then paste them into Gemini with your reference photo.",
     "cards": {
       "feminino": {
         "title": "Female Portrait Gemini Prompts",
-        "description": "Soft lighting and editorial styling with optimized Gemini photo prompts for female portraits. Professional AI photo generator for social media and branding.",
+        "description": "Soft lighting and editorial styling with optimized Gemini photo prompts for female portraits. Copy-ready prompt guidance for social media and branding.",
         "cta": "View female portrait prompts"
       },
       "masculino": {
         "title": "Male Portrait Gemini Prompts",
-        "description": "Bold posing and dramatic lighting using professional Gemini photo prompts for male portraits. Complete AI photo generator guide for LinkedIn headshots.",
+        "description": "Bold posing and dramatic lighting using professional Gemini photo prompts for male portraits. Complete prompt workflow for LinkedIn headshots.",
         "cta": "View male portrait prompts"
       },
       "casal": {
         "title": "Couple Portrait Gemini Prompts",
-        "description": "Romantic storytelling with Gemini photo prompts for couple sessions. Professional AI photo generator for pre-wedding and engagement portraits.",
+        "description": "Romantic storytelling with Gemini photo prompts for couple sessions. Copy-ready prompt guidance for pre-wedding and engagement portraits.",
         "cta": "View couple portrait prompts"
       },
       "corporativo": {
         "title": "Professional Headshot Prompts",
-        "description": "Corporate-ready portraits with Gemini photo prompts for professional headshots. AI photo generator optimized for LinkedIn and business profiles.",
+        "description": "Corporate-ready portraits with Gemini photo prompts for professional headshots. Prompt workflow optimized for LinkedIn and business profiles.",
         "cta": "View professional prompts"
       }
     },
-    "bullet": "Professional AI photo generator workflow: choose portrait style, add references, generate with Gemini photo prompts.",
+    "bullet": "Prompt-first workflow: choose a portrait style, add reference details, copy the prompt, then open Gemini.",
     "cta": "Explore all Gemini photo prompts",
     "promptsGuide": "Open the prompts guide"
   },
   "cta": {
-    "freeGenerations": "free AI photo generations",
+    "freeGenerations": "copy-ready prompts",
     "noCardRequired": "no credit card required",
-    "resultsInSeconds": "Gemini photo prompts generated in seconds",
-    "securePrivate": "professional AI photo generator with privacy",
+    "resultsInSeconds": "Gemini photo prompts composed in seconds",
+    "securePrivate": "photo references stay local until you choose Gemini",
     "optimizedGemini": "Gemini photo prompts optimized for AI photography",
-    "freeNotice": "Free plan includes 2 generations at 512x512 with watermark"
+    "freeNotice": "Public workflow creates text prompts only. Paste the prompt into Gemini to generate images."
   },
   "features": {
-    "title": "Professional AI Photo Generator Features",
+    "title": "Professional Gemini Prompt Features",
     "subtitle": "Everything for professional portrait prompts with Gemini AI photography",
     "smartGenerator": "Smart Gemini photo prompts generator",
-    "smartGeneratorDesc": "Professional portrait prompts automatically tuned for female, male, and couple portraits using AI photo generator",
+    "smartGeneratorDesc": "Professional portrait prompts automatically tuned for female, male, and couple portraits",
     "professionalTemplates": "Professional portrait templates",
     "professionalTemplatesDesc": "Curated Gemini photo prompts for female portraits, male portraits, couples, and professional headshots",
-    "unlimitedGenerations": "Unlimited generations",
-    "unlimitedGenerationsDesc": "Create as many photos as you want with consistent quality",
-    "fastResults": "Fast results",
-    "fastResultsDesc": "Optimized processing with photos ready in seconds",
+    "unlimitedGenerations": "Reusable prompt library",
+    "unlimitedGenerationsDesc": "Save and adapt prompt variants without paid-output promises",
+    "fastResults": "Fast prompt output",
+    "fastResultsDesc": "Compose copy-ready prompts in seconds",
     "privateSecure": "Guaranteed privacy",
-    "privateSecureDesc": "Photos stored securely with access limited to your account",
-    "hdDownloads": "HD downloads",
-    "hdDownloadsDesc": "Images ready for professional use without watermarks",
+    "privateSecureDesc": "Reference photos are handled in the browser for prompt preparation; Gemini upload is your explicit next step",
+    "hdDownloads": "TXT prompt export",
+    "hdDownloadsDesc": "Download the final prompt text with scenario labels for reuse",
     "benefits": {
       "professionalResults": "Studio-grade guidance for each prompt",
       "optimizedForGemini": "Prompts designed for Gemini models",
@@ -77,18 +77,18 @@
       "allStyles": "Portraits, couples, fashion, lifestyle and corporate",
       "monthlyUpdates": "Template library reviewed regularly",
       "organizedCategories": "Filters by category, style and occasion",
-      "noLimits": "Unlimited generations when you upgrade to Pro",
+      "noLimits": "Reusable prompt variants without paid quota claims",
       "highQuality": "Consistent results with detailed instructions",
-      "commercialUse": "Use downloads for personal and client projects",
+      "commercialUse": "Use prompt text for personal and client briefs",
       "ultraFast": "Prompts ready in seconds with auto-fill suggestions",
-      "noWaiting": "Generate without queues or waitlists",
-      "instantProcessing": "Typical generation completes in under a minute",
+      "noWaiting": "Compose without queues or waitlists",
+      "instantProcessing": "Prompt composition completes in under a minute",
       "dataProtected": "Processed locally in the browser where possible; no external account database is used",
-      "autoDelete": "Delete uploads any time or request removal via email",
+      "autoDelete": "Clear local uploads by resetting the browser session",
       "lgpdCompliant": "Practices aligned with LGPD and GDPR",
-      "highResolution": "Up to 1024x1024 px on the Pro plan",
-      "noWatermark": "No watermark on Pro downloads",
-      "professionalUse": "Files ready for resumes, portfolios and social media"
+      "highResolution": "Structured prompt text with source labels",
+      "noWatermark": "No fake image download promise",
+      "professionalUse": "Prompts ready for resumes, portfolios and social media workflows"
     },
     "badges": {
       "new": "New",
@@ -98,75 +98,75 @@
     "compatibility": "Works on desktop, tablet and mobile"
   },
   "pricing": {
-    "title": "Simple pricing",
-    "subtitle": "Choose the plan that's right for you",
-    "valueProposition": "Start free and upgrade whenever you want",
-    "flexiblePlans": "Flexible plans",
+    "title": "Prompt workflow",
+    "subtitle": "Copy, test, and reuse Gemini prompts safely",
+    "valueProposition": "Use prompts first, then open Gemini when ready",
+    "flexiblePlans": "Workflow options",
     "billing": {
-      "monthly": "Monthly",
-      "yearly": "Yearly",
-      "discount": "Yearly discount",
-      "monthlyEquivalent": "Equivalent to {amount}/month when billed yearly"
+      "monthly": "Prompt",
+      "yearly": "Workflow",
+      "discount": "Reusable",
+      "monthlyEquivalent": "Reusable as {amount} prompt notes"
     },
     "free": {
-      "title": "Free",
-      "price": "$0",
-      "period": "/month",
+      "title": "Prompt composer",
+      "price": "Text",
+      "period": " output",
       "features": {
-        "0": "2 free generations included",
+        "0": "Copy-ready prompt drafts",
         "1": "Essential templates",
-        "2": "Email support",
-        "3": "512x512 downloads with watermark"
+        "2": "TXT prompt export",
+        "3": "Open Gemini outbound step"
       },
-      "cta": "Start for free",
+      "cta": "Compose prompt",
       "startNow": "Start now"
     },
     "pro": {
-      "title": "Pro",
-      "price": "$7.99",
-      "period": "/month",
-      "yearlyPrice": "$79.99",
-      "yearlyPeriod": "/year",
-      "yearlyDiscount": "Save 17%",
-      "yearlySavings": "Save 17%",
+      "title": "Advanced prompts",
+      "price": "Text",
+      "period": " library",
+      "yearlyPrice": "Reusable",
+      "yearlyPeriod": " prompts",
+      "yearlyDiscount": "No payment step",
+      "yearlySavings": "No payment step",
       "features": {
-        "0": "Unlimited generations",
+        "0": "Detailed prompt patterns",
         "1": "Full template library",
-        "2": "High-resolution downloads (1024x1024)",
-        "3": "Watermark-free results",
-        "4": "Priority email support (next business day)",
-        "5": "Early access to new templates"
+        "2": "Scenario labels",
+        "3": "TXT export",
+        "4": "Regular prompt review",
+        "5": "Early access to new prompt examples"
       },
-      "cta": "Subscribe to Pro",
-      "popular": "Most popular",
-      "exclusiveBenefits": "Exclusive Pro benefits",
+      "cta": "Use advanced prompts",
+      "popular": "Most detailed",
+      "exclusiveBenefits": "Advanced prompt benefits",
       "exclusiveList": [
-        "Monthly template additions",
-        "Feedback channel for new styles",
-        "Onboarding walkthrough on request"
+        "Monthly template review",
+        "More style patterns",
+        "Reusable briefs"
       ],
-      "notifyTitle": "Get notified about new premium features",
+      "notifyTitle": "Get notified about new prompt examples",
       "notifyPlaceholder": "Your best email",
       "notifyButton": "Notify me",
       "notifySuccess": "All set! We'll reach out soon."
     },
     "trust": {
-      "cancelAnytime": "Cancel anytime",
+      "cancelAnytime": "No payment step",
       "support247": "Email support within 1 business day",
-      "securePayment": "100% secure payment",
-      "guaranteeTitle": "7-day guarantee",
-      "guaranteeDesc": "Try risk-free and cancel if you're not satisfied"
+      "securePayment": "No checkout on this public flow",
+      "guaranteeTitle": "Prompt-first workflow",
+      "guaranteeDesc": "Review the prompt before using it in Gemini"
     },
-    "popularChoice": "Most popular"
+    "popularChoice": "Most detailed"
   },
   "generator": {
     "tryNow": "Try Gemini photo prompts now",
-    "tryGenerator": "Test the professional AI photo generator",
-    "generatorDesc": "Combine professional portrait prompts with Gemini photo prompts for female, male, and couple portraits. Generate professional AI photos in seconds"
+    "tryGenerator": "Test the Gemini prompt composer",
+    "generatorDesc": "Combine professional portrait prompts with Gemini photo instructions for female, male, and couple portraits. Copy the final prompt and use it in Gemini."
   },
   "generatorModule": {
-    "title": "Professional AI Photo Generator with Gemini Photo Prompts",
-    "description": "Choose professional portrait prompts, add references, and generate perfect AI photos with optimized Gemini photo prompts",
+    "title": "Gemini Photo Prompt Composer",
+    "description": "Choose professional portrait prompts, add references, and compose a final prompt for Gemini",
     "placeholders": {
       "person": "person's name",
       "couple": "couple's name",
@@ -177,7 +177,7 @@
     "errors": {
       "invalidImageType": "Unsupported image format. Use PNG or JPG.",
       "invalidImageSize": "Image is too large. Upload files up to 5 MB.",
-      "promptRequired": "Describe what you want to generate or pick a template.",
+      "promptRequired": "Describe the prompt you want or pick a template.",
       "generationFailed": "We couldn't generate the image. Please try again in a moment.",
       "network": "Connection error. Check your internet and try again."
     },
@@ -199,26 +199,25 @@
       "promptPlaceholder": "Ex: professional LinkedIn headshot, neutral lighting, blurred background",
       "category": "Category",
       "style": "Style",
-      "resolution": "Resolution",
-      "resolutionStandard": "Standard 512x512",
-      "resolutionPremium": "Premium 1024x1024",
-      "remaining": "You still have {count} free generations",
-      "remainingUnlimited": "Pro subscribers have unlimited generations",
-      "generate": "Generate photo",
-      "generating": "Generating photo...",
-      "upgradeTeaser": "Upgrade to the Pro plan to unlock premium models",
-      "upgradeCta": "See Pro plan"
+      "resolution": "Prompt detail",
+      "resolutionStandard": "Concise prompt",
+      "resolutionPremium": "Detailed prompt",
+      "remaining": "{count} prompt drafts available in this session",
+      "remainingUnlimited": "Reusable prompt drafting session",
+      "generate": "Compose prompt",
+      "generating": "Composing prompt...",
+      "upgradeTeaser": "This tool produces prompt text only; paste the prompt into Gemini when you are ready.",
+      "upgradeCta": "Open workflow"
     },
     "results": {
-      "title": "Generation result",
-      "watermark": "Preview with watermark",
-      "download": "Download image",
+      "title": "Prompt result",
+      "download": "Download prompt",
       "copyLink": "Copy link",
       "share": "Share",
       "promptTitle": "Prompt used",
-      "remaining": "{count} free generations left",
-      "remainingZero": "You've used all your free generations",
-      "upgradeNow": "Upgrade now"
+      "remaining": "{count} prompt drafts left in this session",
+      "remainingZero": "Start a new draft or edit the prompt above",
+      "upgradeNow": "Open Gemini workflow"
     }
   },
   "templatePicker": {
@@ -233,7 +232,7 @@
       "tier": {
         "all": "All",
         "free": "Free",
-        "premium": "Premium"
+        "premium": "Advanced"
       },
       "sort": {
         "alphabetical": "A to Z",
@@ -241,13 +240,13 @@
       }
     },
     "results": "{count} templates found",
-    "premiumHint": "Premium templates require the Pro plan",
+    "premiumHint": "Advanced templates are copy-ready prompts; no Pro plan is required.",
     "badges": {
-      "premium": "Premium",
+      "premium": "Advanced",
       "free": "Free"
     },
     "actions": {
-      "select": "Select",
+      "select": "Use prompt",
       "selected": "Selected"
     },
     "empty": {
@@ -258,18 +257,18 @@
   },
   "templatesPage": {
     "meta": {
-      "title": "Professional Gemini Photo Prompts | AI Photo Generator Templates",
-      "description": "Explore {count} professional portrait prompts optimized for Gemini AI photography. Generate professional photos with our AI photo generator",
-      "keywords": "gemini photo prompts, AI photo generator, professional portrait prompts, gemini AI photography, AI portrait generator",
+      "title": "Professional Gemini Photo Prompts | Copy-Ready Templates",
+      "description": "Explore {count} professional Gemini photo prompts for portraits, couples and headshots. Copy and adapt prompts for Gemini.",
+      "keywords": "gemini photo prompts, copy Gemini prompts, professional portrait prompts, gemini photography prompts, AI portrait prompts",
       "image": "/images/templates/og-templates.jpg"
     },
     "hero": {
       "badge": "Gemini Photo Prompts Collection",
       "title": "Discover <highlight>{count}</highlight> Professional Gemini Photo Prompts",
-      "description": "Professional portrait prompts for Gemini AI photography ready for <strong>LinkedIn, studio, couples and lifestyle</strong>. AI photo generator templates updated regularly.",
+      "description": "Professional portrait prompts for Gemini ready for <strong>LinkedIn, studio, couples and lifestyle</strong>. Copy, adapt, and paste into Gemini.",
       "cta": {
         "free": "Explore free templates",
-        "premium": "View premium"
+        "premium": "View advanced prompts"
       }
     },
     "stats": {
@@ -279,11 +278,11 @@
       },
       "free": {
         "label": "Free",
-        "description": "Included with the Free plan"
+        "description": "Ready to copy"
       },
       "premium": {
-        "label": "Premium",
-        "description": "Exclusive to the Pro plan"
+        "label": "Advanced",
+        "description": "Detailed prompt patterns"
       },
       "categories": {
         "label": "Categories",
@@ -323,7 +322,7 @@
           "label": "Availability",
           "all": "All",
           "free": "Free",
-          "premium": "Premium"
+          "premium": "Advanced"
         },
         "sort": {
           "label": "Sort by",
@@ -337,11 +336,11 @@
       },
       "resultsCount": "{count} templates found",
       "badges": {
-        "premium": "Premium",
+        "premium": "Advanced",
         "free": "Free"
       },
       "card": {
-        "ctaPremium": "Use premium template",
+        "ctaPremium": "Use this prompt",
         "ctaFree": "Use template"
       },
       "pagination": {
@@ -434,9 +433,9 @@
     },
     "howUse": {
       "title": "How we use the information",
-      "content": "Data is used to generate images, provide support and improve the product.",
+      "content": "Data is used to prepare prompts, provide support and improve the product.",
       "items": [
-        "Process the requested generations",
+        "Prepare the requested prompt drafts",
         "Personalize template recommendations",
         "Send important communications about the service",
         "Maintain platform security"
@@ -521,11 +520,11 @@
     "previous": "Previous"
   },
   "footer": {
-    "description": "Professional AI photo generator: transform photos into professional portraits with optimized Gemini photo prompts for female, male, and couple portraits.",
+    "description": "Copy-ready Gemini photo prompts for portraits, couples and headshots. Compose a prompt, then open Gemini explicitly.",
     "quickLinks": "Quick links",
     "home": "Home",
     "templates": "Gemini Photo Prompts",
-    "pricing": "Pricing",
+    "pricing": "Workflow",
     "support": "Support",
     "terms": "Terms of use",
     "privacy": "Privacy policy",

@@ -20,14 +20,7 @@ export function generateWebsiteStructuredData(): object {
     sameAs: [
       // Add social media profiles here if available
     ],
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: {
-        '@type': 'EntryPoint',
-        urlTemplate: `${config.app.url}/search?q={search_term_string}`,
-      },
-      'query-input': 'required name=search_term_string',
-    },
+
     publisher: {
       '@type': 'Organization',
       name: config.app.name,
@@ -45,37 +38,19 @@ export function generateWebApplicationStructuredData(): object {
     url: config.app.url,
     applicationCategory: 'MultimediaApplication',
     operatingSystem: 'Web',
-    offers: [
-      {
-        '@type': 'Offer',
-        price: '0',
-        priceCurrency: 'USD',
-        name: 'Free Plan',
-        description: '2 AI photo generations with basic features',
-        category: 'Free',
-      },
-      {
-        '@type': 'Offer',
-        price: '7.99',
-        priceCurrency: 'USD',
-        name: 'Professional Plan',
-        description: 'Unlimited AI photo generations with professional features',
-        category: 'Subscription',
-        priceSpecification: {
-          '@type': 'UnitPriceSpecification',
-          price: '7.99',
-          priceCurrency: 'USD',
-          billingIncrement: 1,
-          unitCode: 'MON',
-        },
-      },
-    ],
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+      name: 'Public prompt composer',
+      description: 'Copy-ready Gemini photo prompts and TXT prompt export',
+      category: 'Free',
+    },
     featureList: [
-      'AI-powered photo generation',
-      'Professional photography prompts',
+      'Copy-ready Gemini photo prompts',
       'Multiple image styles and categories',
-      'High-resolution output (Pro)',
-      'Watermark-free downloads (Pro)',
+      'TXT prompt export',
+      'Open Gemini outbound workflow',
       'Template library reviewed regularly',
     ],
     screenshot: `${config.app.url}/og-image.png`,
@@ -99,9 +74,9 @@ export function generateSoftwareApplicationStructuredData(): object {
     },
     offers: {
       '@type': 'Offer',
-      price: '7.99',
+      price: '0',
       priceCurrency: 'USD',
-      priceValidUntil: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString(),
+      name: 'Prompt composer access',
     },
   };
 }

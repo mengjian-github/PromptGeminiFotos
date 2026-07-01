@@ -1,8 +1,8 @@
 export const config = {
   app: {
-    url: 'https://promptgeminifotos.com',
+    url: 'https://www.promptgeminifotos.com',
     name: 'Prompt Gemini Fotos',
-    description: 'Transform ordinary photos into professional portraits with AI',
+    description: 'Copy-ready Gemini photo prompts for professional portraits',
   },
 } as const;
 
