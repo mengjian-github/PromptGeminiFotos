@@ -8,6 +8,11 @@ export default {
     if (url.pathname === '/') {
       return Response.redirect(`${url.origin}/pt-BR/`, 302);
     }
+
+    if (url.pathname === '/pricing' || url.pathname === '/pricing/') {
+      return Response.redirect(`${url.origin}/pt-BR/pricing/`, 302);
+    }
+
     return env.ASSETS.fetch(request);
   },
 };

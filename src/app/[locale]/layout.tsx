@@ -9,6 +9,7 @@ import { buildLocalePath } from '@/lib/locale-path';
 import { Providers } from '@/components/providers';
 import { EnhancedNavigation } from '@/components/enhanced-navigation';
 import { LanguageSuggestionBanner } from '@/components/language-suggestion-banner';
+import { AnalyticsPageView } from '@/components/analytics-page-view';
 import { generateMetadata as generateSEOMetadata, generateWebsiteStructuredData, generateWebApplicationStructuredData } from '@/lib/seo';
 
 type Props = {
@@ -179,6 +180,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         <Providers>
           <NextIntlClientProvider messages={messages}>
             <LanguageSuggestionBanner currentLocale={currentLocale} />
+            <AnalyticsPageView />
             <EnhancedNavigation />
             <main>
               {children}

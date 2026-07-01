@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Sparkles, Play } from 'lucide-react';
+import { trackEvent } from '@/lib/analytics';
 
 interface EnhancedCTAProps {
   primaryText: string;
@@ -31,6 +32,7 @@ export function EnhancedCTA({
   }, []);
 
   const scrollToGenerator = () => {
+    trackEvent('hero_cta_click', { target: 'generator-section' });
     const generator = document.getElementById('generator-section');
     if (generator) {
       generator.scrollIntoView({ behavior: 'smooth' });
@@ -82,6 +84,7 @@ export function EnhancedCTA({
           size="lg"
           className="w-full sm:w-auto border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-all duration-300 hover:scale-105 px-8 py-4 text-lg font-semibold"
           onClick={() => {
+            trackEvent('secondary_cta_click', { target: 'features' });
             const features = document.getElementById('features');
             if (features) {
               features.scrollIntoView({ behavior: 'smooth' });

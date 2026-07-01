@@ -1,4 +1,5 @@
 type AnalyticsEvent =
+  | 'page_view'
   | 'generator_start'
   | 'generate_complete'
   | 'generate_error'
@@ -7,6 +8,8 @@ type AnalyticsEvent =
   | 'template_open'
   | 'gemini_outbound_click'
   | 'template_select'
+  | 'hero_cta_click'
+  | 'secondary_cta_click'
   | 'image_upload_start'
   | 'image_upload_success'
   | 'image_upload_error'

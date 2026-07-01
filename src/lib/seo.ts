@@ -205,12 +205,13 @@ export function generateSitemapUrls(): MetadataRoute.Sitemap {
   const locales = ['pt-BR', 'en'];
   const pages = [
     '',
-    // '/dashboard' removed
-    '/auth/signin',
-    '/pricing',
-    '/about',
+    '/templates',
+    '/prompts',
+    '/tutorial',
+    '/blog',
     '/privacy',
     '/terms',
+    '/contact',
   ];
 
   const urls: MetadataRoute.Sitemap = [];
