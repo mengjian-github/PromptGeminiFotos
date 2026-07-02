@@ -1,6 +1,6 @@
 export const config = {
   app: {
-    url: 'https://www.promptgeminifotos.com',
+    url: 'https://promptgeminifotos.com',
     name: 'Prompt Gemini Fotos',
     description: 'Copy-ready Gemini photo prompts for professional portraits',
   },

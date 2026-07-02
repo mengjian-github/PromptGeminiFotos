@@ -23,7 +23,7 @@ import {
   type TemplateStyle
 } from "@/lib/templates";
 import { trackEvent } from "@/lib/analytics";
-import { Copy, Download, FileText, Sparkles, Upload } from "lucide-react";
+import { Copy, Download, ExternalLink, FileText, Sparkles, Upload } from "lucide-react";
 
 interface GenerationResult {
   success: boolean;
@@ -42,6 +42,7 @@ interface ImageGeneratorProps {
 
 const MAX_UPLOAD_SIZE = 5 * 1024 * 1024;
 const DEFAULT_FREE_REMAINING = 2;
+const GEMINI_URL = "https://gemini.google.com/app";
 
 const PLACEHOLDER_KEYS = [
   ["[PERSON]", "person"],
@@ -231,6 +232,16 @@ export function ImageGenerator({ userId, userTier = "free", initialTemplateId }:
     URL.revokeObjectURL(url);
     trackEvent('download_click', { source: 'generator_result', file_type: 'txt', has_upload: !!uploadedImage });
   }, [result?.prompt, uploadedImage]);
+
+  const openGemini = useCallback(() => {
+    trackEvent('gemini_outbound_click', {
+      source: 'generator_result',
+      destination: GEMINI_URL,
+      has_upload: !!uploadedImage,
+      category,
+      style,
+    });
+  }, [category, style, uploadedImage]);
 
   const styleOptions = stylesByCategory.get(category) ?? [];
 
@@ -467,14 +478,22 @@ export function ImageGenerator({ userId, userTier = "free", initialTemplateId }:
               <CardContent>
                 {result.success && result.prompt ? (
                   <div className="rounded-lg bg-gray-50 p-4">
-                    <div className="mb-2 flex items-center justify-between">
+                    <div className="mb-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                       <h4 className="text-sm font-medium text-gray-900">{t("results.promptTitle")}</h4>
-                      <div className="flex items-center gap-2">
-                        <Button variant="ghost" size="sm" onClick={() => copyPrompt(result.prompt!)}>
+                      <div className="grid gap-2 sm:grid-cols-3">
+                        <Button size="sm" className="bg-blue-600 text-white hover:bg-blue-700" onClick={() => copyPrompt(result.prompt!)}>
                           <Copy className="h-4 w-4" />
+                          {locale === "pt-BR" ? "Copiar" : "Copy"}
                         </Button>
-                        <Button variant="ghost" size="sm" onClick={downloadPrompt}>
+                        <Button variant="outline" size="sm" onClick={downloadPrompt}>
                           <Download className="h-4 w-4" />
+                          TXT
+                        </Button>
+                        <Button variant="outline" size="sm" asChild>
+                          <a href={GEMINI_URL} target="_blank" rel="noopener noreferrer" onClick={openGemini}>
+                            <ExternalLink className="h-4 w-4" />
+                            Gemini
+                          </a>
                         </Button>
                       </div>
                     </div>

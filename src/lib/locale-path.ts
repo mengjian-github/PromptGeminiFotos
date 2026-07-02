@@ -17,7 +17,7 @@ export function buildLocalePath(locale: Locale, rawPath: string, options?: { abs
   const localePrefix = `/${locale}`;
   if (path === localePrefix || path.startsWith(`${localePrefix}/`)) {
     if (options?.absolute) {
-      const baseUrl = options.baseUrl || process.env.NEXT_PUBLIC_APP_URL || 'https://www.promptgeminifotos.com';
+      const baseUrl = options.baseUrl || process.env.NEXT_PUBLIC_APP_URL || 'https://promptgeminifotos.com';
       return `${baseUrl}${path}`;
     }
     return path;
@@ -35,7 +35,7 @@ export function buildLocalePath(locale: Locale, rawPath: string, options?: { abs
   const fullPath = `${localizedPath}${query}${hash}`;
 
   if (options?.absolute) {
-    const baseUrl = options.baseUrl || process.env.NEXT_PUBLIC_APP_URL || 'https://www.promptgeminifotos.com';
+    const baseUrl = options.baseUrl || process.env.NEXT_PUBLIC_APP_URL || 'https://promptgeminifotos.com';
     return `${baseUrl}${fullPath}`;
   }
 

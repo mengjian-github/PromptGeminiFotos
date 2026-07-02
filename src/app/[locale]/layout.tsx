@@ -45,10 +45,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ...generateSEOMetadata({
       title: defaultTitle,
       description: defaultDescription,
-      url: 'https://www.promptgeminifotos.com',
+      url: 'https://promptgeminifotos.com',
       locale,
     }),
-    metadataBase: new URL('https://www.promptgeminifotos.com'),
+    metadataBase: new URL('https://promptgeminifotos.com'),
     title: {
       template: `%s | ${brandName}`,
       default: defaultTitle,
@@ -67,7 +67,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: defaultTitle,
       description: defaultDescription,
-      url: 'https://www.promptgeminifotos.com',
+      url: 'https://promptgeminifotos.com',
       siteName: brandName,
       locale,
       type: 'website',
