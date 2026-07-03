@@ -211,9 +211,10 @@ export function ImageGenerator({ userId, userTier = "free", initialTemplateId }:
   }, [prompt, uploadedImage, category, style, resolution, t, userTier]);
 
   const copyPrompt = useCallback(async (text: string) => {
+    trackEvent('prompt_copy', { source: 'generator_result', prompt_length: text.length, has_upload: !!uploadedImage });
+
     try {
       await navigator.clipboard.writeText(text);
-      trackEvent('prompt_copy', { source: 'generator_result', prompt_length: text.length, has_upload: !!uploadedImage });
     } catch (error) {
       console.error("Failed to copy:", error);
     }

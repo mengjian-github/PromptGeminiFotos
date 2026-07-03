@@ -27,8 +27,13 @@ export function PromptActions({ prompt, locale, source, scenario, templateId, ge
   };
 
   const copyPrompt = async () => {
-    await navigator.clipboard.writeText(prompt);
     trackEvent('prompt_copy', analyticsProps);
+
+    try {
+      await navigator.clipboard.writeText(prompt);
+    } catch (error) {
+      console.error('Failed to copy prompt:', error);
+    }
   };
 
   const trackGemini = () => {

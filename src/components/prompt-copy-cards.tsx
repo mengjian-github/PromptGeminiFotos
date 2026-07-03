@@ -76,12 +76,17 @@ export function PromptCopyCards({ locale }: { locale: Locale }) {
   const cards = cardsByLocale[locale] ?? cardsByLocale['pt-BR'];
 
   const copyPrompt = async (card: PromptCard) => {
-    await navigator.clipboard.writeText(card.prompt);
     trackEvent('prompt_copy', {
       source: 'hero_prompt_card',
       template_id: card.id,
       prompt_length: card.prompt.length,
     });
+
+    try {
+      await navigator.clipboard.writeText(card.prompt);
+    } catch (error) {
+      console.error('Failed to copy prompt:', error);
+    }
   };
 
   const trackGemini = (card: PromptCard) => {
