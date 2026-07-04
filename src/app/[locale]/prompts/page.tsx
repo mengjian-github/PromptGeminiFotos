@@ -838,7 +838,7 @@ export default async function PromptsPage({ params }: Props) {
                     const templateId = `${section.id}-${exampleIndex + 1}`;
                     const generatorWithTemplateHref = buildLocalePath(
                       currentLocale,
-                      `/generator?template=${encodeURIComponent(templateId)}`
+                      `/generator?source=prompts&scenario=${encodeURIComponent(section.id)}`
                     );
 
                     return (

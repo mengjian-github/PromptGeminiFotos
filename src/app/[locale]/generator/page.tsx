@@ -61,6 +61,18 @@ export default async function GeneratorPage({ params }: Props) {
         badge: "Compositor de prompts",
         title: "Monte prompts Gemini prontos para copiar",
         subtitle: "Combine templates refinados, sua referência e instruções de identidade antes de abrir o Gemini.",
+        answerTitle: "Resposta rápida: como usar Prompt Gemini Fotos",
+        answerBody: "Escolha um cenário, cole ou ajuste o prompt, envie uma foto de referência apenas se quiser preservar identidade e copie o texto final para abrir no Gemini. O fluxo público prepara prompts; não promete geração ilimitada nem envia sua imagem automaticamente para terceiros.",
+        steps: [
+          "Selecione um template de LinkedIn, ensaio feminino, casal ou retrato profissional.",
+          "Personalize identidade, luz, lente, cenário e idioma antes de gerar o prompt final.",
+          "Copie, baixe em TXT ou abra o Gemini explicitamente para colar o resultado."
+        ],
+        faqs: [
+          ["O gerador cria a imagem dentro do site?", "Não. Ele compõe um prompt Gemini pronto para copiar; a abertura do Gemini acontece somente quando você clica no botão externo."],
+          ["A foto de referência sai do navegador?", "No fluxo público atual, a prévia local fica no navegador para ajudar você a escrever o prompt. Se uma API externa for usada futuramente, isso será avisado antes do upload."],
+          ["Qual prompt começar para foto profissional?", "Use um template de LinkedIn/CV com fundo neutro, lente 85mm, luz softbox e instrução explícita para preservar identidade."]
+        ],
         stats: [
           { label: "Tempo médio", value: "<1 min" },
           { label: "Templates", value: "100" },
@@ -74,6 +86,18 @@ export default async function GeneratorPage({ params }: Props) {
         badge: "Prompt composer",
         title: "Build copy-ready Gemini photo prompts",
         subtitle: "Mix polished templates, your reference, and identity-safe instructions before opening Gemini.",
+        answerTitle: "Quick answer: how to use Prompt Gemini Photos",
+        answerBody: "Choose a scenario, paste or tune the prompt, add a reference photo only when identity preservation matters, then copy the final text into Gemini. The public flow prepares prompts; it does not promise unlimited image generation or upload your photo automatically.",
+        steps: [
+          "Select a LinkedIn, female portrait, couple, or professional headshot template.",
+          "Tune identity, lighting, lens, scene, and language before composing the final prompt.",
+          "Copy, download as TXT, or explicitly open Gemini to paste the result."
+        ],
+        faqs: [
+          ["Does this tool generate the image on-site?", "No. It composes a Gemini-ready prompt; Gemini opens only after you click the external button."],
+          ["Does my reference photo leave the browser?", "In the current public flow, the local preview stays in the browser to help you write the prompt. Any future external API upload will be disclosed before sending."],
+          ["Which prompt should I start with for a professional photo?", "Use a LinkedIn/CV template with a neutral background, 85mm lens, softbox lighting, and an explicit identity-preservation instruction."]
+        ],
         stats: [
           { label: "Avg. time", value: "<1 min" },
           { label: "Templates", value: "100" },
@@ -83,9 +107,40 @@ export default async function GeneratorPage({ params }: Props) {
         generatorTitle: "Compose the prompt now",
         generatorSubtitle: "Add a local reference or write a brief; the result is a final prompt to copy, download as TXT, or open in Gemini."
       };
+  const faqStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: localized.faqs.map(([question, answer]) => ({
+      '@type': 'Question',
+      name: question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: answer,
+      },
+    })),
+  };
+  const howToStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: localized.answerTitle,
+    description: localized.answerBody,
+    step: localized.steps.map((step, index) => ({
+      '@type': 'HowToStep',
+      position: index + 1,
+      text: step,
+    })),
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-blue-50/40 to-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToStructuredData) }}
+      />
       <section className="relative px-4 pt-24 pb-16 sm:px-6 lg:px-8 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-50 via-transparent to-purple-50 opacity-60" />
         <div className="absolute top-20 left-12 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob" />
@@ -116,6 +171,28 @@ export default async function GeneratorPage({ params }: Props) {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="px-4 pb-12 sm:px-6 lg:px-8">
+        <div className="mx-auto grid max-w-5xl gap-5 rounded-3xl border border-blue-100 bg-white/85 p-6 shadow-sm md:grid-cols-[1.2fr,0.8fr] md:p-8">
+          <div>
+            <Badge variant="outline" className="mb-3 border-blue-200 bg-blue-50 text-blue-700">
+              {locale === "pt-BR" ? "Resposta direta" : "Answer first"}
+            </Badge>
+            <h2 className="text-2xl font-bold text-gray-900">{localized.answerTitle}</h2>
+            <p className="mt-3 text-base leading-relaxed text-gray-600">{localized.answerBody}</p>
+          </div>
+          <ol className="space-y-3 text-sm text-gray-700">
+            {localized.steps.map((step, index) => (
+              <li key={step} className="flex gap-3 rounded-2xl bg-blue-50/70 p-3">
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-blue-600 text-xs font-bold text-white">
+                  {index + 1}
+                </span>
+                <span>{step}</span>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 

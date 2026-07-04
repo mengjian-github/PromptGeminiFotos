@@ -131,9 +131,46 @@ export default async function TemplatesPage({ params }: Props) {
     premium: premiumTemplates,
     categories
   };
+  const isPortuguese = locale === 'pt-BR';
+  const templateItemListStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: isPortuguese ? 'Templates de prompt Gemini por intenção' : 'Gemini prompt templates by intent',
+    itemListElement: promptTemplates.slice(0, 24).map((template, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: template.name,
+      description: template.description,
+      url: buildLocalePath(locale as Locale, `/generator?template=${encodeURIComponent(template.id)}`, { absolute: true }),
+    })),
+  };
+  const intentClusters = [
+    {
+      title: isPortuguese ? 'Fotos profissionais e LinkedIn' : 'Professional and LinkedIn photos',
+      body: isPortuguese
+        ? 'Comece por headshot, CV e retrato corporativo quando a busca contém foto profissional Gemini, LinkedIn ou currículo.'
+        : 'Start with headshot, CV, and corporate portrait templates when the query mentions Gemini professional photo, LinkedIn, or resume.',
+    },
+    {
+      title: isPortuguese ? 'Ensaios pessoais e casal' : 'Personal and couple sessions',
+      body: isPortuguese
+        ? 'Use os filtros de feminino, masculino, casal, família e aniversário para transformar intenção ampla em prompt com pose, lente e luz.'
+        : 'Use female, male, couple, family, and birthday filters to turn broad intent into a prompt with pose, lens, and lighting.',
+    },
+    {
+      title: isPortuguese ? 'Fluxo de cópia para Gemini' : 'Copy workflow for Gemini',
+      body: isPortuguese
+        ? 'Cada template leva ao compositor com categoria e estilo prontos; copie o texto final ou abra o Gemini explicitamente.'
+        : 'Each template opens the composer with category and style ready; copy the final text or explicitly open Gemini.',
+    },
+  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-blue-50/20 to-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(templateItemListStructuredData) }}
+      />
       <section className="relative px-4 pt-24 pb-16 sm:px-6 lg:px-8 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-50/50 via-purple-50/30 to-pink-50/50 opacity-60" />
         <div className="absolute top-20 left-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob" />
@@ -185,6 +222,15 @@ export default async function TemplatesPage({ params }: Props) {
                 </section>
               );
             })}
+          </div>
+
+          <div className="mx-auto mb-8 grid max-w-5xl grid-cols-1 gap-4 text-left md:grid-cols-3">
+            {intentClusters.map((cluster) => (
+              <section key={cluster.title} className="rounded-2xl border border-blue-100 bg-blue-50/60 p-5">
+                <h2 className="text-base font-semibold text-gray-900">{cluster.title}</h2>
+                <p className="mt-2 text-sm leading-relaxed text-gray-600">{cluster.body}</p>
+              </section>
+            ))}
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

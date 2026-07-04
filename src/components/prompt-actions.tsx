@@ -43,6 +43,25 @@ export function PromptActions({ prompt, locale, source, scenario, templateId, ge
     });
   };
 
+  const persistPromptForGenerator = () => {
+    trackEvent('template_select', analyticsProps);
+
+    try {
+      window.sessionStorage.setItem(
+        'promptgeminifotos.generatorPrefill',
+        JSON.stringify({
+          prompt,
+          source,
+          scenario,
+          templateId,
+          savedAt: new Date().toISOString(),
+        })
+      );
+    } catch {
+      // sessionStorage can be unavailable in privacy mode; the generator still opens normally.
+    }
+  };
+
   return (
     <div className="mt-3 grid gap-2 sm:grid-cols-3">
       <Button type="button" size="sm" className="bg-blue-600 text-white hover:bg-blue-700" onClick={copyPrompt}>
@@ -56,7 +75,7 @@ export function PromptActions({ prompt, locale, source, scenario, templateId, ge
         </a>
       </Button>
       <Button type="button" size="sm" variant="outline" asChild>
-        <Link href={generatorHref} onClick={() => trackEvent('template_select', analyticsProps)}>
+        <Link href={generatorHref} onClick={persistPromptForGenerator}>
           <WandSparkles className="mr-2 h-4 w-4" />
           {isPortuguese ? 'Usar no gerador' : 'Use in generator'}
         </Link>

@@ -13,6 +13,7 @@ type AnalyticsEvent =
   | 'tool_start'
   | 'tool_result'
   | 'pricing_cta_click'
+  | 'generator_prefill'
   | 'image_upload_start'
   | 'image_upload_success'
   | 'image_upload_error'

@@ -38,6 +38,12 @@ interface ImageGeneratorProps {
   userId?: string;
   userTier?: "free" | "pro";
   initialTemplateId?: string;
+  initialPrompt?: string;
+  initialPromptMeta?: {
+    source?: string;
+    scenario?: string;
+    templateId?: string;
+  };
 }
 
 const MAX_UPLOAD_SIZE = 5 * 1024 * 1024;
@@ -52,7 +58,7 @@ const PLACEHOLDER_KEYS = [
   ["[POSE]", "pose"]
 ] as const;
 
-export function ImageGenerator({ userId, userTier = "free", initialTemplateId }: ImageGeneratorProps) {
+export function ImageGenerator({ userId, userTier = "free", initialTemplateId, initialPrompt, initialPromptMeta }: ImageGeneratorProps) {
   const locale = useLocale();
   const t = useTranslations("generatorModule");
   const tTemplates = useTranslations("templatesPage.browser");
@@ -134,6 +140,20 @@ export function ImageGenerator({ userId, userTier = "free", initialTemplateId }:
 
     handleTemplateSelect(template);
   }, [initialTemplateId, handleTemplateSelect]);
+
+  useEffect(() => {
+    if (!initialPrompt?.trim()) {
+      return;
+    }
+
+    setPrompt(initialPrompt);
+    trackEvent('generator_prefill', {
+      source: initialPromptMeta?.source ?? 'unknown',
+      scenario: initialPromptMeta?.scenario,
+      template_id: initialPromptMeta?.templateId,
+      prompt_length: initialPrompt.length,
+    });
+  }, [initialPrompt, initialPromptMeta?.scenario, initialPromptMeta?.source, initialPromptMeta?.templateId]);
 
   const handleImageUpload = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
