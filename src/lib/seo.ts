@@ -205,6 +205,7 @@ export function generateSitemapUrls(): MetadataRoute.Sitemap {
   const locales = ['pt-BR', 'en'];
   const pages = [
     '',
+    '/generator',
     '/templates',
     '/prompts',
     '/tutorial',

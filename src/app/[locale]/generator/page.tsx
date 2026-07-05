@@ -33,8 +33,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ];
 
   const title = locale === "pt-BR"
-    ? "Prompt Gemini Fotos - Compositor de Prompts para Fotos"
-    : "Prompt Gemini Photos - Copy-Ready Prompt Composer";
+    ? "Compositor Prompt Gemini Fotos"
+    : "Gemini Photo Prompt Composer";
 
   const description = locale === "pt-BR"
     ? "Ajuste prompts otimizados para Gemini, copie o texto final e use com sua foto no Gemini com controle claro de identidade e luz."

@@ -457,7 +457,7 @@ Instrucoes finais: manter textura de pele realista, responder em [idioma], evita
         answer: 'Sim. Adapte o idioma na instrucao final e traduza termos-chave para manter consistencia. Aproveite a versao "Headshot internacional" para ranquear tambem para gemini prompt for professional headshot e gemini photoshoot.'
       }
     ],
-    metaTitle: 'Prompts Gemini para ensaio fotografico | Guia atualizado 2025',
+    metaTitle: 'Prompts Gemini Ensaio Fotográfico',
     metaDescription: 'Colecao completa de prompts Gemini para ensaio feminino, casal, aniversario, familia e corporativo com exemplos prontos. Atualizado em 3 de outubro de 2025.',
     keywords: [
       'prompt gemini ensaio fotografico',
@@ -620,7 +620,7 @@ Final notes: keep skin realistic, reply in [language], avoid [elements].`
         answer: 'Yes. Use the universal template, swap the language instruction, and keep the same structure for Search Console alignment.'
       }
     ],
-    metaTitle: 'Gemini photoshoot prompts by scenario',
+    metaTitle: 'Gemini Photoshoot Prompt Guide',
     metaDescription: 'Ready-to-use Gemini AI prompts for female, couple, birthday, family, and corporate sessions. Updated October 3, 2025.',
     keywords: [
       'gemini photoshoot',

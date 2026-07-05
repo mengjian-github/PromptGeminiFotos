@@ -46,8 +46,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   ];
 
   const title = locale === 'pt-BR'
-    ? 'Prompt Gemini Fotos para Copiar - LinkedIn, Feminino e Casal'
-    : 'Copy Gemini Photo Prompts - LinkedIn, Portraits and Couples';
+    ? 'Prompt Gemini Fotos para Copiar'
+    : 'Copy Gemini Photo Prompts';
 
   const description = locale === 'pt-BR'
     ? 'Copie prompts Gemini para LinkedIn, CV, ensaio feminino e casal. Use no Gemini ou teste templates no gerador com privacidade clara.'
