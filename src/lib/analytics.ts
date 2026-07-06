@@ -1,5 +1,6 @@
 type AnalyticsEvent =
   | 'page_view'
+  | 'conversion_goal'
   | 'generator_start'
   | 'generate_complete'
   | 'generate_error'
@@ -57,6 +58,8 @@ function dispatchAnalyticsEvent(event: AnalyticsEvent, params: EventParams): voi
 const EVENT_ALIASES: Partial<Record<AnalyticsEvent, AnalyticsEvent[]>> = {
   generator_start: ['tool_start'],
   generate_complete: ['tool_result'],
+  prompt_copy: ['conversion_goal'],
+  gemini_outbound_click: ['conversion_goal'],
 };
 
 /**

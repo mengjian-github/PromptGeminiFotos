@@ -66,6 +66,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function HomePage({ params }: Props) {
   const { locale } = await params;
   const currentLocale = locale as Locale;
+  const isPortuguese = currentLocale === 'pt-BR';
 
   // Enable static rendering
   setRequestLocale(currentLocale);
@@ -75,9 +76,78 @@ export default async function HomePage({ params }: Props) {
   const userTier: "free" | "pro" = "free";
 
   const promptsHref = buildLocalePath(currentLocale, '/prompts');
+  const generatorHref = buildLocalePath(currentLocale, '/generator');
+  const templatesHref = buildLocalePath(currentLocale, '/templates');
+  const tutorialHref = buildLocalePath(currentLocale, '/tutorial');
+  const pageFaqs = isPortuguese
+    ? [
+        {
+          question: 'Qual prompt Gemini usar para ensaio fotográfico feminino?',
+          answer: 'Comece por um prompt que preserve identidade, defina luz softbox ou golden hour, lente 85mm, pose e finalidade da foto. O guia de prompts traz exemplos prontos para LinkedIn, editorial e redes sociais.',
+        },
+        {
+          question: 'O Prompt Gemini Fotos gera a imagem dentro do site?',
+          answer: 'Não. O fluxo público compõe e organiza texto de prompt. Você copia o resultado e abre o Gemini explicitamente para gerar a imagem com sua própria conta.',
+        },
+        {
+          question: 'Como medir se o prompt funcionou?',
+          answer: 'Compare identidade preservada, naturalidade da pele, luz, enquadramento e aderência ao objetivo. Se a primeira tentativa ficar genérica, ajuste cenário, lente e restrições no compositor.',
+        },
+      ]
+    : [
+        {
+          question: 'Which Gemini prompt should I use for a female photoshoot?',
+          answer: 'Start with an identity-preserving prompt that specifies softbox or golden-hour light, 85mm lens, pose, and the final use case. The prompt guide includes copy-ready LinkedIn, editorial, and social examples.',
+        },
+        {
+          question: 'Does Prompt Gemini Photos generate the image on this site?',
+          answer: 'No. The public workflow composes prompt text. You copy the result and explicitly open Gemini to generate the image with your own account.',
+        },
+        {
+          question: 'How do I know whether the prompt worked?',
+          answer: 'Check identity preservation, natural skin, lighting, framing, and fit for the final use case. If the first attempt is generic, tune scene, lens, and constraints in the composer.',
+        },
+      ];
+  const homepageStructuredData = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: pageFaqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: faq.answer,
+        },
+      })),
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'HowTo',
+      name: isPortuguese ? 'Como usar Prompt Gemini Fotos' : 'How to use Prompt Gemini Photos',
+      description: isPortuguese
+        ? 'Escolha um cenário, copie ou ajuste o prompt, revise a identidade e abra o Gemini apenas quando quiser gerar a imagem.'
+        : 'Choose a scenario, copy or tune the prompt, review identity constraints, and open Gemini only when you want to generate the image.',
+      step: (isPortuguese
+        ? ['Escolha LinkedIn/CV, ensaio feminino, casal ou retrato profissional.', 'Copie um prompt pronto ou ajuste no compositor com foto de referência local.', 'Abra o Gemini explicitamente, cole o prompt e compare o resultado com a intenção original.']
+        : ['Choose LinkedIn/CV, female portrait, couple, or professional headshot.', 'Copy a ready prompt or tune it in the composer with a local reference photo.', 'Open Gemini explicitly, paste the prompt, and compare the result with the original intent.']
+      ).map((text, index) => ({
+        '@type': 'HowToStep',
+        position: index + 1,
+        text,
+      })),
+    },
+  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-gray-50/30 to-white">
+      {homepageStructuredData.map((schema, index) => (
+        <script
+          key={index}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
       {/* Hero Section */}
       <section className="relative px-4 pt-16 pb-14 sm:px-6 lg:px-8 overflow-hidden">
         {/* Background decorations */}
@@ -186,6 +256,78 @@ export default async function HomePage({ params }: Props) {
                 <p className="mt-2 text-sm leading-relaxed text-gray-600">{answer}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="search-intent-map" className="px-4 py-16 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-blue-50/40">
+        <div className="mx-auto max-w-6xl">
+          <Badge variant="outline" className="mb-4 border-purple-200 bg-purple-50 text-purple-700">
+            {isPortuguese ? 'Mapa de intenção' : 'Search intent map'}
+          </Badge>
+          <div className="grid gap-8 lg:grid-cols-[0.9fr,1.1fr] lg:items-start">
+            <div>
+              <h2 className="text-3xl font-bold tracking-tight text-gray-900">
+                {isPortuguese
+                  ? 'Do termo de busca ao prompt pronto para o Gemini'
+                  : 'From search query to a copy-ready Gemini prompt'}
+              </h2>
+              <p className="mt-4 text-base leading-relaxed text-gray-600">
+                {isPortuguese
+                  ? 'As buscas brasileiras ainda são pequenas, mas já mostram intenção clara: foto profissional, ensaio feminino, casal e aniversário. Esta seção liga cada consulta ao próximo passo certo para reduzir quick backs e aumentar cópias de prompt.'
+                  : 'Early search data is small, but intent is clear: professional photos, female portraits, couples, and birthday sessions. This section maps each query to the right next step to reduce quick backs and increase prompt copies.'}
+              </p>
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <Link
+                  href={promptsHref}
+                  className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-blue-700"
+                >
+                  {isPortuguese ? 'Ler guia de prompts' : 'Read prompt guide'}
+                </Link>
+                <Link
+                  href={templatesHref}
+                  className="inline-flex items-center justify-center rounded-lg border border-blue-200 bg-white px-5 py-3 text-sm font-semibold text-blue-700 hover:bg-blue-50"
+                >
+                  {isPortuguese ? 'Explorar templates' : 'Explore templates'}
+                </Link>
+              </div>
+            </div>
+            <div className="grid gap-4 md:grid-cols-2">
+              {[
+                {
+                  query: isPortuguese ? 'prompt gemini ensaio fotográfico feminino' : 'Gemini female photoshoot prompt',
+                  action: isPortuguese ? 'Copiar exemplo com identidade preservada' : 'Copy an identity-preserving example',
+                  href: `${promptsHref}#ensaio-feminino`,
+                },
+                {
+                  query: isPortuguese ? 'prompt gemini foto profissional' : 'Gemini professional headshot prompt',
+                  action: isPortuguese ? 'Abrir compositor para LinkedIn/CV' : 'Open composer for LinkedIn/CV',
+                  href: `${generatorHref}?template=professional-linkedin-1`,
+                },
+                {
+                  query: isPortuguese ? 'prompt gemini ensaio fotográfico casal' : 'Gemini couple photoshoot prompt',
+                  action: isPortuguese ? 'Ver roteiro de casal e pre-wedding' : 'View couple and pre-wedding workflow',
+                  href: `${promptsHref}#ensaio-casal`,
+                },
+                {
+                  query: isPortuguese ? 'como usar prompts no Gemini' : 'how to use prompts in Gemini',
+                  action: isPortuguese ? 'Seguir tutorial passo a passo' : 'Follow the step-by-step tutorial',
+                  href: tutorialHref,
+                },
+              ].map((item) => (
+                <Link
+                  key={item.query}
+                  href={item.href}
+                  className="group rounded-2xl border border-blue-100 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-blue-300 hover:shadow-md"
+                >
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-blue-600">{item.query}</p>
+                  <p className="mt-3 text-base font-semibold text-gray-950 group-hover:text-blue-700">{item.action}</p>
+                  <p className="mt-2 text-sm text-gray-500">
+                    {isPortuguese ? 'Abrir caminho recomendado →' : 'Open recommended path →'}
+                  </p>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </section>
