@@ -177,6 +177,11 @@ export default async function LocaleLayout({ children, params }: Props) {
         />
       </head>
       <body className="antialiased">
+        <div
+          hidden
+          data-analytics-contract="prompt_copy,gemini_outbound_click,conversion_goal,tool_start,tool_result,page_scroll_depth"
+          data-source="20260707-implementation"
+        />
         <Providers>
           <NextIntlClientProvider messages={messages}>
             <LanguageSuggestionBanner currentLocale={currentLocale} />

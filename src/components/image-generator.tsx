@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -23,6 +24,8 @@ import {
   type TemplateStyle
 } from "@/lib/templates";
 import { trackEvent } from "@/lib/analytics";
+import { buildLocalePath } from "@/lib/locale-path";
+import type { Locale } from "@/i18n/config";
 import { Copy, Download, ExternalLink, FileText, Sparkles, Upload } from "lucide-react";
 
 interface GenerationResult {
@@ -60,6 +63,7 @@ const PLACEHOLDER_KEYS = [
 
 export function ImageGenerator({ userId, userTier = "free", initialTemplateId, initialPrompt, initialPromptMeta }: ImageGeneratorProps) {
   const locale = useLocale();
+  const currentLocale = locale as Locale;
   const t = useTranslations("generatorModule");
   const tTemplates = useTranslations("templatesPage.browser");
 
@@ -265,6 +269,33 @@ export function ImageGenerator({ userId, userTier = "free", initialTemplateId, i
   }, [category, style, uploadedImage]);
 
   const styleOptions = stylesByCategory.get(category) ?? [];
+
+  const nextStepLinks = useMemo(
+    () => [
+      {
+        href: buildLocalePath(currentLocale, "/prompts"),
+        label: currentLocale === "pt-BR" ? "Comparar prompts por cenário" : "Compare prompts by scenario",
+        description: currentLocale === "pt-BR"
+          ? "Volte ao guia e escolha feminino, casal, profissional ou aniversário."
+          : "Return to the guide and choose female, couple, professional, or birthday scenarios.",
+      },
+      {
+        href: buildLocalePath(currentLocale, "/templates"),
+        label: currentLocale === "pt-BR" ? "Abrir biblioteca de templates" : "Open the template library",
+        description: currentLocale === "pt-BR"
+          ? "Use filtros para encontrar mais variações prontas para copiar."
+          : "Use filters to find more copy-ready variations.",
+      },
+      {
+        href: buildLocalePath(currentLocale, "/tutorial"),
+        label: currentLocale === "pt-BR" ? "Ver tutorial de uso no Gemini" : "Read the Gemini workflow tutorial",
+        description: currentLocale === "pt-BR"
+          ? "Revise o passo a passo antes de colar o prompt com sua foto."
+          : "Review the workflow before pasting the prompt with your photo.",
+      },
+    ],
+    [currentLocale]
+  );
 
   const remainingLabel = useMemo(() => {
     if (!result) {
@@ -519,6 +550,19 @@ export function ImageGenerator({ userId, userTier = "free", initialTemplateId, i
                       </div>
                     </div>
                     <pre className="whitespace-pre-wrap text-sm text-gray-600">{result.prompt}</pre>
+                    <div className="mt-5 grid gap-3 md:grid-cols-3">
+                      {nextStepLinks.map((item) => (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          className="rounded-xl border border-blue-100 bg-white p-4 text-sm text-gray-600 transition hover:border-blue-300 hover:bg-blue-50"
+                          onClick={() => trackEvent('secondary_cta_click', { source: 'generator_result_next_step', destination: item.href })}
+                        >
+                          <span className="block font-semibold text-gray-950">{item.label}</span>
+                          <span className="mt-1 block leading-5">{item.description}</span>
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 ) : (
                   <Alert variant="destructive">

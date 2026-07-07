@@ -19,7 +19,8 @@ type AnalyticsEvent =
   | 'image_upload_success'
   | 'image_upload_error'
   | 'upgrade_cta_click'
-  | 'engagement';
+  | 'engagement'
+  | 'page_scroll_depth';
 
 interface EventParams {
   [key: string]: string | number | boolean | undefined;
