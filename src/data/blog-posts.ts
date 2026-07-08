@@ -395,6 +395,288 @@ export const BLOG_POSTS: BlogPost[] = [
       { label: 'Criar prompts de aniversario agora', href: '/generator?category=aniversario', variant: 'outline' },
     ],
   },
+
+  {
+    slug: 'prompt-gemini-foto-profissional-feminina',
+    locale: 'pt-BR',
+    title: 'Prompt Gemini para foto profissional feminina',
+    excerpt:
+      'Modelos prontos para transformar uma selfie em foto profissional feminina para LinkedIn, currículo e perfil comercial com identidade preservada.',
+    category: 'Headshot',
+    tags: ['prompt gemini foto profissional feminina', 'foto profissional gemini', 'linkedin feminino'],
+    author: 'Equipe Prompt Gemini Fotos',
+    authorRole: 'CRO e Conteudo',
+    readingTimeMinutes: 8,
+    publishedAt: '2026-07-08',
+    updatedAt: '2026-07-08',
+    heroEyebrow: 'Busca em crescimento',
+    heroDescription:
+      'A consulta por foto profissional feminina aparece cedo no Search Console. Este guia responde direto qual prompt usar, quando escolher fundo neutro e como preservar rosto, cabelo e tom de pele.',
+    seo: {
+      description:
+        'Copie prompts Gemini para foto profissional feminina, LinkedIn e currículo. Inclui fórmula de luz, lente, fundo neutro, identidade preservada e FAQ.',
+      keywords: [
+        'prompt gemini foto profissional feminina',
+        'prompt gemini para fotos profissionais femininas',
+        'foto profissional gemini',
+        'prompt gemini linkedin feminino',
+      ],
+    },
+    sections: [
+      {
+        id: 'resposta-rapida',
+        heading: 'Resposta rápida: use um headshot neutro com instrução de identidade',
+        paragraphs: [
+          'Para LinkedIn, currículo e página sobre, o prompt deve pedir fundo limpo, lente de retrato, luz suave e preservação explícita da identidade. Evite pedir transformação exagerada; isso aumenta risco de rosto artificial.',
+          'Comece com uma foto de referência nítida, escolha roupa de trabalho e defina onde a imagem será usada. O Gemini tende a responder melhor quando a finalidade vem antes do estilo.',
+        ],
+        bullets: [
+          'Uso final: LinkedIn, CV, perfil de consultora ou página institucional.',
+          'Luz: softbox frontal ou janela difusa, sem sombras duras no rosto.',
+          'Fundo: cinza claro, branco quente ou escritório desfocado.',
+          'Restrição: preservar identidade, tom de pele e textura natural do cabelo.',
+        ],
+      },
+      {
+        id: 'prompts',
+        heading: 'Prompts prontos para copiar',
+        paragraphs: [
+          'Use os exemplos abaixo no compositor ou copie direto para o Gemini. Troque profissão, roupa e fundo sem alterar a estrutura principal.',
+        ],
+        promptExamples: [
+          {
+            title: 'LinkedIn executivo feminino',
+            description: 'Boa opção para busca por prompt Gemini foto profissional feminina.',
+            prompt:
+              'Objetivo: criar foto profissional feminina para LinkedIn mantendo identidade da pessoa da foto de referência.\nComposição: retrato meio corpo, olhar confiante para a câmera, blazer azul-marinho, postura natural.\nIluminação: softbox frontal suave com preenchimento lateral leve.\nFundo: cinza claro limpo, profundidade de campo discreta.\nParâmetros: câmera full frame, lente 85mm, f/4, ISO 160.\nInstruções finais: preservar rosto, tom de pele e textura realista do cabelo; evitar pele plástica e sorriso artificial.',
+          },
+          {
+            title: 'Currículo e perfil corporativo',
+            description: 'Mais sóbrio para CV, assinatura de e-mail e página de equipe.',
+            prompt:
+              'Objetivo: foto profissional feminina para currículo e perfil corporativo.\nComposição: enquadramento ombros para cima, camisa clara, expressão acessível.\nIluminação: luz de janela difusa, contraste baixo, sombras muito suaves.\nFundo: escritório moderno desfocado com tons neutros.\nEstilo: realista, elegante, sem filtro de beleza exagerado.\nInstruções finais: manter identidade e proporções do rosto, corrigir apenas ruído e iluminação.',
+          },
+        ],
+      },
+      {
+        id: 'erros-comuns',
+        heading: 'Erros que reduzem qualidade e conversão',
+        paragraphs: [
+          'Prompts muito genéricos geram fotos bonitas, mas pouco úteis. Para converter, o visitante precisa ver que o texto resolve um caso real: LinkedIn, CV, site pessoal ou perfil comercial.',
+        ],
+        bullets: [
+          'Não use “make me beautiful” como instrução principal; descreva objetivo e luz.',
+          'Não misture muitos fundos no mesmo prompt.',
+          'Não prometa que o site gera a imagem; o fluxo público prepara o prompt para abrir no Gemini.',
+        ],
+      },
+    ],
+    takeaways: [
+      'O melhor prompt começa por uso final, depois luz, lente, roupa e fundo.',
+      'A instrução de preservar identidade deve ficar no começo e no fim.',
+      'Para SEO, conecte esta página ao guia de prompts e ao gerador com template pré-selecionado.',
+    ],
+    faq: [
+      {
+        question: 'Qual prompt Gemini usar para foto profissional feminina?',
+        answer:
+          'Use um prompt com objetivo LinkedIn ou currículo, luz softbox, lente 85mm, fundo neutro e instrução explícita para preservar identidade, pele e cabelo naturais.',
+      },
+      {
+        question: 'O site gera a foto profissional automaticamente?',
+        answer:
+          'Não. O fluxo público compõe o prompt pronto para copiar. Você abre o Gemini quando quiser gerar a imagem com sua conta.',
+      },
+      {
+        question: 'Como evitar aparência artificial?',
+        answer:
+          'Inclua “textura natural de pele”, “sem pele plástica” e “preservar proporções do rosto”. Evite combinar maquiagem, cenário e roupa demais no mesmo teste.',
+      },
+    ],
+    ctas: [
+      { label: 'Abrir compositor para foto profissional', href: '/generator?template=professional-linkedin-1', variant: 'primary' },
+      { label: 'Ver guia completo de prompts', href: '/prompts#ensaio-profissional', variant: 'outline' },
+    ],
+  },
+  {
+    slug: 'prompt-gemini-fotos-familia',
+    locale: 'pt-BR',
+    title: 'Prompts Gemini para fotos de família e gestante',
+    excerpt:
+      'Guia prático para ensaios de família, gestante e newborn usando Gemini: poses naturais, luz acolhedora e prompts com segurança para crianças.',
+    category: 'Família',
+    tags: ['prompt gemini fotos familia', 'ensaio gestante IA', 'foto familia gemini'],
+    author: 'Equipe Prompt Gemini Fotos',
+    authorRole: 'Planejamento Visual',
+    readingTimeMinutes: 7,
+    publishedAt: '2026-07-08',
+    updatedAt: '2026-07-08',
+    heroEyebrow: 'Long-tail familiar',
+    heroDescription:
+      'Família e gestante são variações naturais de fotos Gemini. Esta página cria uma resposta indexável para buscas de ensaio familiar, com CTAs para copiar prompt e testar no compositor.',
+    seo: {
+      description:
+        'Prompts Gemini para fotos de família, gestante e newborn. Copie exemplos com poses naturais, luz de janela, cenário acolhedor e instruções de realismo.',
+      keywords: [
+        'prompt gemini fotos familia',
+        'prompt gemini fotos ensaio fotografico familia',
+        'ensaio gestante gemini',
+        'foto familia IA',
+      ],
+    },
+    sections: [
+      {
+        id: 'estrutura',
+        heading: 'Estrutura segura para prompts de família',
+        paragraphs: [
+          'O prompt deve priorizar contexto, vínculo e naturalidade. Descreva composição simples e evite comandos que alterem idade, corpo ou características sensíveis.',
+          'Para crianças e newborn, mantenha linguagem de retrato familiar, sem sensualização, sem exagero de edição e sem promessas de resultado perfeito.',
+        ],
+        bullets: [
+          'Defina número de pessoas e relação familiar.',
+          'Use luz de janela, golden hour ou sombra aberta.',
+          'Peça gestos naturais: abraço, colo, risada, caminhada.',
+          'Finalize com textura realista e proporções naturais.',
+        ],
+      },
+      {
+        id: 'exemplos',
+        heading: 'Exemplos para copiar',
+        paragraphs: [
+          'Estes prompts cobrem os casos que podem gerar novas impressões orgânicas: família no parque, gestante em casa e newborn lifestyle.',
+        ],
+        promptExamples: [
+          {
+            title: 'Família no parque',
+            description: 'Para buscas por prompt Gemini fotos família em ambiente externo.',
+            prompt:
+              'Contexto: família de quatro pessoas em parque verde durante golden hour.\nComposição: pais sentados em manta clara, crianças próximas sorrindo de forma natural.\nIluminação: luz lateral quente, sombras suaves, fundo com árvores desfocadas.\nParâmetros: câmera full frame, 35mm f/2.8, ISO 320.\nEstilo: lifestyle documental, cores acolhedoras.\nInstruções finais: preservar proporções naturais, textura de roupas e expressões espontâneas.',
+          },
+          {
+            title: 'Gestante em casa',
+            description: 'Boa base para ensaio gestante Gemini com luz de janela.',
+            prompt:
+              'Contexto: ensaio gestante em quarto claro com decoração boho.\nComposição: gestante de perfil tocando a barriga, vestido creme fluido, flores secas ao fundo.\nIluminação: janela lateral difusa com cortina translúcida.\nParâmetros: câmera mirrorless, 50mm f/2, ISO 250.\nEstilo: fine art suave, tons pastel.\nInstruções finais: manter naturalidade, textura do tecido e expressão serena.',
+          },
+        ],
+      },
+    ],
+    takeaways: [
+      'Família exige prompt mais claro sobre vínculo, segurança e naturalidade.',
+      'Gestante funciona melhor com luz suave, tons claros e poucas props.',
+      'Esta página deve alimentar links internos para /prompts#ensaio-familia e /generator.',
+    ],
+    faq: [
+      {
+        question: 'Como escrever prompt Gemini para fotos de família?',
+        answer:
+          'Informe quem aparece, onde estão, qual gesto natural deve acontecer, como é a luz e peça realismo. Evite alterar idade, corpo ou características sensíveis.',
+      },
+      {
+        question: 'Posso usar prompt de família para gestante?',
+        answer:
+          'Sim, mas adapte composição e luz. Para gestante, descreva perfil, tecido, ambiente íntimo e expressão serena em vez de muitas pessoas no quadro.',
+      },
+      {
+        question: 'Qual CTA usar depois do prompt?',
+        answer:
+          'O CTA principal deve levar ao compositor para ajustar luz, cenário e finalidade antes de abrir o Gemini explicitamente.',
+      },
+    ],
+    ctas: [
+      { label: 'Criar prompt de família no compositor', href: '/generator?category=family', variant: 'primary' },
+      { label: 'Comparar todos os cenários', href: '/prompts#ensaio-familia', variant: 'outline' },
+    ],
+  },
+  {
+    slug: 'prompt-gemini-linkedin-cv',
+    locale: 'pt-BR',
+    title: 'Prompt Gemini para LinkedIn e currículo',
+    excerpt:
+      'Um fluxo curto para criar foto de perfil profissional com Gemini: escolha roupa, fundo, iluminação e versão para LinkedIn, CV ou página sobre.',
+    category: 'Profissional',
+    tags: ['prompt gemini linkedin', 'foto para curriculo gemini', 'headshot gemini'],
+    author: 'Equipe Prompt Gemini Fotos',
+    authorRole: 'Produto e Conversão',
+    readingTimeMinutes: 6,
+    publishedAt: '2026-07-08',
+    updatedAt: '2026-07-08',
+    heroEyebrow: 'CRO profissional',
+    heroDescription:
+      'Visitantes que chegam por foto profissional precisam de caminho direto: copiar prompt, ajustar contexto e abrir Gemini. Este guia reduz escolhas e cria uma rota clara até o gerador.',
+    seo: {
+      description:
+        'Prompt Gemini para LinkedIn, currículo e headshot profissional. Copie modelos com fundo neutro, luz suave, roupa adequada e preservação de identidade.',
+      keywords: [
+        'prompt gemini linkedin',
+        'prompt gemini curriculo',
+        'foto profissional gemini linkedin',
+        'headshot gemini prompt',
+      ],
+    },
+    sections: [
+      {
+        id: 'decisao',
+        heading: 'Escolha o uso antes do estilo',
+        paragraphs: [
+          'LinkedIn, currículo e site pessoal pedem variações diferentes. O LinkedIn aceita um pouco mais de personalidade; currículo pede neutralidade; site pessoal pode usar ambiente de trabalho.',
+          'Definir isso no começo do prompt evita resultado bonito, mas desalinhado ao canal onde a foto será usada.',
+        ],
+        bullets: [
+          'LinkedIn: sorriso natural, fundo limpo, roupa profissional.',
+          'Currículo: enquadramento mais formal e sem props.',
+          'Página sobre: ambiente real com profundidade de campo.',
+        ],
+      },
+      {
+        id: 'prompts',
+        heading: 'Três variações prontas',
+        paragraphs: [
+          'Copie a opção mais próxima do seu objetivo e ajuste apenas profissão, roupa e fundo no compositor.',
+        ],
+        promptExamples: [
+          {
+            title: 'LinkedIn tech founder',
+            description: 'Para perfil profissional com mais personalidade.',
+            prompt:
+              'Objetivo: headshot para LinkedIn de fundador de tecnologia.\nComposição: ombros para cima, sorriso confiante, camiseta preta com blazer casual.\nIluminação: softbox a 45 graus, catch light visível nos olhos.\nFundo: escritório moderno desfocado, tons neutros.\nParâmetros: câmera full frame, lente 85mm, f/3.5.\nInstruções finais: preservar identidade da foto de referência, pele natural, sem aparência de avatar.',
+          },
+          {
+            title: 'Currículo formal',
+            description: 'Para CV e candidatura tradicional.',
+            prompt:
+              'Objetivo: foto formal para currículo.\nComposição: retrato centralizado, camisa clara, postura reta, expressão acessível.\nIluminação: luz frontal suave, fundo branco quente.\nParâmetros: lente 70mm, f/4, nitidez alta nos olhos.\nEstilo: corporativo discreto.\nInstruções finais: manter proporções reais, corrigir apenas iluminação e ruído.',
+          },
+        ],
+      },
+    ],
+    takeaways: [
+      'LinkedIn pode ter contexto; currículo deve ser mais neutro.',
+      'O prompt precisa repetir preservação de identidade e textura natural.',
+      'O próximo passo ideal é abrir o gerador com template profissional pré-selecionado.',
+    ],
+    faq: [
+      {
+        question: 'Qual prompt Gemini usar para LinkedIn?',
+        answer:
+          'Use um prompt de headshot com objetivo LinkedIn, fundo neutro ou escritório desfocado, luz softbox, lente de retrato e preservação de identidade.',
+      },
+      {
+        question: 'Foto de currículo deve ser diferente da foto de LinkedIn?',
+        answer:
+          'Sim. Currículo normalmente pede composição mais formal, fundo mais limpo e menos elementos de personalidade. LinkedIn aceita ambiente profissional desfocado.',
+      },
+      {
+        question: 'Como medir se o prompt ficou bom?',
+        answer:
+          'Verifique se a pessoa ainda parece ela mesma, se o fundo não distrai, se os olhos estão nítidos e se a roupa combina com o canal de uso.',
+      },
+    ],
+    ctas: [
+      { label: 'Abrir gerador para LinkedIn', href: '/generator?template=professional-linkedin-1', variant: 'primary' },
+      { label: 'Ver templates profissionais', href: '/templates?category=professional', variant: 'outline' },
+    ],
+  },
 ];
 
 export function getPostsByLocale(locale: Locale): BlogPost[] {
@@ -408,3 +690,4 @@ export function getPostBySlug(locale: Locale, slug: string): BlogPost | undefine
 export function getAllBlogSlugs(): { locale: Locale; slug: string }[] {
   return BLOG_POSTS.map((post) => ({ locale: post.locale, slug: post.slug }));
 }
+

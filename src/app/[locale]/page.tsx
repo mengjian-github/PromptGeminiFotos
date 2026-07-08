@@ -302,12 +302,22 @@ export default async function HomePage({ params }: Props) {
                 {
                   query: isPortuguese ? 'prompt gemini foto profissional' : 'Gemini professional headshot prompt',
                   action: isPortuguese ? 'Abrir compositor para LinkedIn/CV' : 'Open composer for LinkedIn/CV',
-                  href: `${generatorHref}?template=professional-linkedin-1`,
+                  href: isPortuguese ? `${buildLocalePath(currentLocale, '/blog/prompt-gemini-foto-profissional-feminina')}` : `${generatorHref}?template=professional-linkedin-1`,
+                },
+                {
+                  query: isPortuguese ? 'prompt gemini linkedin currículo' : 'Gemini LinkedIn CV prompt',
+                  action: isPortuguese ? 'Ver fluxo LinkedIn/CV com prompt pronto' : 'Use the professional prompt workflow',
+                  href: isPortuguese ? `${buildLocalePath(currentLocale, '/blog/prompt-gemini-linkedin-cv')}` : `${generatorHref}?template=professional-linkedin-1`,
                 },
                 {
                   query: isPortuguese ? 'prompt gemini ensaio fotográfico casal' : 'Gemini couple photoshoot prompt',
                   action: isPortuguese ? 'Ver roteiro de casal e pre-wedding' : 'View couple and pre-wedding workflow',
                   href: `${promptsHref}#ensaio-casal`,
+                },
+                {
+                  query: isPortuguese ? 'prompt gemini fotos família' : 'Gemini family photo prompt',
+                  action: isPortuguese ? 'Abrir guia família e gestante' : 'Open the family workflow',
+                  href: isPortuguese ? `${buildLocalePath(currentLocale, '/blog/prompt-gemini-fotos-familia')}` : `${promptsHref}#ensaio-familia`,
                 },
                 {
                   query: isPortuguese ? 'como usar prompts no Gemini' : 'how to use prompts in Gemini',
