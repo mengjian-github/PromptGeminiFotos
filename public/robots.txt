@@ -5,10 +5,11 @@ Disallow: /
 User-agent: ChatGPT-User
 Disallow: /
 User-agent: Google-Extended
-Disallow: /
+Allow: /llms.txt
 
 User-agent: *
 Allow: /
+Allow: /llms.txt
 Allow: /_next/static/
 Disallow: /api/
 

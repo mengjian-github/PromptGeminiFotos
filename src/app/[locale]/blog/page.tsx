@@ -7,6 +7,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { buildLocalePath } from '@/lib/locale-path';
 import type { Locale } from '@/i18n/config';
 import { getPostsByLocale } from '@/data/blog-posts';
+import { generateBreadcrumbStructuredData } from '@/lib/seo';
 
 interface Props {
   params: Promise<{ locale: string }>;
@@ -42,6 +43,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function BlogPage({ params }: Props) {
   const { locale } = await params;
   const currentLocale = locale as Locale;
+  const isPortuguese = currentLocale === 'pt-BR';
   setRequestLocale(currentLocale);
 
   const [t, tList] = await Promise.all([
@@ -58,6 +60,17 @@ export default async function BlogPage({ params }: Props) {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-blue-50/30 to-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            generateBreadcrumbStructuredData([
+              { name: isPortuguese ? 'Início' : 'Home', url: buildLocalePath(currentLocale, '/', { absolute: true }) },
+              { name: isPortuguese ? 'Blog' : 'Blog', url: buildLocalePath(currentLocale, '/blog', { absolute: true }) },
+            ])
+          ),
+        }}
+      />
       <section className="relative px-4 pt-24 pb-16 sm:px-6 lg:px-8 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-50/80 via-purple-50/40 to-pink-50/40" />
         <div className="relative mx-auto max-w-5xl text-center">

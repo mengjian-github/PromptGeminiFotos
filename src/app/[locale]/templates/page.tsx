@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Sparkles, Crown } from 'lucide-react';
 import { TemplatesBrowser } from '@/components/templates-browser';
 import { promptTemplates, totalTemplateCount } from '@/lib/templates';
+import { generateBreadcrumbStructuredData } from '@/lib/seo';
 import { buildLocalePath } from '@/lib/locale-path';
 import type { Locale } from '@/i18n/config';
 
@@ -196,6 +197,10 @@ export default async function TemplatesPage({ params }: Props) {
       },
     })),
   };
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData([
+    { name: isPortuguese ? 'Início' : 'Home', url: buildLocalePath(locale as Locale, '/', { absolute: true }) },
+    { name: isPortuguese ? 'Templates' : 'Templates', url: buildLocalePath(locale as Locale, '/templates', { absolute: true }) },
+  ]);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-blue-50/20 to-white">
@@ -206,6 +211,10 @@ export default async function TemplatesPage({ params }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}
       />
       <section className="relative px-4 pt-24 pb-16 sm:px-6 lg:px-8 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-50/50 via-purple-50/30 to-pink-50/50 opacity-60" />

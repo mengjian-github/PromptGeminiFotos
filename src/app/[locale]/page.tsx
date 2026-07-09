@@ -7,6 +7,7 @@ import { EnhancedCTA } from '@/components/enhanced-cta';
 import { EnhancedFeatures } from '@/components/enhanced-features';
 import { PromptCopyCards } from '@/components/prompt-copy-cards';
 import { Metadata } from 'next';
+import { generateBreadcrumbStructuredData } from '@/lib/seo';
 import type { Locale } from '@/i18n/config';
 
 type Props = {
@@ -107,39 +108,42 @@ export default async function HomePage({ params }: Props) {
           question: 'How do I know whether the prompt worked?',
           answer: 'Check identity preservation, natural skin, lighting, framing, and fit for the final use case. If the first attempt is generic, tune scene, lens, and constraints in the composer.',
         },
-      ];
-  const homepageStructuredData = [
-    {
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      mainEntity: pageFaqs.map((faq) => ({
-        '@type': 'Question',
-        name: faq.question,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: faq.answer,
+        ];
+        const homepageStructuredData = [
+        {
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: pageFaqs.map((faq) => ({
+            '@type': 'Question',
+            name: faq.question,
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: faq.answer,
+            },
+          })),
         },
-      })),
-    },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'HowTo',
-      name: isPortuguese ? 'Como usar Prompt Gemini Fotos' : 'How to use Prompt Gemini Photos',
-      description: isPortuguese
-        ? 'Escolha um cenário, copie ou ajuste o prompt, revise a identidade e abra o Gemini apenas quando quiser gerar a imagem.'
-        : 'Choose a scenario, copy or tune the prompt, review identity constraints, and open Gemini only when you want to generate the image.',
-      step: (isPortuguese
-        ? ['Escolha LinkedIn/CV, ensaio feminino, casal ou retrato profissional.', 'Copie um prompt pronto ou ajuste no compositor com foto de referência local.', 'Abra o Gemini explicitamente, cole o prompt e compare o resultado com a intenção original.']
-        : ['Choose LinkedIn/CV, female portrait, couple, or professional headshot.', 'Copy a ready prompt or tune it in the composer with a local reference photo.', 'Open Gemini explicitly, paste the prompt, and compare the result with the original intent.']
-      ).map((text, index) => ({
-        '@type': 'HowToStep',
-        position: index + 1,
-        text,
-      })),
-    },
-  ];
+        {
+          '@context': 'https://schema.org',
+          '@type': 'HowTo',
+          name: isPortuguese ? 'Como usar Prompt Gemini Fotos' : 'How to use Prompt Gemini Photos',
+          description: isPortuguese
+            ? 'Escolha um cenário, copie ou ajuste o prompt, revise a identidade e abra o Gemini apenas quando quiser gerar a imagem.'
+            : 'Choose a scenario, copy or tune the prompt, review identity constraints, and open Gemini only when you want to generate the image.',
+          step: (isPortuguese
+            ? ['Escolha LinkedIn/CV, ensaio feminino, casal ou retrato profissional.', 'Copie um prompt pronto ou ajuste no compositor com foto de referência local.', 'Abra o Gemini explicitamente, cole o prompt e compare o resultado com a intenção original.']
+            : ['Choose LinkedIn/CV, female portrait, couple, or professional headshot.', 'Copy a ready prompt or tune it in the composer with a local reference photo.', 'Open Gemini explicitly, paste the prompt, and compare the result with the original intent.']
+          ).map((text, index) => ({
+            '@type': 'HowToStep',
+            position: index + 1,
+            text,
+          })),
+        },
+        generateBreadcrumbStructuredData([
+          { name: isPortuguese ? 'Início' : 'Home', url: buildLocalePath(currentLocale, '/', { absolute: true }) },
+        ]),
+        ];
 
-  return (
+        return (
     <div className="min-h-screen bg-gradient-to-b from-white via-gray-50/30 to-white">
       {homepageStructuredData.map((schema, index) => (
         <script

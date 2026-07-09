@@ -1,5 +1,6 @@
 ﻿import { Suspense } from "react";
 import { buildLocalePath } from "@/lib/locale-path";
+import { generateBreadcrumbStructuredData } from "@/lib/seo";
 import { setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import { Badge } from "@/components/ui/badge";
@@ -53,6 +54,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function GeneratorPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const currentLocale = locale as Locale;
 
   const userTier: "free" | "pro" = "free";
 
@@ -130,6 +132,10 @@ export default async function GeneratorPage({ params }: Props) {
       text: step,
     })),
   };
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData([
+    { name: locale === 'pt-BR' ? 'Início' : 'Home', url: buildLocalePath(currentLocale, '/', { absolute: true }) },
+    { name: locale === 'pt-BR' ? 'Gerador' : 'Generator', url: buildLocalePath(currentLocale, '/generator', { absolute: true }) },
+  ]);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-blue-50/40 to-white">
@@ -140,6 +146,10 @@ export default async function GeneratorPage({ params }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(howToStructuredData) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}
       />
       <section className="relative px-4 pt-24 pb-16 sm:px-6 lg:px-8 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-50 via-transparent to-purple-50 opacity-60" />

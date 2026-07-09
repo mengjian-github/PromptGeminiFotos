@@ -1,7 +1,7 @@
 ﻿'use client';
 
 import { useState, useEffect } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Sparkles, Play } from 'lucide-react';
@@ -19,6 +19,7 @@ export function EnhancedCTA({
   freeGenerations = 2
 }: EnhancedCTAProps) {
   const t = useTranslations('cta');
+  const locale = useLocale();
   const [isHovering, setIsHovering] = useState(false);
   const [sparkleEffect, setSparkleEffect] = useState(false);
 
@@ -50,7 +51,7 @@ export function EnhancedCTA({
           }`}
         >
           <Sparkles className="w-4 h-4 mr-1" />
-          {freeGenerations} {t('freeGenerations')} - {t('noCardRequired')}
+          {locale === 'pt-BR' ? 'Prompts prontos para copiar — sem checkout' : 'Copy-ready prompts — no checkout'}
         </Badge>
       </div>
 

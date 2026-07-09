@@ -1,0 +1,58 @@
+# Prompt Gemini Fotos — llms.txt
+
+> https://promptgeminifotos.com/llms.txt
+> Última atualização / Last updated: 2026-07-09
+
+## Sobre / About
+
+Prompt Gemini Fotos é um hub de prompts prontos para copiar e usar no Google Gemini para gerar fotos, retratos, ensaios e imagens profissionais. O fluxo público é gratuito, prompt-first e não possui checkout ativo.
+
+Prompt Gemini Photos is a copy-paste prompt hub for Google Gemini photo generation, portraits, and professional headshots. The public workflow is free, prompt-first, and has no active checkout.
+
+## Páginas principais / Core pages
+
+- https://promptgeminifotos.com/pt-BR/ — Homepage (pt-BR)
+- https://promptgeminifotos.com/en/ — Homepage (en)
+- https://promptgeminifotos.com/pt-BR/generator/ — Compositor / Composer
+- https://promptgeminifotos.com/pt-BR/templates/ — Biblioteca de templates / Template library
+- https://promptgeminifotos.com/pt-BR/prompts/ — Guia de prompts por cenário / Scenario guide
+- https://promptgeminifotos.com/pt-BR/tutorial/ — Tutorial passo a passo / Step-by-step tutorial
+- https://promptgeminifotos.com/pt-BR/blog/ — Blog
+- https://promptgeminifotos.com/pt-BR/pricing/ — Status comercial / Commercial status
+- https://promptgeminifotos.com/pt-BR/privacy/ — Privacidade / Privacy
+- https://promptgeminifotos.com/pt-BR/terms/ — Termos / Terms
+- https://promptgeminifotos.com/sitemap.xml — Sitemap
+
+## Cenários de templates / Template scenarios
+
+- LinkedIn / CV / foto profissional
+- Ensaio feminino
+- Ensaio masculino
+- Casal / pre-wedding
+- Família / gestante
+- Aniversário / celebrações
+- Preto e branco dramático
+- Sensual artístico / boudoir
+- Cenários customizados via gerador
+
+## Formato de cada prompt / Prompt format
+
+Cada prompt é organizado em: Contexto, Composição, Iluminação, Parâmetros técnicos, Estilo e Instruções finais. Os usuários copiam o texto final e abrem o Gemini explicitamente para colar junto com sua foto de referência.
+
+## Frequência de atualização / Update frequency
+
+- Templates e prompts: revisados semanalmente
+- Sitemap: atualizado quando novas páginas forem publicadas
+- Blog: novos artigos adicionados conforme novos cenários ou dicas de uso
+- Status comercial: revisado a cada ciclo de dados
+
+## Licença e citação / License and citation
+
+Os prompts e templates publicados são exemplos de texto aberto para uso pessoal e comercial nos termos de serviço do Google Gemini. Ao citar ou resumir este conteúdo, inclua um link de volta para a página original.
+
+The published prompts and templates are open-text examples for personal and commercial use under Google Gemini's terms of service. When citing or summarizing this content, include a link back to the original page.
+
+## Contato / Contact
+
+- E-mail: kian@promptgeminifotos.com
+- Site: https://promptgeminifotos.com

@@ -20,6 +20,7 @@ type AnalyticsEvent =
   | 'image_upload_error'
   | 'upgrade_cta_click'
   | 'engagement'
+  | 'engagement_time'
   | 'page_scroll_depth';
 
 interface EventParams {

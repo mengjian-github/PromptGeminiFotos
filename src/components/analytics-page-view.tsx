@@ -46,5 +46,29 @@ export function AnalyticsPageView() {
     return () => window.removeEventListener("scroll", onScroll);
   }, [pathname]);
 
+  useEffect(() => {
+    if (!pathname || typeof window === 'undefined') return;
+
+    const reached = new Set<number>();
+    const thresholds = [10, 30, 60, 120, 180, 300];
+    const startTime = Date.now();
+
+    const timer = setInterval(() => {
+      const elapsed = Math.round((Date.now() - startTime) / 1000);
+      thresholds.forEach((threshold) => {
+        if (elapsed >= threshold && !reached.has(threshold)) {
+          reached.add(threshold);
+          trackEvent('engagement_time', {
+            path: pathname,
+            seconds: threshold,
+            locale: document.documentElement.lang || undefined,
+          });
+        }
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [pathname]);
+
   return null;
 }

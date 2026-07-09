@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { HowToTutorial } from '@/components/how-to-tutorial';
 import { buildLocalePath } from '@/lib/locale-path';
+import { generateBreadcrumbStructuredData } from '@/lib/seo';
 import type { Locale } from '@/i18n/config';
 
 interface Props {
@@ -42,6 +43,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function TutorialPage({ params }: Props) {
   const { locale } = await params;
   const currentLocale = locale as Locale;
+  const isPortuguese = currentLocale === 'pt-BR';
   setRequestLocale(currentLocale);
 
   const [tHero, tContent] = await Promise.all([
@@ -60,6 +62,17 @@ export default async function TutorialPage({ params }: Props) {
 
   return (
     <div className="bg-gradient-to-b from-white via-blue-50/30 to-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            generateBreadcrumbStructuredData([
+              { name: isPortuguese ? 'Início' : 'Home', url: buildLocalePath(currentLocale, '/', { absolute: true }) },
+              { name: isPortuguese ? 'Tutorial' : 'Tutorial', url: buildLocalePath(currentLocale, '/tutorial', { absolute: true }) },
+            ])
+          ),
+        }}
+      />
       <section className="relative px-4 pt-24 pb-16 sm:px-6 lg:px-8 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-50/80 via-purple-50/30 to-pink-50/40" />
         <div className="relative mx-auto max-w-5xl text-center">
