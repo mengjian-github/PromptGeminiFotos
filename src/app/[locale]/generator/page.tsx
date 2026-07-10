@@ -1,6 +1,6 @@
 ﻿import { Suspense } from "react";
 import { buildLocalePath } from "@/lib/locale-path";
-import { generateBreadcrumbStructuredData } from "@/lib/seo";
+import { generateBreadcrumbStructuredData, generateLocalizedAlternates } from "@/lib/seo";
 import { setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import { Badge } from "@/components/ui/badge";
@@ -45,9 +45,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title,
     description,
     keywords: keywords.join(", "),
-    alternates: {
-      canonical: buildLocalePath(currentLocale, "/generator", { absolute: true })
-    }
+    alternates: generateLocalizedAlternates(currentLocale, "/generator")
   };
 }
 

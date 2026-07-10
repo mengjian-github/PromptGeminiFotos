@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { PromptActions } from '@/components/prompt-actions';
 import type { Locale } from '@/i18n/config';
 import { buildLocalePath } from '@/lib/locale-path';
+import { generateLocalizedAlternates } from '@/lib/seo';
 
 type PromptExample = {
   title: string;
@@ -645,9 +646,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: content.metaTitle,
     description: content.metaDescription,
     keywords: content.keywords,
-    alternates: {
-      canonical,
-    },
+    alternates: generateLocalizedAlternates(currentLocale, '/prompts'),
     openGraph: {
       title: content.metaTitle,
       description: content.metaDescription,

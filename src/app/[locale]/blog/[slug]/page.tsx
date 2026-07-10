@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { buildLocalePath } from '@/lib/locale-path';
+import { generateLocalizedAlternates } from '@/lib/seo';
 import type { Locale } from '@/i18n/config';
 import {
   getAllBlogSlugs,
@@ -36,9 +37,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: post.title,
     description: post.seo.description,
     keywords: post.seo.keywords,
-    alternates: {
-      canonical,
-    },
+    alternates: generateLocalizedAlternates(locale as Locale, `/blog/${post.slug}`),
     openGraph: {
       title: post.title,
       description: post.seo.description,

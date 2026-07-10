@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Copy, ExternalLink, Eye } from 'lucide-react';
+import { Copy, ExternalLink, Eye, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { trackEvent } from '@/lib/analytics';
 import type { Locale } from '@/i18n/config';
@@ -97,6 +97,14 @@ export function PromptCopyCards({ locale }: { locale: Locale }) {
     });
   };
 
+  const trackGenerator = (card: PromptCard) => {
+    trackEvent('hero_cta_click', {
+      source: 'hero_prompt_card',
+      template_id: card.id,
+      destination: 'on_site_generator',
+    });
+  };
+
   return (
     <div className="mx-auto mt-8 grid max-w-6xl grid-cols-1 gap-4 text-left md:grid-cols-3">
       {cards.map((card) => (
@@ -122,6 +130,12 @@ export function PromptCopyCards({ locale }: { locale: Locale }) {
             >
               <Copy className="mr-2 h-4 w-4" />
               {locale === 'pt-BR' ? 'Copiar prompt' : 'Copy prompt'}
+            </Button>
+            <Button type="button" className="w-full bg-purple-600 text-white hover:bg-purple-700" asChild>
+              <Link href={buildLocalePath(locale, `/generator?template=${encodeURIComponent(card.id)}`)} onClick={() => trackGenerator(card)}>
+                <Sparkles className="mr-2 h-4 w-4" />
+                {locale === 'pt-BR' ? 'Usar no gerador' : 'Use in generator'}
+              </Link>
             </Button>
             <div className="grid grid-cols-2 gap-2">
               <Button type="button" variant="outline" asChild>

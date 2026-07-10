@@ -1,5 +1,7 @@
 import { config } from './config';
 import type { MetadataRoute } from 'next';
+import { locales, defaultLocale, type Locale } from '@/i18n/config';
+import { buildLocalePath } from '@/lib/locale-path';
 
 // Structured data schemas for SEO
 export interface StructuredDataProps {
@@ -91,6 +93,23 @@ export function generateBreadcrumbStructuredData(items: Array<{ name: string; ur
       name: item.name,
       item: item.url,
     })),
+  };
+}
+
+export function generateLocalizedAlternates(locale: Locale, path: string) {
+  const languages = Object.fromEntries(
+    locales.map((availableLocale) => [
+      availableLocale,
+      buildLocalePath(availableLocale, path, { absolute: true }),
+    ])
+  ) as Record<string, string>;
+
+  return {
+    canonical: buildLocalePath(locale, path, { absolute: true }),
+    languages: {
+      ...languages,
+      'x-default': buildLocalePath(defaultLocale, path, { absolute: true }),
+    },
   };
 }
 

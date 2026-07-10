@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { HowToTutorial } from '@/components/how-to-tutorial';
 import { buildLocalePath } from '@/lib/locale-path';
-import { generateBreadcrumbStructuredData } from '@/lib/seo';
+import { generateBreadcrumbStructuredData, generateLocalizedAlternates } from '@/lib/seo';
 import type { Locale } from '@/i18n/config';
 
 interface Props {
@@ -23,9 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: t('title'),
     description: t('description'),
     keywords,
-    alternates: {
-      canonical,
-    },
+    alternates: generateLocalizedAlternates(currentLocale, '/tutorial'),
     openGraph: {
       title: t('title'),
       description: t('description'),

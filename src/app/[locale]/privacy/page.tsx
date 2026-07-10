@@ -1,16 +1,41 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
+import type { Metadata } from 'next';
+import type { Locale } from '@/i18n/config';
+import { buildLocalePath } from '@/lib/locale-path';
+import { generateBreadcrumbStructuredData, generateLocalizedAlternates } from '@/lib/seo';
 
 type Props = {
   params: Promise<{ locale: string }>;
 };
 
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const currentLocale = locale as Locale;
+  const isPortuguese = currentLocale === 'pt-BR';
+
+  return {
+    title: isPortuguese ? 'Política de Privacidade' : 'Privacy Policy',
+    description: isPortuguese
+      ? 'Como o Prompt Gemini Fotos trata prompts, fotos locais, cookies, analytics e solicitações de privacidade no fluxo público gratuito.'
+      : 'How Prompt Gemini Photos handles prompts, local photos, cookies, analytics, and privacy requests in the free public workflow.',
+    alternates: generateLocalizedAlternates(currentLocale, '/privacy'),
+  };
+}
+
 export default async function PrivacyPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations('privacy');
+  const currentLocale = locale as Locale;
+  const isPortuguese = currentLocale === 'pt-BR';
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData([
+    { name: isPortuguese ? 'Início' : 'Home', url: buildLocalePath(currentLocale, '/', { absolute: true }) },
+    { name: isPortuguese ? 'Privacidade' : 'Privacy', url: buildLocalePath(currentLocale, '/privacy', { absolute: true }) },
+  ]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 pt-20">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }} />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-8">

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { setRequestLocale } from "next-intl/server";
 import type { Locale } from "@/i18n/config";
 import { buildLocalePath } from "@/lib/locale-path";
+import { generateLocalizedAlternates } from "@/lib/seo";
 
 interface Props {
   params: Promise<{ locale: string }>;
@@ -21,9 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       index: false,
       follow: true,
     },
-    alternates: {
-      canonical: buildLocalePath(locale as Locale, "/pricing", { absolute: true }),
-    },
+    alternates: generateLocalizedAlternates(locale as Locale, "/pricing"),
   };
 }
 

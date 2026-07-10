@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Sparkles, Crown } from 'lucide-react';
 import { TemplatesBrowser } from '@/components/templates-browser';
 import { promptTemplates, totalTemplateCount } from '@/lib/templates';
-import { generateBreadcrumbStructuredData } from '@/lib/seo';
+import { generateBreadcrumbStructuredData, generateLocalizedAlternates } from '@/lib/seo';
 import { buildLocalePath } from '@/lib/locale-path';
 import type { Locale } from '@/i18n/config';
 
@@ -94,9 +94,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title,
     description,
     keywords,
-    alternates: {
-      canonical,
-    },
+    alternates: generateLocalizedAlternates(currentLocale, '/templates'),
     openGraph: {
       title,
       description,

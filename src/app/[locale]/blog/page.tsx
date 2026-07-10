@@ -7,7 +7,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { buildLocalePath } from '@/lib/locale-path';
 import type { Locale } from '@/i18n/config';
 import { getPostsByLocale } from '@/data/blog-posts';
-import { generateBreadcrumbStructuredData } from '@/lib/seo';
+import { generateBreadcrumbStructuredData, generateLocalizedAlternates } from '@/lib/seo';
 
 interface Props {
   params: Promise<{ locale: string }>;
@@ -23,9 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: t('title'),
     description: t('description'),
     keywords,
-    alternates: {
-      canonical,
-    },
+    alternates: generateLocalizedAlternates(locale as Locale, '/blog'),
     openGraph: {
       title: t('title'),
       description: t('description'),

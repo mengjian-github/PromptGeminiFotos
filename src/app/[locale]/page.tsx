@@ -6,8 +6,9 @@ import { ImageGenerator } from '@/components/image-generator';
 import { EnhancedCTA } from '@/components/enhanced-cta';
 import { EnhancedFeatures } from '@/components/enhanced-features';
 import { PromptCopyCards } from '@/components/prompt-copy-cards';
+import { MobileStickyComposer } from '@/components/mobile-sticky-composer';
 import { Metadata } from 'next';
-import { generateBreadcrumbStructuredData } from '@/lib/seo';
+import { generateBreadcrumbStructuredData, generateLocalizedAlternates } from '@/lib/seo';
 import type { Locale } from '@/i18n/config';
 
 type Props = {
@@ -58,9 +59,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title,
     description,
     keywords: keywords.join(', '),
-    alternates: {
-      canonical: buildLocalePath(currentLocale, '/', { absolute: true }),
-    },
+    alternates: generateLocalizedAlternates(currentLocale, '/'),
   };
 }
 
@@ -152,6 +151,7 @@ export default async function HomePage({ params }: Props) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
       ))}
+      <MobileStickyComposer locale={currentLocale} />
       {/* Hero Section */}
       <section className="relative px-4 pt-16 pb-14 sm:px-6 lg:px-8 overflow-hidden">
         {/* Background decorations */}
@@ -187,6 +187,24 @@ export default async function HomePage({ params }: Props) {
             secondaryText={t('hero.features')}
             freeGenerations={2}
           />
+
+          <section id="generator-section" className="mt-10 text-left scroll-mt-24">
+            <div className="mb-5 text-center">
+              <Badge variant="secondary" className="mb-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white">
+                {t('generator.tryNow')}
+              </Badge>
+              <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl">
+                {t('generator.tryGenerator')}
+              </h2>
+              <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-gray-600 sm:text-base">
+                {t('generator.generatorDesc')}
+              </p>
+            </div>
+            <div className="relative">
+              <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-blue-100/40 via-purple-100/40 to-pink-100/40 blur-3xl -z-10" />
+              <ImageGenerator userTier={userTier} />
+            </div>
+          </section>
 
           {/* Keyword intent section */}
           <div className="mt-12 text-left">
@@ -346,29 +364,6 @@ export default async function HomePage({ params }: Props) {
         </div>
       </section>
 
-      {/* Image Generator Section */}
-      <section id="generator-section" className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-50/50 to-white">
-        <div className="mx-auto max-w-7xl">
-          <div className="text-center mb-12">
-            <Badge variant="secondary" className="mb-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white">
-              {t('generator.tryNow')}
-            </Badge>
-            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
-              {t('generator.tryGenerator')}
-            </h2>
-            <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-              {t('generator.generatorDesc')}
-            </p>
-          </div>
-
-          <div className="relative">
-            {/* Background decoration */}
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-100/30 via-purple-100/30 to-pink-100/30 rounded-3xl blur-3xl -z-10" />
-
-            <ImageGenerator userTier={userTier} />
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

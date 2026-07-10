@@ -1,17 +1,42 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { Mail, Clock } from 'lucide-react';
+import type { Metadata } from 'next';
+import type { Locale } from '@/i18n/config';
+import { buildLocalePath } from '@/lib/locale-path';
+import { generateBreadcrumbStructuredData, generateLocalizedAlternates } from '@/lib/seo';
 
 type Props = {
   params: Promise<{ locale: string }>;
 };
 
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const currentLocale = locale as Locale;
+  const isPortuguese = currentLocale === 'pt-BR';
+
+  return {
+    title: isPortuguese ? 'Contato e Suporte' : 'Contact and Support',
+    description: isPortuguese
+      ? 'Fale com o Prompt Gemini Fotos sobre suporte, privacidade, templates de prompt e fluxo gratuito de composição.'
+      : 'Contact Prompt Gemini Photos about support, privacy, prompt templates, and the free prompt composer workflow.',
+    alternates: generateLocalizedAlternates(currentLocale, '/contact'),
+  };
+}
+
 export default async function ContactPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations('contact');
+  const currentLocale = locale as Locale;
+  const isPortuguese = currentLocale === 'pt-BR';
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData([
+    { name: isPortuguese ? 'Início' : 'Home', url: buildLocalePath(currentLocale, '/', { absolute: true }) },
+    { name: isPortuguese ? 'Contato' : 'Contact', url: buildLocalePath(currentLocale, '/contact', { absolute: true }) },
+  ]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 pt-20">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }} />
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -29,7 +54,7 @@ export default async function ContactPage({ params }: Props) {
               {t('form.title')}
             </h2>
 
-            <form className="space-y-6">
+            <form className="space-y-6" action="mailto:kian@promptgeminifotos.com" method="post" encType="text/plain">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
                   {t('form.name')}
